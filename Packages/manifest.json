@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.umbrason.umbrasonsutils": "https://github.com/Umbrason/UmbrasonsUtils.git",
     "com.unity.render-pipelines.universal": "14.0.11",
     "com.unity.textmeshpro": "3.0.7",
     "com.unity.timeline": "1.7.6",
