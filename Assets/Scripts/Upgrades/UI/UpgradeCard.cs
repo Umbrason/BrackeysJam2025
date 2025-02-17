@@ -24,6 +24,13 @@ public class UpgradeCard : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     public event Action<UpgradeCard> OnClicked;
     public void OnPointerClick(PointerEventData eventData) => OnClicked?.Invoke(this);
 
+    void OnEnable()
+    {
+        scaleSpring.Position = 0;
+        transform.GetChild(0).gameObject.SetActive(true);
+    }
+    void OnDisable() => transform.GetChild(0).gameObject.SetActive(false);
+
     #region Cosmetics
     [Header("Visual Settings")]
     [SerializeField] Spring.Config scaleSpringConfig = new(20, .6f);
@@ -125,8 +132,8 @@ public class UpgradeCard : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
     void Update()
     {
-        scaleSpring.Step(Time.deltaTime);
-        rotationSpring.Step(Time.deltaTime);
+        scaleSpring.Step(Time.unscaledDeltaTime);
+        rotationSpring.Step(Time.unscaledDeltaTime);
     }
     #endregion
 }
