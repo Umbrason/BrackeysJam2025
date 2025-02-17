@@ -5,9 +5,7 @@ using UnityEngine;
 public class CameraMovement : MonoBehaviour
 {
     [SerializeField] private PlayerMovement playerMovement;
-    [SerializeField] private float smoothTime;
     [SerializeField] private float lookaheadRadius;
-    private Vector3 currentVelocity = Vector3.zero;
 
     [SerializeField] private Spring.Config springConfig;
     DrivenVector2Spring positionSpring;
@@ -21,7 +19,5 @@ public class CameraMovement : MonoBehaviour
     void Update()
     {
         positionSpring.Step(Time.deltaTime);
-
-
     }
 }
