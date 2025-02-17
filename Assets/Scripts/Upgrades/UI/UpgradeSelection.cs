@@ -18,6 +18,14 @@ public class UpgradeSelection : MonoBehaviour
     public void Close()
     {
         gameObject.SetActive(false);
+        DestroyCards();
+    }
+
+    private void DestroyCards()
+    {
+        foreach (var instance in instances)
+            Destroy(instance.gameObject);
+        instances.Clear();
     }
 
     private void SpawnCard(IUpgrade upgrade)
@@ -28,9 +36,12 @@ public class UpgradeSelection : MonoBehaviour
         instances.Add(instance);
     }
 
-    private bool acceptClicks;
+    private bool acceptClicks = true; //used to disable clicking during fade in animations
     private void OnOptionClicked(UpgradeCard card)
     {
-
+        //TODO: add correct target object here
+        if(acceptClicks)
+        card.DisplayedUpgrade.OnApply(null);
+        Close();
     }
 }
