@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 34534813938158215}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Level
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 7960687336056702429}
   - component: {fileID: 6476867091511668758}
   - component: {fileID: 4787897063809082948}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Directional Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -162,7 +162,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5733641583572789475}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: OuterLevelWalls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -201,7 +201,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6056632063089370434}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Obstacles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -282,6 +282,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 6355283778250535632, guid: 25c2ce32cae9f6c4cbb0edfc1bd7827f, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -347,6 +351,10 @@ PrefabInstance:
     - target: {fileID: 6355283778250535632, guid: 25c2ce32cae9f6c4cbb0edfc1bd7827f, type: 3}
       propertyPath: m_Name
       value: Wall (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6355283778250535632, guid: 25c2ce32cae9f6c4cbb0edfc1bd7827f, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -414,6 +422,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 6355283778250535632, guid: 25c2ce32cae9f6c4cbb0edfc1bd7827f, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -479,6 +491,10 @@ PrefabInstance:
     - target: {fileID: 6355283778250535632, guid: 25c2ce32cae9f6c4cbb0edfc1bd7827f, type: 3}
       propertyPath: m_Name
       value: Wall (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6355283778250535632, guid: 25c2ce32cae9f6c4cbb0edfc1bd7827f, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -546,6 +562,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 6355283778250535632, guid: 25c2ce32cae9f6c4cbb0edfc1bd7827f, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -611,6 +631,10 @@ PrefabInstance:
     - target: {fileID: 6355283778250535632, guid: 25c2ce32cae9f6c4cbb0edfc1bd7827f, type: 3}
       propertyPath: m_Name
       value: Wall (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6355283778250535632, guid: 25c2ce32cae9f6c4cbb0edfc1bd7827f, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -678,6 +702,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 6355283778250535632, guid: 25c2ce32cae9f6c4cbb0edfc1bd7827f, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -744,6 +772,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6355283778250535632, guid: 25c2ce32cae9f6c4cbb0edfc1bd7827f, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -765,6 +797,10 @@ PrefabInstance:
     - target: {fileID: 1791612359494107564, guid: caf6a6522594ae248a8235175e8e8808, type: 3}
       propertyPath: m_Name
       value: LevelMap
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791612359494107564, guid: caf6a6522594ae248a8235175e8e8808, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2163339178905288385, guid: caf6a6522594ae248a8235175e8e8808, type: 3}
       propertyPath: m_LocalPosition.x
@@ -869,6 +905,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall
       objectReference: {fileID: 0}
+    - target: {fileID: 6355283778250535632, guid: 25c2ce32cae9f6c4cbb0edfc1bd7827f, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -930,6 +970,10 @@ PrefabInstance:
     - target: {fileID: 6355283778250535632, guid: 2547f439e764493428f44a44e18d1095, type: 3}
       propertyPath: m_Name
       value: Obstacle
+      objectReference: {fileID: 0}
+    - target: {fileID: 6355283778250535632, guid: 2547f439e764493428f44a44e18d1095, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1000,6 +1044,10 @@ PrefabInstance:
     - target: {fileID: 6355283778250535632, guid: 25c2ce32cae9f6c4cbb0edfc1bd7827f, type: 3}
       propertyPath: m_Name
       value: Wall (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6355283778250535632, guid: 25c2ce32cae9f6c4cbb0edfc1bd7827f, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
