@@ -9,9 +9,19 @@ public class CameraMovement : MonoBehaviour
     [SerializeField] private float lookaheadRadius;
     private Vector3 currentVelocity = Vector3.zero;
 
+    [SerializeField] private Spring.Config springConfig;
+    DrivenVector2Spring positionSpring;
+
+    void Start()
+    {
+        positionSpring = new(() => (playerMovement.PlayerBody.velocity / playerMovement.Velocity * lookaheadRadius + playerMovement.PlayerBody.position)._xz(), springConfig);
+        positionSpring.OnSpringUpdated += (pos) => transform.position = pos._x0y();
+    }
+
     void Update()
     {
-        var targetPosition = playerMovement.PlayerBody.velocity / playerMovement.Velocity * lookaheadRadius + playerMovement.PlayerBody.position;
-        transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref currentVelocity, smoothTime);
+        positionSpring.Step(Time.deltaTime);
+
+
     }
 }
