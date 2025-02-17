@@ -629,11 +629,15 @@ PrefabInstance:
       objectReference: {fileID: 2472799160521019279}
     - target: {fileID: 2064229555496378927, guid: 37c5a8b9e80b06d4f9d01f0c170091d2, type: 3}
       propertyPath: maxVelocityRadius
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2064229555496378927, guid: 37c5a8b9e80b06d4f9d01f0c170091d2, type: 3}
       propertyPath: deadzoneVelocityRadius
-      value: 1
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2064229555496378927, guid: 37c5a8b9e80b06d4f9d01f0c170091d2, type: 3}
+      propertyPath: <Velocity>k__BackingField
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2978175645772338982, guid: 37c5a8b9e80b06d4f9d01f0c170091d2, type: 3}
       propertyPath: m_Name
@@ -688,6 +692,9 @@ MonoBehaviour:
   playerMovement: {fileID: 1591532443}
   smoothTime: 0.2
   lookaheadRadius: 5
+  springConfig:
+    <AngularFrequency>k__BackingField: 10
+    <DampingRatio>k__BackingField: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
