@@ -13,3 +13,6 @@ MonoBehaviour:
   m_Name: Cohesion
   m_EditorClassIdentifier: 
   contextFilter: {fileID: 11400000, guid: 54a28147e426a854aaa9a02067900084, type: 2}
+  affectX: 1
+  affectY: 0
+  affectZ: 1
