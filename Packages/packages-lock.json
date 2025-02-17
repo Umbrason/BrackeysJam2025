@@ -6,6 +6,19 @@
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
+    "com.umbrason.package-hub": {
+      "version": "https://github.com/Umbrason/Umbrasons-package-hub.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "3ae932c9b442b83df45e5f8bb4d2a789f232b477"
+    },
+    "com.umbrason.themedui": {
+      "version": "https://github.com/Umbrason/ThemedUI.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "4bb36a09b9b8c10bcf9d2ff9fe2ff257f3e30631"
     },
     "com.umbrason.umbrasonsutils": {
       "version": "https://github.com/Umbrason/UmbrasonsUtils.git",

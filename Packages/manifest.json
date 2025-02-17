@@ -1,5 +1,7 @@
 {
   "dependencies": {
+    "com.umbrason.package-hub": "https://github.com/Umbrason/Umbrasons-package-hub.git",
+    "com.umbrason.themedui": "https://github.com/Umbrason/ThemedUI.git",
     "com.umbrason.umbrasonsutils": "https://github.com/Umbrason/UmbrasonsUtils.git",
     "com.unity.2d.sprite": "1.0.0",
     "com.unity.ai.navigation": "1.1.5",
