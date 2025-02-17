@@ -21,6 +21,7 @@ namespace FlockingBehaviourManagement
             {
                 alignmentMove += item.transform.forward;
             }
+
             alignmentMove /= context.Count;
 
             return alignmentMove;

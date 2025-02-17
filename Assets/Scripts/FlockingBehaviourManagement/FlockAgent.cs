@@ -9,10 +9,8 @@ namespace FlockingBehaviourManagement
         private Collider agentCollider = null;
         private Rigidbody agentRB;
         private Flock flock = null;
-        private static List<FlockAgent> allFlockAgents = new List<FlockAgent>();
-
-        public static List<FlockAgent> AllFlockAgents { get => allFlockAgents; }
         public Flock Flock { get => flock; }
+        public Collider AgentCollider { get => agentCollider; }
 
         public void Initialize(Flock flock)
         {
@@ -29,10 +27,6 @@ namespace FlockingBehaviourManagement
             agentRB = GetComponent<Rigidbody>();
         }
 
-        private void OnEnable() 
-        {
-            allFlockAgents.Add(this);
-        }
 
         private void Start() 
         {
@@ -40,9 +34,5 @@ namespace FlockingBehaviourManagement
             agentRB.isKinematic = true;    
         }
 
-        private void OnDisable() 
-        {
-            allFlockAgents.Remove(this);
-        }
     }
 }

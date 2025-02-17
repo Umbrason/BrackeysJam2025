@@ -7,20 +7,23 @@ namespace FlockingBehaviourManagement
 {
     public class Flock : MonoBehaviour
     {
-        [SerializeField]private float agentDensity = 0.08f;
-        [SerializeField]private FlockBehaviour behaviour;
+        [SerializeField] private float agentDensity = 0.08f;
+        [SerializeField] private FlockBehaviour behaviour;
         [Range(1f, 100f)]
-        private float driveFactor = 10f;
+        [SerializeField] private float driveFactor = 10f;
         [Range(1f, 100f)]
-        private float maxSpeed = 5f;
+        [SerializeField] private float maxSpeed = 5f;
         [Range(1f, 10f)]
-        private float neighborRadius = 1.5f;
+        [SerializeField] private float neighborRadius = 1.5f;
         [Range(0f, 1f)]
-        private float avoidanceRadiusMultiplier = 0.5f;
-        
+        [SerializeField] private float avoidanceRadiusMultiplier = 0.5f;
+        [SerializeField] private bool toggleGizmos = false;
+
+        private float avoidanceRadius;
         private float squareMaxSpeed;
         private float squareNeighborRadius;
         private float squareAvoidanceRadius;
+        private Collider[] colliders = null;
         private List<FlockAgent> agents;
         public float SquareAvoidanceRadius { get { return squareAvoidanceRadius; } }
 
@@ -35,13 +38,18 @@ namespace FlockingBehaviourManagement
             this.neighborRadius = data.neighborRadius;
             this.avoidanceRadiusMultiplier = data.avoidanceRadiusMultiplier;
 
+            avoidanceRadius = data.neighborRadius * data.avoidanceRadiusMultiplier;
+
             squareMaxSpeed = data.maxSpeed * data.maxSpeed;
             squareNeighborRadius = data.neighborRadius * data.neighborRadius;
             squareAvoidanceRadius = squareNeighborRadius * data.avoidanceRadiusMultiplier * data.avoidanceRadiusMultiplier;
 
             foreach(var agent in agents)
             {
-                agent.transform.position = Random.insideUnitCircle * agents.Count * agentDensity;
+                Vector2 randomDirection2D = Random.insideUnitCircle;
+                agent.transform.position = new Vector3(randomDirection2D.x, 0.0f, randomDirection2D.y) * 
+                                               agents.Count * 
+                                               agentDensity;
                 agent.Initialize(this);
             }
         }
@@ -50,10 +58,15 @@ namespace FlockingBehaviourManagement
         {
             var nearbyObjects = new List<Transform>();
             var agentPosition = agent.transform.position;
-            for(int i = 0; i < FlockAgent.AllFlockAgents.Count; i++)
+
+            int layerMask = 1 << agent.gameObject.layer;
+            int count = Physics.OverlapSphereNonAlloc(agentPosition, avoidanceRadius, colliders, layerMask);
+
+            for(int i = 0; i < count; i++)
             {
-                FlockAgent current = FlockAgent.AllFlockAgents[i];
-                if(current == null || current == agent || !current.gameObject.activeInHierarchy)
+                Collider current = colliders[i];
+
+                if(current == null || current == agent.AgentCollider || !current.gameObject.activeInHierarchy)
                 {
                     continue;
                 }
@@ -70,6 +83,7 @@ namespace FlockingBehaviourManagement
         private void Awake() 
         {
             agents = new List<FlockAgent>();
+            colliders = new Collider[15];
         }
 
         private void FixedUpdate() 
@@ -83,7 +97,7 @@ namespace FlockingBehaviourManagement
                 }
 
                 var context = GetNearbyObjects(current);
-                Vector2 move = behaviour.CalculateMove(current, context, this);
+                Vector3 move = behaviour.CalculateMove(current, context, this);
 
                 move *= driveFactor;
                 if(move.sqrMagnitude > squareMaxSpeed)
@@ -92,6 +106,33 @@ namespace FlockingBehaviourManagement
                 }
                 current.Move(move);
             }    
+        }
+
+        private void OnValidate()
+        {
+            avoidanceRadius = neighborRadius * avoidanceRadiusMultiplier;
+            squareMaxSpeed = maxSpeed * maxSpeed;
+            squareNeighborRadius = neighborRadius * neighborRadius;
+            squareAvoidanceRadius = squareNeighborRadius * avoidanceRadiusMultiplier * avoidanceRadiusMultiplier;
+        }
+
+        private void OnDrawGizmosSelected()
+        {
+            if(!toggleGizmos)
+            {
+                return;
+            }
+            Gizmos.color = Color.yellow;
+
+            for(int i = 0; i < agents.Count; i++)
+            {
+                FlockAgent current = agents[i];
+                if (current == null || !current.gameObject.activeInHierarchy)
+                {
+                    continue;
+                }
+                Gizmos.DrawWireSphere(current.transform.position, avoidanceRadius);
+            }
         }
     }
 

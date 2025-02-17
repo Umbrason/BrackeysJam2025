@@ -9,12 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a345295e77ced142b26cf6791aa1a25, type: 3}
-  m_Name: Composite
+  m_Script: {fileID: 11500000, guid: fb427f4b334e70544904a88a37a95eb2, type: 3}
+  m_Name: Steered Cohesion
   m_EditorClassIdentifier: 
-  behaviours:
-  - {fileID: 11400000, guid: f61e6dc0b1c507b4cb9a2a161ebc280c, type: 2}
-  - {fileID: 11400000, guid: 45aa1d881de973e4793b878be7b80390, type: 2}
-  weights:
-  - 1
-  - 1
+  contextFilter: {fileID: 11400000, guid: 54a28147e426a854aaa9a02067900084, type: 2}
+  affectX: 1
+  affectY: 0
+  affectZ: 1
+  agentSmoothTime: 0.5
