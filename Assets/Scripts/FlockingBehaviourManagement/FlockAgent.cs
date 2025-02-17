@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace FlockingBehaviourManagement
 {
-    [RequireComponent(typeof(Rigidbody2D))]
+    [RequireComponent(typeof(Rigidbody))]
     public class FlockAgent : MonoBehaviour
     {
-        private Collider2D agentCollider = null;
-        private Rigidbody2D agentRB;
+        private Collider agentCollider = null;
+        private Rigidbody agentRB;
         private Flock flock = null;
         private static List<FlockAgent> allFlockAgents = new List<FlockAgent>();
 
@@ -22,13 +22,13 @@ namespace FlockingBehaviourManagement
         public void Move(Vector2 velocity)
         {
             transform.up = velocity;
-            agentRB.MovePosition(agentRB.position + velocity * Time.fixedDeltaTime);
+            agentRB.MovePosition(agentRB.position + velocity._x0y() * Time.fixedDeltaTime);
         }
 
         private void Awake() 
         {
-            agentCollider = GetComponent<Collider2D>();
-            agentRB = GetComponent<Rigidbody2D>();
+            agentCollider = GetComponent<Collider>();
+            agentRB = GetComponent<Rigidbody>();
         }
 
         private void OnEnable() 
