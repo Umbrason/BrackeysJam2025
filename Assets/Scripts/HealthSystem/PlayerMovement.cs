@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [SerializeField] bool canRotate = true;
     NavMeshAgent playerAgent;
     
     Rigidbody playerBody;
@@ -13,17 +14,25 @@ public class PlayerMovement : MonoBehaviour
     {
         playerBody = GetComponent<Rigidbody>();
         playerAgent = GetComponent<NavMeshAgent>();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        //Toggle Rotation
+        if (!canRotate)
+        {
+            transform.rotation = Quaternion.identity;
+        }
+        
         if (Input.GetMouseButtonDown(0))
         {
            //Use raycast to find position on Navmesh map
             RaycastHit hit;
             if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100))
             {
+                
                 playerAgent.destination = hit.point;
             }
         }
