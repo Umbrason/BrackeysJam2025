@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,10 +18,9 @@ namespace FlockingBehaviourManagement
         {
             this.flock = flock;
         }
-        public void Move(Vector2 velocity)
+        public void Move(Vector3 velocity)
         {
-            transform.up = velocity;
-            agentRB.MovePosition(agentRB.position + velocity._x0y() * Time.fixedDeltaTime);
+            agentRB.MovePosition(agentRB.position + velocity * Time.fixedDeltaTime);
         }
 
         private void Awake() 
@@ -46,8 +44,5 @@ namespace FlockingBehaviourManagement
         {
             allFlockAgents.Remove(this);
         }
-
-
     }
-
 }

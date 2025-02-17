@@ -6,17 +6,20 @@ namespace FlockingBehaviourManagement
     [CreateAssetMenu(menuName = "Flock/Behaviour/Alignment", fileName = "Alignment")]
     public class AlignmentBehaviour : FilteredFlockBehaviour
     {
-        public override Vector2 CalculateMove(FlockAgent agent, List<Transform> context, Flock flock)
+        public override Vector3 CalculateMove(FlockAgent agent, List<Transform> context, Flock flock)
         {
             if (context.Count == 0)
-            return agent.transform.up;
+            {
+                return agent.transform.forward;
+            }
+            
 
             //add all points together and do average
-            Vector2 alignmentMove = Vector2.zero;
+            Vector3 alignmentMove = Vector3.zero;
             List<Transform> filteredContext = (base.contextFilter == null) ? context : base.contextFilter.Filter(agent, context);
             foreach (Transform item in filteredContext)
             {
-                alignmentMove += (Vector2)item.transform.up;
+                alignmentMove += item.transform.forward;
             }
             alignmentMove /= context.Count;
 
