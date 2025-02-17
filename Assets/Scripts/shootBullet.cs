@@ -31,8 +31,4 @@ public class shootBullet : MonoBehaviour
         newBullet.GetComponent<Rigidbody>().AddRelativeForce(new Vector3(0, 0, shootVelocity));
     }
 
-    void bulletBounce()
-    {
-        
-    }
 }
