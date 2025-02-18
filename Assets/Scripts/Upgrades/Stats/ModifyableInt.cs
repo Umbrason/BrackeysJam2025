@@ -1,14 +1,27 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
+[System.Serializable]
 public class ModifyableInt
 {
     public int Current { get => CalculateFormula(); }
-    public int Base { get; set; }
+    [field: SerializeField] public int Base { get; set; }
     private readonly Dictionary<Guid, int> additiveModifiers = new();
-    private readonly Dictionary<Guid, int> multiplicativeModifiers = new();
+    private readonly Dictionary<Guid, float> multiplicativeModifiers = new();
     private readonly Dictionary<Guid, int> minModifiers = new();
     private readonly Dictionary<Guid, int> maxModifiers = new();
+
+    private event Action<int> m_OnChanged;
+    public event Action<int> OnChanged
+    {
+        add
+        {
+            m_OnChanged += value;
+            value?.Invoke(Current);
+        }
+        remove => m_OnChanged -= value;
+    }
 
     public ModifyableInt(int baseValue)
     {
@@ -17,7 +30,7 @@ public class ModifyableInt
 
     private int CalculateFormula()
     {
-        var result = Base;
+        var result = (float)Base;
 
         foreach (var add in additiveModifiers.Values)
             result += add;
@@ -31,20 +44,22 @@ public class ModifyableInt
         foreach (var max in maxModifiers.Values)
             result = result < max ? result : max;
 
-        return result;
+        return Convert.ToInt32(result);
     }
 
     public Guid RegisterAdd(int value)
     {
         var guid = Guid.NewGuid();
         additiveModifiers[guid] = value;
+        m_OnChanged?.Invoke(Current);
         return guid;
     }
 
-    public Guid RegisterMultiply(int value)
+    public Guid RegisterMultiply(float value)
     {
         var guid = Guid.NewGuid();
         multiplicativeModifiers[guid] = value;
+        m_OnChanged?.Invoke(Current);
         return guid;
     }
 
@@ -52,6 +67,7 @@ public class ModifyableInt
     {
         var guid = Guid.NewGuid();
         minModifiers[guid] = value;
+        m_OnChanged?.Invoke(Current);
         return guid;
     }
 
@@ -59,11 +75,12 @@ public class ModifyableInt
     {
         var guid = Guid.NewGuid();
         maxModifiers[guid] = value;
+        m_OnChanged?.Invoke(Current);
         return guid;
     }
 
-    public void FreeAdd(Guid guid) => additiveModifiers.Remove(guid);
-    public void FreeMultiply(Guid guid) => multiplicativeModifiers.Remove(guid);
-    public void FreeFloor(Guid guid) => minModifiers.Remove(guid);
-    public void FreeCeil(Guid guid) => maxModifiers.Remove(guid);
+    public void FreeAdd(Guid guid) { additiveModifiers.Remove(guid); m_OnChanged?.Invoke(Current); }
+    public void FreeMultiply(Guid guid) { multiplicativeModifiers.Remove(guid); m_OnChanged?.Invoke(Current); }
+    public void FreeFloor(Guid guid) { minModifiers.Remove(guid); m_OnChanged?.Invoke(Current); }
+    public void FreeCeil(Guid guid) { maxModifiers.Remove(guid); m_OnChanged?.Invoke(Current); }
 }
