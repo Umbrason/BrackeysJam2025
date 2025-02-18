@@ -2,62 +2,60 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
-using FlockingBehaviourManagement;
+using AttractorManagement;
 
 namespace EnemyManagement
 {
     public class EnemyGenerator : MonoBehaviour
     {
-        [SerializeField] private Flock flockPrefab;
-        [SerializeField] private FlockAgent flockAgentPrefab;
-        [Min(10)]
-        [SerializeField] private int maxFlockAgentCount = 10;
-        [SerializeField] private FlockData flockData;
+        [SerializeField] private AttractorAgent attractorAgentPrefab;
+        [Min(0.01f)]
+        [SerializeField] private float agentDensity = 0.01f;
+        [Min(1)]
+        [SerializeField] private int maxEnemyCount = 10;
+        [SerializeField] private Transform spawnPoint;
         [SerializeField] private Transform target;
+        
 
-        private ObjectPool<FlockAgent> flockAgentPool;
+        private ObjectPool<AttractorAgent> attractorAgentPool;
 
-        private void CreateFlock()
+        private void SpawnEnemies(int enemyCount)
         {
-            if (flockData == null)
-            {
-                return;
-            }
-
-            Flock flock = Instantiate(flockPrefab, transform.position, Quaternion.identity);
-
             int i = 1;
-            while (i <= maxFlockAgentCount)
+            while(i <= enemyCount)
             {
-                FlockAgent agent = flockAgentPool.Get();
-                agent.transform.forward = Vector3.forward;
-                agent.transform.parent = flock.transform;
-                flock.Agents.Add(agent);
+
+                Vector2 randomDirection2D = Random.insideUnitCircle;
+                Vector3 spawnPosition = spawnPoint.position +
+                                        new Vector3(randomDirection2D.x, 0.0f, randomDirection2D.y) *
+                                        enemyCount *
+                                        agentDensity;
+
+                var agent = attractorAgentPool.Get();
+                agent.transform.position = spawnPosition;
+                agent.Target = target;
                 i++;
             }
-
-            flock.Initialize(flockData, target);
-            
         }
 
-        private FlockAgent CreateFlockAgent()
+        private AttractorAgent CreateAttractorAgent()
         {
-            var agent = Instantiate(flockAgentPrefab, transform.position, Quaternion.identity);
+            var agent = Instantiate(attractorAgentPrefab, transform.position, Quaternion.identity);
             agent.gameObject.SetActive(false);
             return agent;
         }
 
-        private void OnGetFlockAgent(FlockAgent agent)
+        private void OnGetAttractorAgent(AttractorAgent agent)
         {
             agent.gameObject.SetActive(true);
         }
 
-        private void OnReleaseFlockAgent(FlockAgent agent)
+        private void OnReleaseAttractorAgent(AttractorAgent agent)
         {
             agent.gameObject.SetActive(false);
         }
 
-        private void OnDestroyFlockAgent(FlockAgent agent)
+        private void OnDestroyAttractorAgent(AttractorAgent agent)
         {
             Destroy(agent.gameObject);
         }
@@ -65,18 +63,18 @@ namespace EnemyManagement
         // Start is called before the first frame update
         void Start()
         {
-            if(flockAgentPool == null)
+            if(attractorAgentPool == null)
             {
-                flockAgentPool = new ObjectPool<FlockAgent>(CreateFlockAgent,
-                                                            OnGetFlockAgent,
-                                                            OnReleaseFlockAgent,
-                                                            OnDestroyFlockAgent,
-                                                            true,
-                                                            maxFlockAgentCount,
-                                                            maxFlockAgentCount);
+                attractorAgentPool = new ObjectPool<AttractorAgent>(CreateAttractorAgent,
+                                                                    OnGetAttractorAgent,
+                                                                    OnReleaseAttractorAgent,
+                                                                    OnDestroyAttractorAgent,
+                                                                    true,
+                                                                    maxEnemyCount,
+                                                                    maxEnemyCount);
             }
 
-            CreateFlock();
+            SpawnEnemies(maxEnemyCount);
         }
     }
 
