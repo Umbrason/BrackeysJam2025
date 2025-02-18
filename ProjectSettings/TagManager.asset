@@ -3,18 +3,20 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Obstacle
+  - Projectile
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Player
+  - Obstacles
   - Water
   - UI
-  - Attractor
-  - 
-  - 
-  - 
+  - PlayerProjectiles
+  - Player
+  - EnemyProjectiles
+  - Enemy
   - 
   - 
   - 
