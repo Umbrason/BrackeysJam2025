@@ -22,6 +22,15 @@ public class HealthPool : MonoBehaviour
         unprocessedDamageEvents[healthEvent.GUID] = (healthEvent, Mathf.Max(existingMultiplier, multiplier));
     }
 
+    public void Resize(int newSize)
+    {
+        Current = Mathf.Min(newSize, Current);
+        Size = newSize;
+        OnModified?.Invoke();
+        if (Current == 0)
+            OnDepleted?.Invoke();
+    }
+
     private void ProcessHealthEvents()
     {
         foreach ((var healthEvent, var multiplier) in unprocessedDamageEvents.Values)
@@ -29,11 +38,12 @@ public class HealthPool : MonoBehaviour
             processedDamageEvents.Add(healthEvent.GUID);
             healthEvent.OnReleased += () => processedDamageEvents.Remove(healthEvent.GUID);
             this.Current += healthEvent.Amount * multiplier;
-            Debug.Log(healthEvent);
         }
         this.Current = Mathf.Clamp(Current, 0, Size);
         foreach ((var healthEvent, var multiplier) in unprocessedDamageEvents.Values)
             healthEvent.ReportHit(this, healthEvent.Amount * multiplier, this.Current == 0);
         unprocessedDamageEvents.Clear();
+        OnModified?.Invoke();
+        if (Current == 0) OnDepleted?.Invoke();
     }
 }

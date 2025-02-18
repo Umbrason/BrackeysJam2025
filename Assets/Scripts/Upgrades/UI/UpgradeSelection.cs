@@ -10,15 +10,26 @@ public class UpgradeSelection : MonoBehaviour
 
     readonly List<UpgradeCard> instances = new();
 
-    public void Show(params IUpgrade[] options)
+    private static UpgradeSelection Instance;
+    void Awake()
+    {
+        Instance = Instance == null ? this : Instance;
+        gameObject.SetActive(false);
+    }
+    void OnDestroy() => Instance = this == Instance ? null : Instance;
+
+    public static void Show(params IUpgrade[] options) => Instance.ShowInstance(options);
+    bool cursorWasVisible = false;
+    private void ShowInstance(params IUpgrade[] options)
     {
         if (options.Length == 0) return; //nothing to show
         foreach (var option in options)
             SpawnCard(option);
         gameObject.SetActive(true);
+        cursorWasVisible = Cursor.visible;
+        Cursor.visible = true;
         StartCoroutine(ShowRoutine());
     }
-
 
     const float enableCardsAnimationDuration = 2f;
     private IEnumerator EnableCardsRoutine()
@@ -80,6 +91,7 @@ public class UpgradeSelection : MonoBehaviour
         instances.Clear();
         gameObject.SetActive(false);
         Time.timeScale = 1;
+        Cursor.visible = cursorWasVisible;
     }
     const float hideCardAnimationDuration = 1f;
     private IEnumerator HideCardRoutine(UpgradeCard card)

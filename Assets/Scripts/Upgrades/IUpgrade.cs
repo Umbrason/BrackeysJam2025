@@ -3,7 +3,7 @@ using UnityEngine;
 
 public interface IUpgrade
 {
-    public static List<IUpgrade> UpgradePool = new();
+    public static LootPool<IUpgrade> UpgradePool;
     Sprite Icon { get; }
     string Description { get; }
     bool Stackable { get; }

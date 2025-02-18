@@ -1,15 +1,16 @@
 using System;
+using System.Linq;
 
 public class RingBuffer<T>
 {
     T[] data;
 
-    public int Count;    
     public T NextValue => data[tail];
-
+    public int Count { get; private set; }
     int head;
     int tail;
     int capacity;
+
 
     public RingBuffer(int capacity)
     {
@@ -17,10 +18,10 @@ public class RingBuffer<T>
         this.capacity = capacity;
         this.head = 0;
         this.tail = 0;
+        this.Count = 0;
         for (int i = 0; i < capacity; i++)
             data[i] = default;
     }
-
 
     public T Pop()
     {
@@ -32,9 +33,12 @@ public class RingBuffer<T>
         return index;
     }
 
-    public void Push(T value)
+    public void Push(T value, bool overwrite = false)
     {
-        if (Count >= capacity) throw new Exception("Ringbuffer full!");
+        if (Count >= capacity)
+            if (!overwrite)
+                throw new Exception("Ringbuffer full!");
+            else Pop();
         data[head] = value;
         head++;
         if (head >= capacity) head -= capacity;
@@ -47,5 +51,23 @@ public class RingBuffer<T>
         head = 0;
         tail = 0;
         Count = 0;
+    }
+
+    public bool Contains(T value) => data.Contains(value);
+
+    public void Resize(int capacity)
+    {
+        var newData = new T[capacity];
+        var oldData = new T[Count];
+        for (int i = 0; i < Count; i++)
+            oldData[i] = Pop();
+
+        this.data = newData;
+        this.capacity = capacity;
+        this.head = 0;
+        this.tail = 0;
+        this.Count = 0;
+        for (int i = 0; i < oldData.Length; i++)
+            Push(oldData[i]);
     }
 }
