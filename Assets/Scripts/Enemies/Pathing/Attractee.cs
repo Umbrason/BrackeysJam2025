@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Attractee : MonoBehaviour
@@ -11,19 +12,37 @@ public class Attractee : MonoBehaviour
 
     void OnDrawGizmos()
     {
-        Vector2 position = transform.position._xz();
-        Vector2 vel = default;
-        foreach (var attractor in Attractor.attractors)
-            vel += attractor.GetInfluence(position);
-        Gizmos.DrawLine(transform.position, transform.position + vel.normalized._x0y() * speed);
+        Vector3 position = transform.position;
+        float px = position.x;
+        float py = position.z;
+        float vx = 0;
+        float vy = 0;
+
+        for (int i = 0; i < Attractor.attractors.Count; i++)
+        {
+            var attractor = Attractor.attractors[i];
+            var (avx, avy) = attractor.GetInfluence(px, py);
+            vx += avx;
+            vy += avy;
+        }
+        Gizmos.DrawLine(transform.position, transform.position + new Vector3(vx, 0, vy).normalized * speed);
     }
 
     void FixedUpdate()
     {
-        Vector2 position = transform.position._xz();
-        Vector2 vel = default;
-        foreach (var attractor in Attractor.attractors)
-            vel += attractor.GetInfluence(position);
-        RB.velocity = vel.normalized._x0y() * speed;
+        Vector3 position = transform.position;
+        float px = position.x;
+        float py = position.z;
+        float vx = 0;
+        float vy = 0;
+
+        for (int i = 0; i < Attractor.attractors.Count; i++)
+        {
+            var attractor = Attractor.attractors[i];
+            var (avx, avy) = attractor.GetInfluence(px, py);
+            vx += avx;
+            vy += avy;
+        }
+        RB.velocity = new Vector3(vx, 0, vy).normalized * speed;
     }
 }

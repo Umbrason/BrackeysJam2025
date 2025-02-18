@@ -255,7 +255,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   falloffType: 0
-  strength: 10
+  strength: 1
 --- !u!1 &7941322240413234857
 GameObject:
   m_ObjectHideFlags: 0
