@@ -9,16 +9,31 @@ namespace FlockingBehaviourManagement
     {
         [Min(0.0f)]
         public float agentDensity = 0.08f;
-        public FlockBehaviour behaviour = null;
+        
         [Range(1f, 100f)]
-        public float driveFactor = 10f;
-        [Range(1f, 100f)]
-        public float maxSpeed = 5f;
+        public float moveSpeed = 5f;
+        
         [Range(1f, 10f)]
         public float neighborRadius = 1.5f;
+        
         [Range(0f, 1f)]
         public float avoidanceRadiusMultiplier = 0.5f;
+        
+        [Range(0.0f, 1.0f)]
+        public float avoidanceWeight = 1.0f;
 
+        [Range(0.0f, 1.0f)]
+        public float cohesionWeight = 1.0f;
+
+        [Min(0.1f)]
+        public float agentSmoothTime = 0.5f;
+        
+        public bool allowSteeredCohesion = true;
+        
+        public LayerMask obstacleLayerMask;
+        
+        [Min(1.0f)]
+        public float minDistanceToTarget = 5.0f;
     }
 
 }

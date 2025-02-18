@@ -18,7 +18,7 @@ namespace FlockingBehaviourManagement
         }
         public void Move(Vector3 velocity)
         {
-            agentRB.MovePosition(agentRB.position + velocity * Time.fixedDeltaTime);
+            agentRB.velocity = velocity;
         }
 
         private void Awake() 
@@ -30,8 +30,13 @@ namespace FlockingBehaviourManagement
 
         private void Start() 
         {
-            agentCollider.isTrigger = true;
-            agentRB.isKinematic = true;    
+            agentCollider.isTrigger = false;
+            agentRB.isKinematic = false;
+            agentRB.MoveRotation(Quaternion.Euler(0.0f, 0.0f, 0.0f));
+            agentRB.constraints = RigidbodyConstraints.FreezePositionY |
+                                  RigidbodyConstraints.FreezeRotationX | 
+                                  RigidbodyConstraints.FreezeRotationY | 
+                                  RigidbodyConstraints.FreezeRotationZ;
         }
 
     }
