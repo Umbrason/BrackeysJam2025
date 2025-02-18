@@ -160,9 +160,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canRotate: 1
-  velocity: 0
+  <Velocity>k__BackingField: 0
   deadzoneVelocityRadius: 0
   maxVelocityRadius: 0
+  cameraAnchor: {fileID: 0}
 --- !u!136 &7044436374018061186
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -170,7 +171,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2978175645772338982}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 1fb156d9a8f526613a2a780aee1815e0, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

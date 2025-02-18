@@ -4,31 +4,40 @@ using UnityEngine;
 
 public class shootBullet : MonoBehaviour
 {
-    [SerializeField] GameObject bullet;
-    [SerializeField] float timerInterval = 3f;
+    [SerializeField] Bullet bullet;
+    public readonly ModifyableFloat bulletRadius = new(.5f);
+    public readonly ModifyableFloat timerInterval = new(.01f);
+    public readonly ModifyableFloat initialLifeTime = new(4);
+    public readonly ModifyableInt maxBounces = new(3);
+    public readonly ModifyableInt damage = new(1);
+    public readonly ModifyableFloat initialVelocity = new(40);
     float time;
-    public float shootVelocity = 700f;
     // Start is called before the first frame update
     void Start()
     {
         time = 0;
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         time += Time.deltaTime;
-        while (time >= timerInterval)
+        int bulletsSpawnedThisFrame = Mathf.FloorToInt(time / timerInterval.Current);
+        int i = 0;
+        while (time >= timerInterval.Current)
         {
-            fireBullet();
-            time -= timerInterval;
+
+            fireBullet((i++ + .5f) / (float)bulletsSpawnedThisFrame);
+            time -= timerInterval.Current;
         }
     }
 
-    void fireBullet()
+    void fireBullet(float offset)
     {
-        GameObject newBullet = Instantiate(bullet, transform.position, transform.rotation); 
-        newBullet.GetComponent<Rigidbody>().AddRelativeForce(new Vector3(0, 0, shootVelocity));
+        var dir = transform.forward;
+        var speed = dir * initialVelocity.Current;
+        var startPos = transform.position + transform.forward * (.8f + bulletRadius.Current + .1f) + offset * Time.deltaTime * speed;
+        Bullet newBullet = Instantiate(bullet, startPos, transform.rotation);
+        newBullet.Init(maxBounces.Current, initialLifeTime.Current, speed, (uint)damage.Current, bulletRadius.Current);
     }
 
 }

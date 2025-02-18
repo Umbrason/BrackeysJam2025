@@ -380,6 +380,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Level
       objectReference: {fileID: 0}
+    - target: {fileID: 8994827587697951096, guid: 256cb8ec15e74544b913c736ddcf153b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9189647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8994827587697951096, guid: 256cb8ec15e74544b913c736ddcf153b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.39433992
+      objectReference: {fileID: 0}
+    - target: {fileID: 8994827587697951096, guid: 256cb8ec15e74544b913c736ddcf153b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -46.45
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5270271475027464508, guid: 256cb8ec15e74544b913c736ddcf153b, type: 3}
     m_RemovedGameObjects: []
@@ -579,6 +591,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 203052602420521498, guid: 37c5a8b9e80b06d4f9d01f0c170091d2, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 1438520259360258577, guid: 37c5a8b9e80b06d4f9d01f0c170091d2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -639,14 +655,22 @@ PrefabInstance:
       propertyPath: <Velocity>k__BackingField
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 2511868103947183130, guid: 37c5a8b9e80b06d4f9d01f0c170091d2, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 2978175645772338982, guid: 37c5a8b9e80b06d4f9d01f0c170091d2, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2978175645772338982, guid: 37c5a8b9e80b06d4f9d01f0c170091d2, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 7648692860182066123, guid: 37c5a8b9e80b06d4f9d01f0c170091d2, type: 3}
       propertyPath: bullet
       value: 
-      objectReference: {fileID: 6721717710952422419, guid: 71f6a992105f79a4999eb23c05b53e40, type: 3}
+      objectReference: {fileID: 135223884623816328, guid: 71f6a992105f79a4999eb23c05b53e40, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -690,7 +714,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerMovement: {fileID: 1591532443}
-  smoothTime: 0.2
   lookaheadRadius: 5
   springConfig:
     <AngularFrequency>k__BackingField: 10
