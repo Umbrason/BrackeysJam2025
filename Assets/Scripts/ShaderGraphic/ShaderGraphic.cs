@@ -31,7 +31,7 @@ public class ShaderGraphic : MaskableGraphic
             canvasRenderer.SetMaterial(m_Material, 0);
         }
 
-        // Calculate pixel size of the rectangle        
+        // Calculate pixel size of the rectangle
         if (canvas)
         {
             var canvasSize = canvas.GetComponent<RectTransform>().rect.size;
@@ -40,5 +40,11 @@ public class ShaderGraphic : MaskableGraphic
         }
         var random = (float)new System.Random(this.GetInstanceID()).NextDouble();
         m_Material.SetFloat("_Random", random);
+    }
+
+    void Update()
+    {
+        var t = Time.unscaledTime;
+        Shader.SetGlobalVector("_uTime", new(t / 20, t, t * 2, t * 3));
     }
 }

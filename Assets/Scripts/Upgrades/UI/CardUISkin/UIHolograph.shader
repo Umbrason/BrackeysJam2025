@@ -1,12 +1,10 @@
-Shader "UI/AnimatedBorder"
+Shader "UI/Holograph"
 {
     Properties
     {
-        _PixelRect ("Vector", Vector) = (1,1,1,1)
         _Color ("Tint", Color) = (1,1,1,1)
-        _Amplitude("Amplitude", Float) = 20
-        _Frequency("Frequency", Float) = 4
-        _Random("Random", Float) = 0
+        _Texture("Main", 2D) = "" { }
+        _Frequency("Frequency", Float) = 120
 
         _StencilComp ("Stencil Comparison", Float) = 8
         _Stencil ("Stencil ID", Float) = 0
@@ -79,12 +77,8 @@ Shader "UI/AnimatedBorder"
             };
 
             fixed4 _Color;
-            float4 _PixelRect;
-            float _Amplitude;
             float _Frequency;
-            fixed4 _TextureSampleAdd;
-            float4 _ClipRect;
-            float _Random;
+            sampler2D _Texture;
             float4 _uTime;
 
             v2f vert(appdata_t v)
@@ -100,30 +94,16 @@ Shader "UI/AnimatedBorder"
                 OUT.color = v.color * _Color;
                 return OUT;
             }
-
-            float BorderSDF(float2 pixel)
+            
+            float scanlines(float2 pos)
             {
-                return (_PixelRect.y - pixel.y);
-            }
-
-            float Noise(float angle, float offset)
-            {
-                float a = sin(angle * 1 + .5624334 * offset)    * 3;
-                float b = sin(angle * 3 + 5.1236785 * offset)   * 2;
-                float c = sin(angle * 5 + 3.9876 * offset)      * 1;
-                return ((a + b + c) / 6.0 + 1) / 2.0;
+                return abs(sin(pos.y * _Frequency + _uTime.y));
             }
 
             fixed4 frag(v2f IN) : SV_Target
             {
-                float2 pixelPos = IN.texcoord * _PixelRect;
-                float alpha = BorderSDF(pixelPos);
-                float noise = Noise(pixelPos.x * _Frequency / 1920.0, _uTime.y + _Random * 3.141) * _Amplitude;
-
-                alpha -= noise;
-                alpha = saturate(alpha);
-                float4 color = fixed4(1,1,1, alpha);
-
+                float4 color = tex2D(_Texture, IN.texcoord);
+                color *= 1 - scanlines(IN.texcoord) * .15;
                 #ifdef UNITY_UI_CLIP_RECT
                 color.a *= UnityGet2DClipping(IN.worldPosition.xy, _ClipRect);
                 #endif
