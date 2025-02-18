@@ -47,8 +47,17 @@ public class CardboardSpriteRenderer : MonoBehaviour
     {
         MeshRenderer.sharedMaterial = material;
         MeshRenderer.SetPropertyBlock(PropertyBlock);
-        Sprite = Sprite; //TODO: remove later
     }
+
+#if UNITY_EDITOR
+    void OnValidate()
+    {
+        m_Mesh = null; cached_propertyBlock = null;
+        MeshFilter.sharedMesh = Mesh;
+        MeshRenderer.sharedMaterial = material;
+        MeshRenderer.SetPropertyBlock(PropertyBlock);
+    }
+#endif
 
     private Mesh GenerateMesh()
     {
@@ -87,7 +96,6 @@ public class CardboardSpriteRenderer : MonoBehaviour
     {
         var borderMesh = new DynamicMesh("sprite side");
         var edges = GetSingleEdges(frontMesh.Indices);
-        var vertexCount = frontMesh.Vertices.Count;
         var offset = 0f;
         for (int i = 0; i < edges.Count; i++)
         {
@@ -124,24 +132,6 @@ public class CardboardSpriteRenderer : MonoBehaviour
             offset = (offset + length / thickness) % 1;
         }
         return borderMesh;
-    }
-
-    private List<int> GenerateSideTriangles(List<int> triangles, int vertexCount)
-    {
-
-        var edges = GetSingleEdges(triangles);
-        var edgeTriangles = new List<int>();
-        for (int i = 0; i < edges.Count; i++)
-        {
-            var edge = edges[i];
-            edgeTriangles.Add(edge.a);
-            edgeTriangles.Add(edge.b);
-            edgeTriangles.Add(edge.b + vertexCount);
-            edgeTriangles.Add(edge.a);
-            edgeTriangles.Add(edge.b + vertexCount);
-            edgeTriangles.Add(edge.a + vertexCount);
-        }
-        return edgeTriangles;
     }
 
     private List<Edge> GetSingleEdges(List<int> triangles)

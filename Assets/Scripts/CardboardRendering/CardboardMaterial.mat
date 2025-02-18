@@ -272,7 +272,7 @@ Material:
     - _ZTestTransparent: 4
     - _ZWrite: 1
     m_Colors:
-    - CardboardColor: {r: 0.688, g: 0.49905965, b: 0.44376, a: 0}
+    - CardboardColor: {r: 0.688, g: 0.49905956, b: 0.44375998, a: 1}
     - UV_ScaleDebug: {r: 1, g: 1, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}
