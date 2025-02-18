@@ -12,11 +12,6 @@ public class shootBullet : MonoBehaviour
     public readonly ModifyableInt damage = new(1);
     public readonly ModifyableFloat initialVelocity = new(40);
     float time;
-    // Start is called before the first frame update
-    void Start()
-    {
-        time = 0;
-    }
 
     void FixedUpdate()
     {
