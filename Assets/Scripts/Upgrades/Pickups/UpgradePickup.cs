@@ -4,19 +4,25 @@ using UnityEngine;
 
 public class UpgradePickup : MonoBehaviour
 {
-    void OnTriggerEnter() => TriggerPickUp();
-    void TriggerPickUp()
+    void OnTriggerEnter(Collider collider) => TriggerPickUp(collider?.attachedRigidbody?.gameObject);
+    void TriggerPickUp(GameObject target)
     {
         if (pickingUp) return;
         pickingUp = true;
-        StartCoroutine(PickupRoutine());
+        StartCoroutine(PickupRoutine(target));
     }
     bool pickingUp = false;
     const int UpgradeOptionCount = 3;
-    IEnumerator PickupRoutine()
+    [SerializeField] private Sprite[] OpenAnimation;
+    [SerializeField] private int openAnimationFramerate;
+    Cached<ISpriteAnimator> cached_Animator = new(Cached<ISpriteAnimator>.GetOption.Children);
+    ISpriteAnimator Animator => cached_Animator[this];
+    IEnumerator PickupRoutine(GameObject target)
     {
-        yield return null;
         var options = Enumerable.Range(0, UpgradeOptionCount).Select(_ => IUpgrade.UpgradePool.Pull()).ToArray();
-        UpgradeSelection.Show(options);
+        Animator.Framerate = openAnimationFramerate;
+        Animator.Sprites = OpenAnimation;
+        yield return new WaitForSeconds(OpenAnimation.Length / (float)openAnimationFramerate);
+        UpgradeSelection.Show(target, options);
     }
 }
