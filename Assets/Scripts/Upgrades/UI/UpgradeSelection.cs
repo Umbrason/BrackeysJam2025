@@ -18,13 +18,15 @@ public class UpgradeSelection : MonoBehaviour
     }
     void OnDestroy() => Instance = this == Instance ? null : Instance;
 
-    public static void Show(params IUpgrade[] options) => Instance.ShowInstance(options);
+    public static void Show(GameObject target, params IUpgrade[] options) => Instance.ShowInstance(target, options);
     bool cursorWasVisible = false;
-    private void ShowInstance(params IUpgrade[] options)
+    GameObject upgradeTarget;
+    private void ShowInstance(GameObject target, params IUpgrade[] options)
     {
         if (options.Length == 0) return; //nothing to show
         foreach (var option in options)
             SpawnCard(option);
+        this.upgradeTarget = target;
         gameObject.SetActive(true);
         cursorWasVisible = Cursor.visible;
         Cursor.visible = true;
@@ -125,8 +127,7 @@ public class UpgradeSelection : MonoBehaviour
     private bool acceptClicks = false; //used to disable clicking during fade in animations
     private void OnOptionClicked(UpgradeCard card)
     {
-        //TODO: add correct target object here
-        if (acceptClicks) card.DisplayedUpgrade.OnApply(null);
+        if (acceptClicks) card.DisplayedUpgrade.OnApply(upgradeTarget);
         card.Shake();
         Close(card);
     }
