@@ -85,6 +85,7 @@ Shader "UI/AnimatedBorder"
             fixed4 _TextureSampleAdd;
             float4 _ClipRect;
             float _Random;
+            float4 _uTime;
 
             v2f vert(appdata_t v)
             {
@@ -117,7 +118,7 @@ Shader "UI/AnimatedBorder"
             {
                 float2 pixelPos = IN.texcoord * _PixelRect;
                 float alpha = BorderSDF(pixelPos);
-                float noise = Noise(pixelPos.x * _Frequency / 1920.0, _Time.y + _Random * 3.141) * _Amplitude;
+                float noise = Noise(pixelPos.x * _Frequency / 1920.0, _uTime.y + _Random * 3.141) * _Amplitude;
 
                 alpha -= noise;
                 alpha = saturate(alpha);

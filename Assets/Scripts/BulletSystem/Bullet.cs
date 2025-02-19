@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -18,15 +17,15 @@ public class Bullet : MonoBehaviour
         this.velocity = direction;
         this.damage = damage;
         transform.localScale = Vector3.one * size;
+        gameObject.SetActive(true);
     }
+    public event Action<Bullet> OnDespawn;
 
     void Update()
     {
         lifeTime -= Time.deltaTime;
         if (lifeTime <= 0)
-        {
-            Destroy(gameObject);
-        }
+            Despawn();
     }
     void FixedUpdate()
     {
@@ -45,19 +44,26 @@ public class Bullet : MonoBehaviour
         {
             velocity = Vector3.Reflect(velocity, normal);
             Rigidbody.MovePosition(Rigidbody.position + velocity.normalized * .05f);
-            remainingBounces--;
             if (remainingBounces <= 0)
             {
-                Destroy(gameObject);
+                Despawn();
+                return;
             }
+            remainingBounces--;
         }
         else
         {
             var hitbox = collision.collider.GetComponent<Hitbox>();
             hitbox?.RegisterDamageEvent(HealthEvent.Damage(damage));
-            Destroy(gameObject);
+            Despawn();
         }
     }
 
-
+    void Despawn()
+    {
+        Rigidbody.Sleep();
+        Rigidbody.velocity = default;
+        gameObject.SetActive(false);
+        OnDespawn?.Invoke(this);
+    }
 }

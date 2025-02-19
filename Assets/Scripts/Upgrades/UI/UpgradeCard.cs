@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class UpgradeCard : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler, IPointerMoveHandler, IPointerDownHandler, IPointerUpHandler
 {
     [SerializeField] private Image icon;
+    [SerializeField] private TMP_Text title;
     [SerializeField] private TMP_Text description;
 
     IUpgrade m_displayedUpgrade;
@@ -18,6 +19,7 @@ public class UpgradeCard : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         {
             m_displayedUpgrade = value;
             icon.sprite = m_displayedUpgrade.Icon;
+            title.text = m_displayedUpgrade.Name;
             description.text = m_displayedUpgrade.Description;
         }
     }
@@ -36,7 +38,7 @@ public class UpgradeCard : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     [SerializeField] Spring.Config scaleSpringConfig = new(20, .6f);
     BaseSpring scaleSpring;
     [SerializeField] Spring.Config rotationSpringConfig = new(20, .6f);
-    RotationVector2Spring rotationSpring;
+    RotationVector3Spring rotationSpring;
 
     [SerializeField] Vector2 RotationAmplitude;
 
@@ -66,45 +68,65 @@ public class UpgradeCard : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         scaleSpring.OnSpringUpdated += OnScaleUpdated;
     }
 
+    public void Shake()
+    {
+        rotationSpring.Velocity = new(0, 0, 200);
+    }
+
+    bool disabled = false;
+    public void Hide()
+    {
+        rotationSpring.RestingPos = new(0, 90);
+        scaleSpring.AngularFrequency = 10;
+        scaleSpring.DampingRatio = .9f;
+        scaleSpring.RestingPos = 0;
+        disabled = true;
+    }
+
     private void OnScaleUpdated(float scale)
     {
         for (int i = 0; i < transform.childCount; i++)
             transform.GetChild(i).localScale = Vector3.one * scale;
     }
 
-    private void OnRotationUpdated(Vector2 rotation)
+    private void OnRotationUpdated(Vector3 rotation)
     {
         for (int i = 0; i < transform.childCount; i++)
-            transform.GetChild(i).localRotation = Quaternion.Euler(rotation.x, rotation.y, 0);
+            transform.GetChild(i).localRotation = Quaternion.Euler(rotation.x, rotation.y, rotation.z);
     }
 
     const float HoveredScale = 1.2f;
     const float PressedScale = .9f;
     public void OnPointerEnter(PointerEventData eventData)
     {
+        if (disabled) return;
         scaleSpring.RestingPos = HoveredScale;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        if (disabled) return;
         scaleSpring.RestingPos = 1;
         rotationSpring.RestingPos = Vector2.zero;
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        if (disabled) return;
         scaleSpring.RestingPos = PressedScale;
         scaleSpring.Velocity = (scaleSpring.RestingPos - scaleSpring.Position) * 20f; //speed up downscale motion a bit
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
+        if (disabled) return;
         if (scaleSpring.RestingPos < 1) //only set back to hovered scale when the pointer is still on the card
             scaleSpring.RestingPos = HoveredScale;
     }
 
     public void OnPointerMove(PointerEventData eventData)
     {
+        if (disabled) return;
         var localPos = ScreenToRectLocalPosition(eventData.position);
         rotationSpring.RestingPos = (Vector2.one * .5f - new Vector2(1 - localPos.y, localPos.x)) * RotationAmplitude;
     }

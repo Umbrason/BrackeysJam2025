@@ -7,6 +7,13 @@
       "dependencies": {},
       "hash": "3ae932c9b442b83df45e5f8bb4d2a789f232b477"
     },
+    "com.umbrason.proceduralmeshes": {
+      "version": "https://github.com/Umbrason/ProceduralMeshes.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "d703a77e6a6ebbc22824c11940c78781843a936f"
+    },
     "com.umbrason.themedui": {
       "version": "https://github.com/Umbrason/ThemedUI.git",
       "depth": 0,

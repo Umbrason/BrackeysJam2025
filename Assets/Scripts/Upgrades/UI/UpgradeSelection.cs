@@ -10,15 +10,26 @@ public class UpgradeSelection : MonoBehaviour
 
     readonly List<UpgradeCard> instances = new();
 
-    public void Show(params IUpgrade[] options)
+    private static UpgradeSelection Instance;
+    void Awake()
+    {
+        Instance = Instance == null ? this : Instance;
+        gameObject.SetActive(false);
+    }
+    void OnDestroy() => Instance = this == Instance ? null : Instance;
+
+    public static void Show(params IUpgrade[] options) => Instance.ShowInstance(options);
+    bool cursorWasVisible = false;
+    private void ShowInstance(params IUpgrade[] options)
     {
         if (options.Length == 0) return; //nothing to show
         foreach (var option in options)
             SpawnCard(option);
         gameObject.SetActive(true);
+        cursorWasVisible = Cursor.visible;
+        Cursor.visible = true;
         StartCoroutine(ShowRoutine());
     }
-
 
     const float enableCardsAnimationDuration = 2f;
     private IEnumerator EnableCardsRoutine()
@@ -63,23 +74,43 @@ public class UpgradeSelection : MonoBehaviour
             var anyNotDone = false;
             foreach (var enumerator in enumerators)
                 anyNotDone |= enumerator.MoveNext();
-            if (!anyNotDone) yield break;
+            if (!anyNotDone) break;
             yield return null;
         }
+        acceptClicks = true;
     }
 
-    public void Close()
+    private IEnumerator CloseRoutine(UpgradeCard chosenCard)
     {
-        gameObject.SetActive(false);
-        DestroyCards();
-        Time.timeScale = 1;
-    }
-
-    private void DestroyCards()
-    {
-        foreach (var instance in instances)
-            Destroy(instance.gameObject);
+        foreach (var card in instances)
+        {
+            if (card == chosenCard) continue;
+            yield return HideCardRoutine(card);
+        }
+        yield return HideCardRoutine(chosenCard);
         instances.Clear();
+        gameObject.SetActive(false);
+        Time.timeScale = 1;
+        Cursor.visible = cursorWasVisible;
+    }
+    const float hideCardAnimationDuration = 1f;
+    private IEnumerator HideCardRoutine(UpgradeCard card)
+    {
+        card.Hide();
+        var t = 0f;
+        while (t < 1)
+        {
+            Time.timeScale = 1 - t;
+            t += Time.unscaledDeltaTime / hideCardAnimationDuration;
+            yield return null;
+        }
+        Time.timeScale = 0;
+        Destroy(card);
+    }
+
+    public void Close(UpgradeCard card)
+    {
+        StartCoroutine(CloseRoutine(card));
     }
 
     private void SpawnCard(IUpgrade upgrade)
@@ -91,12 +122,12 @@ public class UpgradeSelection : MonoBehaviour
         instance.enabled = false;
     }
 
-    private bool acceptClicks = true; //used to disable clicking during fade in animations
+    private bool acceptClicks = false; //used to disable clicking during fade in animations
     private void OnOptionClicked(UpgradeCard card)
     {
         //TODO: add correct target object here
-        if (acceptClicks)
-            card.DisplayedUpgrade.OnApply(null);
-        Close();
+        if (acceptClicks) card.DisplayedUpgrade.OnApply(null);
+        card.Shake();
+        Close(card);
     }
 }
