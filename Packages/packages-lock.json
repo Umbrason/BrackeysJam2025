@@ -1,11 +1,25 @@
 {
   "dependencies": {
+    "com.madsbangh.easybuttons": {
+      "version": "https://github.com/madsbangh/EasyButtons.git#upm",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "73d2383899210da808a1b27329cdaa8000de557b"
+    },
     "com.umbrason.package-hub": {
       "version": "https://github.com/Umbrason/Umbrasons-package-hub.git",
       "depth": 0,
       "source": "git",
       "dependencies": {},
       "hash": "3ae932c9b442b83df45e5f8bb4d2a789f232b477"
+    },
+    "com.umbrason.proceduralmeshes": {
+      "version": "https://github.com/Umbrason/ProceduralMeshes.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "d703a77e6a6ebbc22824c11940c78781843a936f"
     },
     "com.umbrason.themedui": {
       "version": "https://github.com/Umbrason/ThemedUI.git",
@@ -41,10 +55,17 @@
     },
     "com.unity.ext.nunit": {
       "version": "1.0.6",
-      "depth": 2,
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.ide.rider": {
+      "version": "3.0.34",
+      "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.unity.test-framework": "1.1.9"
+        "com.unity.ext.nunit": "1.0.6"
       },
       "url": "https://packages.unity.com"
     },
@@ -124,17 +145,6 @@
       "source": "registry",
       "dependencies": {
         "com.unity.sysroot": "2.0.10"
-      },
-      "url": "https://packages.unity.com"
-    },
-    "com.unity.test-framework": {
-      "version": "1.1.33",
-      "depth": 1,
-      "source": "registry",
-      "dependencies": {
-        "com.unity.ext.nunit": "1.0.6",
-        "com.unity.modules.imgui": "1.0.0",
-        "com.unity.modules.jsonserialize": "1.0.0"
       },
       "url": "https://packages.unity.com"
     },

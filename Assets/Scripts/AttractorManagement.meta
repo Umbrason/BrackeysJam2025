@@ -1,5 +1,11 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts/AttractorManagement.meta
 guid: d6cba74b3f85db04480dee7dcf7e801b
+|||||||| a784087:Assets/Scripts/FlockingBehaviourManagement/Behaviour.meta
+guid: 2e89d34455cfb5748ba6bb3cd001605e
+========
+guid: 82993b9a049b64e4c862683047747395
+>>>>>>>> main:Assets/Audio.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

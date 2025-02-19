@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts/AttractorManagement/Attractor.cs.meta
+guid: 0053744a52af5ff4c876153419b83e39
+|||||||| a784087:Assets/Scripts/FlockingBehaviourManagement/Behaviour/AvoidanceBehaviour.cs.meta
+guid: f0700a04ca315c147a5bdb7b9e21ec30
+========
+guid: fc0ea106fd85f51be877ed9040b4a7b1
+>>>>>>>> main:Assets/Scripts/ObjectPooling/GameObjectPool.cs.meta
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

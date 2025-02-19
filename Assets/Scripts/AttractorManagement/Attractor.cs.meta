@@ -1,5 +1,11 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts/AttractorManagement/Attractor.cs.meta
 guid: 9aa61f9c5e1b67d4e9c3b2428a914318
+|||||||| a784087:Assets/Scripts/FlockingBehaviourManagement/Behaviour/AvoidanceBehaviour.cs.meta
+guid: f0700a04ca315c147a5bdb7b9e21ec30
+========
+guid: fc0ea106fd85f51be877ed9040b4a7b1
+>>>>>>>> main:Assets/Scripts/ObjectPooling/GameObjectPool.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
