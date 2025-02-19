@@ -6,7 +6,7 @@ public class UpgradeBulletSize : IUpgrade
 {
 	Sprite IUpgrade.Icon => null;
     string IUpgrade.Name => "BulletSizeUp";
-    string IUpgrade.Description => "Increases size of bullets by 4.";
+    string IUpgrade.Description => "Increases size of bullets by +2.";
     bool IUpgrade.Stackable => true;
-    void IUpgrade.OnApply(GameObject PlayerObject) { PlayerObject.GetComponent<PlayerStats>().BulletRadius.RegisterAdd(4);}
+    void IUpgrade.OnApply(GameObject PlayerObject) { PlayerObject.GetComponent<PlayerStats>().BulletRadius.RegisterAdd(2);}
 }

@@ -10,6 +10,10 @@ public class EnemySpawner : MonoBehaviour
     int DesiredEnemyCount => 5;
     int EnemyCount => enemyPools.Sum(pool => pool.InCirculation);
 
+    private float enemyIncreaseTimer;
+    [SerializeField] private int enemyIncreaseTick;
+    [SerializeField] private int enemyAmountGrowth;
+    private int enemyDesiredCountIncrease;
     void Awake()
     {
         foreach (var enemyPool in enemyPools)
@@ -17,8 +21,17 @@ public class EnemySpawner : MonoBehaviour
     }
 
     void FixedUpdate()
-    {
-        while (EnemyCount < DesiredEnemyCount)
+    { 
+        enemyIncreaseTimer += Time.deltaTime;
+       // print(enemyIncreaseTimer);
+        while (enemyIncreaseTimer >= enemyIncreaseTick)
+        {
+            print("Test");
+            enemyIncreaseTimer -=enemyIncreaseTick;
+             enemyDesiredCountIncrease+= enemyAmountGrowth;
+        }
+
+        while (EnemyCount < DesiredEnemyCount + enemyDesiredCountIncrease)
             DoSpawn();
     }
 
