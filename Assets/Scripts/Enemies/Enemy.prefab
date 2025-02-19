@@ -12,6 +12,9 @@ GameObject:
   - component: {fileID: 6446945546147750669}
   - component: {fileID: 4301773695702898412}
   - component: {fileID: 8370919692774148767}
+  - component: {fileID: 3935415122424587351}
+  - component: {fileID: 883455606101652181}
+  - component: {fileID: 5648424608014174115}
   m_Layer: 9
   m_Name: Enemy
   m_TagString: Untagged
@@ -89,6 +92,44 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!114 &3935415122424587351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1348588414570229628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91df5b22718d3951a9f8bc1398a7d94a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Size>k__BackingField: 5
+  <Current>k__BackingField: 5
+--- !u!114 &883455606101652181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1348588414570229628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6286bdebec93110bb0d3ee3727236c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5648424608014174115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1348588414570229628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e34645fe451ebe2d68b86ac346234569, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2845591556402424452
 GameObject:
   m_ObjectHideFlags: 0
@@ -101,6 +142,7 @@ GameObject:
   - component: {fileID: 5238149863711458708}
   - component: {fileID: 307069230778125346}
   - component: {fileID: 6963621467495321009}
+  - component: {fileID: 642562492947914641}
   m_Layer: 9
   m_Name: Sphere
   m_TagString: Untagged
@@ -194,3 +236,16 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &642562492947914641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2845591556402424452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fd71719d6cc6b37c9a36435871a036c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <IsCritical>k__BackingField: 0

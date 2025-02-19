@@ -38,7 +38,8 @@ public class RingBuffer<T>
         if (Count >= capacity)
             if (!overwrite)
                 throw new Exception("Ringbuffer full!");
-            else Pop();
+            else if (capacity > 0) Pop();
+            else return;
         data[head] = value;
         head++;
         if (head >= capacity) head -= capacity;

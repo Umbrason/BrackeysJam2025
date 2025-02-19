@@ -6,8 +6,8 @@ public class LootPool<T>
 {
     const float VarietyGuaranteeRatio = .5f;
     private readonly HashSet<T> Options = new();
-    private readonly RingBuffer<T> LastLoot;
-    public void Add(T item)
+    private readonly RingBuffer<T> LastLoot = new(0);
+    public void Push(T item)
     {
         Options.Add(item);
         LastLoot.Resize(Mathf.FloorToInt(Options.Count * VarietyGuaranteeRatio));
@@ -27,7 +27,7 @@ public class LootPool<T>
             item = Options.ElementAt(idx);
         }
         while (LastLoot.Contains(item));
-        LastLoot.Push(item);
+        LastLoot.Push(item, true);
         return item;
     }
     public void Remove(T item)
