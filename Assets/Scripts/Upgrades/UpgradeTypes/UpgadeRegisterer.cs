@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class UpgradesRegisterer 
 {
-    public static IUpgrade[] UpgradeList = {new UpgradeFireRate()};
+    public static IUpgrade[] UpgradeList = {new UpgradeFireRate(), new UpgradeSpeed(), new UpgradeBulletSize()};
 
     [RuntimeInitializeOnLoadMethod]
     public static void registerUpgrades()
