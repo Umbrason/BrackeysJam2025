@@ -2,7 +2,7 @@ using UnityEngine;
 
 public interface IUpgrade
 {
-    public static LootPool<IUpgrade> UpgradePool;
+    public static LootPool<IUpgrade> UpgradePool = new();
     Sprite Icon { get; }
     string Name { get; }
     string Description { get; }
