@@ -41,9 +41,9 @@ public class UpgradeSelection : MonoBehaviour
         while (t <= 1)
         {
             var instanceID = Mathf.FloorToInt(t * (instances.Count - 1));
-            if (instanceID >= enabledInstances)
+            while (instanceID >= enabledInstances)
             {
-                instances[instanceID].enabled = true;
+                instances[enabledInstances].enabled = true;
                 enabledInstances++;
             }
             t += Time.unscaledDeltaTime / enableCardsAnimationDuration;
