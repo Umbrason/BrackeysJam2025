@@ -8,6 +8,6 @@ public interface IUpgrade
     string Description { get; }
     bool Stackable { get; }
     void OnApply(GameObject PlayerObject);
-    protected void Register() => UpgradePool.Add(this);
-    protected void Unregister() => UpgradePool.Remove(this);
+    void Register() => UpgradePool.Add(this);
+    void Unregister() => UpgradePool.Remove(this);
 }

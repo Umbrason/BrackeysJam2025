@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class UpgradesRegisterer 
 {
+    public IUpgrade[] UpgradeList;
+
     [RuntimeInitializeOnLoadMethod]
     void registerUpgrades()
     {
-        UpgradeFireRate.Register();
+        for (int i = 0; i < UpgradeList.Length; i++)
+        {
+            UpgradeList[i].Register();
+
+        }
     }
-   
+}

@@ -7,5 +7,5 @@ public class UpgradeFireRate : IUpgrade
 	Sprite IUpgrade.Icon => null;
     string IUpgrade.Description => "Test";
     bool IUpgrade.Stackable => true;
-    void IUpgrade.OnApply(GameObject PlayerObject) { PlayerObject.GetComponent<PlayerStats>().Firerate;}
+    void IUpgrade.OnApply(GameObject PlayerObject) { PlayerObject.GetComponent<PlayerStats>().Firerate.RegisterAdd(5);}
 }
