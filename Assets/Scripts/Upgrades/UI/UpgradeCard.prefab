@@ -468,6 +468,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 4916691995141342118}
+  title: {fileID: 3048738873713257666}
   description: {fileID: 8201074580467750746}
   scaleSpringConfig:
     <AngularFrequency>k__BackingField: 20
