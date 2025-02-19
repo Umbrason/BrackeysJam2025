@@ -24,5 +24,6 @@ public class UpgradePickup : MonoBehaviour
         Animator.Sprites = OpenAnimation;
         yield return new WaitForSeconds(OpenAnimation.Length / (float)openAnimationFramerate);
         UpgradeSelection.Show(target, options);
+        Destroy(gameObject);
     }
 }
