@@ -31,7 +31,6 @@ public class SoundMixerUpdater : MonoBehaviour
 
     public void Save()
     {
-        Debug.Log($"Pref Save {Key} {slider.value}");
         PlayerPrefs.SetFloat(Key, slider.value);
         PlayerPrefs.Save();
     }
@@ -39,7 +38,6 @@ public class SoundMixerUpdater : MonoBehaviour
     public void Load()
     {
         float value = PlayerPrefs.GetFloat(Key, 1);
-        Debug.Log($"Pref Load {Key} {value}");
         onLoad?.Invoke(value);
         SetMixerValue(value);
     }
