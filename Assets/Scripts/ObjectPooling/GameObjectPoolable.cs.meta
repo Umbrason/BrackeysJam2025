@@ -1,11 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Scripts/EnemyManagement/EnemyGenerator.cs.meta
-guid: cac0c347584ec0b419c0844a36713c9a
-|||||||| a784087:Assets/Scripts/FlockingBehaviourManagement/Behaviour/CompositeBehaviour.cs.meta
-guid: 6a345295e77ced142b26cf6791aa1a25
-========
 guid: 585056bb9fb6ba8778f1d775460ec87b
->>>>>>>> main:Assets/Scripts/ObjectPooling/GameObjectPoolable.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

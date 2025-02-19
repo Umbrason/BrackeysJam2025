@@ -2,7 +2,7 @@ Shader "UI/AnimatedRoundedRect"
 {
     Properties
     {
-        _BorderRadius("BorderRadius", Float) = 10
+        _BorderRadius("BorderRadius", Float) = 5
         _PixelRect ("Vector", Vector) = (1,1,1,1)
 
 
@@ -121,7 +121,7 @@ Shader "UI/AnimatedRoundedRect"
                 float alpha = RoundedRectSDF(IN.texcoord * _PixelRect);
                 float2 centered = IN.texcoord - float2(.5,.5);
                 float angle = atan2(centered.y, centered.x);
-                float noise = Noise(angle, _Time.y + IN.color.x + IN.color.y * 20 + IN.color.z * 100) * 2.5;
+                float noise = Noise(angle, _Time.y) * 2.5;
 
                 alpha -= noise;
                 alpha = saturate(alpha);

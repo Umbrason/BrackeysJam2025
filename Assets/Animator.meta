@@ -1,16 +1,7 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Prefabs/Attractor Agent.prefab.meta
-guid: a658399200e37e84ab0912ef3cbdad77
-PrefabImporter:
-|||||||| a784087:Assets/Scripts/FlockingBehaviourManagement/Filters.meta
-guid: 053c4dcb84b61e7478877ddc64d34dbd
-folderAsset: yes
-DefaultImporter:
-========
 guid: 1ea826ca53b551843bd55d2b154d74c9
 folderAsset: yes
 DefaultImporter:
->>>>>>>> main:Assets/Animator.meta
   externalObjects: {}
   userData: 
   assetBundleName: 

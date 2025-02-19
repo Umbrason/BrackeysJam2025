@@ -1,11 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Scripts/AttractorManagement/AttractorAgent.cs.meta
-guid: 7aead92eda01cfe4994eb7e133a51280
-|||||||| a784087:Assets/Scripts/FlockingBehaviourManagement/Behaviour/AlignmentBehaviour.cs.meta
-guid: 1f367d19df74382479f1fb4a1c5441b3
-========
 guid: 09621060a53b3a842906fb812456eb02
->>>>>>>> main:Assets/Scripts/General/Quit.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
