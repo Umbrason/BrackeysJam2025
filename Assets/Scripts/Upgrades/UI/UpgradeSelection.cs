@@ -102,11 +102,9 @@ public class UpgradeSelection : MonoBehaviour
         var t = 0f;
         while (t < 1)
         {
-            Time.timeScale = 1 - t;
             t += Time.unscaledDeltaTime / hideCardAnimationDuration;
             yield return null;
         }
-        Time.timeScale = 0;
         Destroy(card);
     }
 
