@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class UpgradeCard : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler, IPointerMoveHandler, IPointerDownHandler, IPointerUpHandler
 {
     [SerializeField] private Image icon;
+    [SerializeField] private TMP_Text title;
     [SerializeField] private TMP_Text description;
 
     IUpgrade m_displayedUpgrade;
@@ -18,6 +19,7 @@ public class UpgradeCard : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         {
             m_displayedUpgrade = value;
             icon.sprite = m_displayedUpgrade.Icon;
+            title.text = m_displayedUpgrade.Name;
             description.text = m_displayedUpgrade.Description;
         }
     }

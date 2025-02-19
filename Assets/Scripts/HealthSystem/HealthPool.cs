@@ -12,6 +12,7 @@ public class HealthPool : MonoBehaviour
     {
         ProcessHealthEvents();
     }
+    public void OnEnable() => Current = Size;
 
     private readonly Dictionary<Guid, (HealthEvent healthEvent, int multiplier)> unprocessedDamageEvents = new();
     private readonly HashSet<Guid> processedDamageEvents = new();
