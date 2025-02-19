@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.madsbangh.easybuttons": "https://github.com/madsbangh/EasyButtons.git#upm",
     "com.umbrason.package-hub": "https://github.com/Umbrason/Umbrasons-package-hub.git",
     "com.umbrason.proceduralmeshes": "https://github.com/Umbrason/ProceduralMeshes.git",
     "com.umbrason.themedui": "https://github.com/Umbrason/ThemedUI.git",

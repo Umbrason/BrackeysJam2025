@@ -1,10 +1,8 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class ButtonPressed : MonoBehaviour
 {
-    public bool toggleThisGetAllButtons; // please im too lazy to add buttons
     public AudioClipGroup clipGroup;
     public AudioSource audioSource;
     public Button[] buttons;
@@ -21,17 +19,10 @@ public class ButtonPressed : MonoBehaviour
             audioSource.PlayOneShot(clip);
     }
 
+    [EasyButtons.Button]
     public void GetAllButtons()
     {
         buttons = Resources.FindObjectsOfTypeAll<Button>();
     }
 
-    private void OnValidate()
-    {
-        if (toggleThisGetAllButtons)
-        {
-            GetAllButtons();
-            toggleThisGetAllButtons = false;
-        }
-    }
 }

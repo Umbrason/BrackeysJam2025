@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.Events;
@@ -15,8 +16,13 @@ public class SoundMixerUpdater : MonoBehaviour
 
     public string Key => $"Audio_{mixerParameterName}";
 
-    private void Awake() => Load();
     private void OnDestroy() => Save();
+
+    private IEnumerator Start()
+    {
+        yield return new WaitForSeconds(0.1f);
+        Load();
+    }
 
     private void OnEnable() => slider.onValueChanged.AddListener(SetMixerValue);
     private void OnDisable() => slider.onValueChanged.RemoveListener(SetMixerValue);
