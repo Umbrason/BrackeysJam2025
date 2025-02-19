@@ -1,10 +1,12 @@
 {
   "dependencies": {
+    "com.madsbangh.easybuttons": "https://github.com/madsbangh/EasyButtons.git#upm",
     "com.umbrason.package-hub": "https://github.com/Umbrason/Umbrasons-package-hub.git",
     "com.umbrason.proceduralmeshes": "https://github.com/Umbrason/ProceduralMeshes.git",
     "com.umbrason.themedui": "https://github.com/Umbrason/ThemedUI.git",
     "com.umbrason.umbrasonsutils": "https://github.com/Umbrason/UmbrasonsUtils.git",
     "com.unity.2d.sprite": "1.0.0",
+    "com.unity.ide.rider": "3.0.34",
     "com.unity.render-pipelines.universal": "14.0.11",
     "com.unity.textmeshpro": "3.0.7",
     "com.unity.timeline": "1.7.6",
