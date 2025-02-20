@@ -23,7 +23,6 @@ public class EnemySpawner : MonoBehaviour
     void FixedUpdate()
     { 
         enemyIncreaseTimer += Time.deltaTime;
-       // print(enemyIncreaseTimer);
         while (enemyIncreaseTimer >= enemyIncreaseTick)
         { 
              enemyIncreaseTimer -=enemyIncreaseTick;
@@ -37,5 +36,13 @@ public class EnemySpawner : MonoBehaviour
     void DoSpawn()
     {
         var enemy = enemyPoolPool.Pull().Pull();
+        generateSpawnPosition();
     }
+    
+    Vector3 generateSpawnPosition()
+    {
+        return new Vector3(0,0,0);
+
+    }
+
 }
