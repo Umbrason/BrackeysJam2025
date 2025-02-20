@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CharacterAnimator : MonoBehaviour
 {
-    Cached<ISpriteAnimator> cached_SpriteAnimator;
+    Cached<ISpriteAnimator> cached_SpriteAnimator = new(Cached<ISpriteAnimator>.GetOption.Children);
     ISpriteAnimator SpriteAnimator => cached_SpriteAnimator[this];
     Cached<Rigidbody> cached_RB;
     Rigidbody RB => cached_RB[this];
@@ -15,10 +15,10 @@ public class CharacterAnimator : MonoBehaviour
         public AnimationSet animation;
     }
     [SerializeField] DirectionalAnimation[] animations;
-    DirectionalAnimation Idle;
+    [SerializeField] AnimationSet Idle;
 
-    DirectionalAnimation m_CurrentAnimation;
-    DirectionalAnimation CurrentAnimation
+    AnimationSet m_CurrentAnimation;
+    AnimationSet CurrentAnimation
     {
         set
         {
@@ -26,8 +26,8 @@ public class CharacterAnimator : MonoBehaviour
             if (value == m_CurrentAnimation) return;
             if (value == null) return;
             m_CurrentAnimation = value;
-            SpriteAnimator.Sprites = value.animation.Sprites;
-            SpriteAnimator.Framerate = value.animation.FrameRate;
+            SpriteAnimator.Sprites = value.Sprites;
+            SpriteAnimator.Framerate = value.FrameRate;
         }
     }
 
@@ -49,7 +49,7 @@ public class CharacterAnimator : MonoBehaviour
             if (bestScore > alpha)
             {
                 bestScore = alpha;
-                bestAnimation = animations[i];
+                bestAnimation = animations[i].animation;
             }
         }
         CurrentAnimation = bestAnimation;

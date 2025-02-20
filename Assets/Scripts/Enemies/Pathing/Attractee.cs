@@ -9,7 +9,7 @@ public class Attractee : MonoBehaviour
     VelocityController VC => cached_VelocityController[this];
 
     public float speed;
-    [SerializeField] int AttractionLayerMask = 0;
+    [SerializeField] private int attractionLayerMask;
 
     void OnDrawGizmos()
     {
@@ -40,7 +40,7 @@ public class Attractee : MonoBehaviour
         for (int i = 0; i < Attractor.attractors.Count; i++)
         {
             var attractor = Attractor.attractors[i];
-            if (((1 << attractor.AttractionLayer) & AttractionLayerMask) == 0) continue;
+            if (((1 << attractor.AttractionLayer) & attractionLayerMask) == 0) continue;
             var (avx, avy) = attractor.GetInfluence(px, py);
             vx += avx;
             vy += avy;

@@ -8,7 +8,7 @@ using UnityEngine;
 public class Attractor : MonoBehaviour
 {
     public static List<Attractor> attractors = new();
-    [SerializeField] public int AttractionLayer { get; private set; } = 0;
+    [field: SerializeField] public int AttractionLayer { get; private set; } = 0;
     public enum Falloff
     {
         None = 0,

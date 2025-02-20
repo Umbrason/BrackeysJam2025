@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dd6ba353e6b5fddc8d0e864bdcb7c5e, type: 3}
+  m_Name: Idle
+  m_EditorClassIdentifier: 
+  <FrameRate>k__BackingField: 8
+  <Sprites>k__BackingField:
+  - {fileID: 21300000, guid: 25c3242e791e840468d8e581ffc1f53d, type: 3}
+  - {fileID: 21300000, guid: a6a0c0025a31f4727bc959bce99d600e, type: 3}
+  - {fileID: 21300000, guid: ea0c910a33d349ff294718895b48d9e4, type: 3}
+  - {fileID: 21300000, guid: 8712fe023fdfcce7c973e7deaeeb46f4, type: 3}
+  - {fileID: 21300000, guid: f92b9d612d6f3ef05a0ef33164f96c97, type: 3}
+  <MirrorX>k__BackingField: 0

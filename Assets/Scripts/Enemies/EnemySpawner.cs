@@ -6,14 +6,31 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private LootPool<EnemyPool> enemyPoolPool = new();
-    [SerializeField] private EnemyPool[] enemyPools;
+    [SerializeField] private EnemyPoolable[] enemyTemplates;
+    [SerializeField] private EnemyPool poolTemplate;
+    private EnemyPool[] enemyPools;
     int DesiredEnemyCount => 5;
     int EnemyCount => enemyPools.Sum(pool => pool.InCirculation);
 
+    [SerializeField] private GameObjectPool HitVFXPool;
+    [SerializeField] private GameObjectPool DeathVFXPool;
+    [SerializeField] private GameObjectPool HealthPickupPool;
+
     void Awake()
     {
-        foreach (var enemyPool in enemyPools)
-            enemyPoolPool.Push(enemyPool);
+        var template = poolTemplate.Template;
+        enemyPools = new EnemyPool[enemyTemplates.Length];
+        for (int i = 0; i < enemyTemplates.Length; i++)
+        {
+            poolTemplate.Template = enemyTemplates[i];
+            var pool = Instantiate(poolTemplate, transform);
+            pool.HealthPickupPool = HealthPickupPool;
+            pool.DeathVFXPool = DeathVFXPool;
+            pool.HitVFXPool = HitVFXPool;
+            enemyPools[i] = pool;
+            enemyPoolPool.Push(pool);
+        }
+        poolTemplate.Template = template;
     }
 
     void FixedUpdate()
