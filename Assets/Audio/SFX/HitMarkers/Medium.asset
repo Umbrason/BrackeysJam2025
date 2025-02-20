@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Medium
   m_EditorClassIdentifier: 
   <Clips>k__BackingField:
-  - {fileID: 8300000, guid: ca3d7ef3fa876818eaa29fee95cc218b, type: 3}
-  - {fileID: 8300000, guid: 4421969b6c6489b0185b71c2e14c9420, type: 3}
+  - {fileID: 8300000, guid: c72632a13eccadc029376a7feee2b8c7, type: 3}
+  - {fileID: 8300000, guid: 1839abd7105fdd7ab8a31236f1498f64, type: 3}
   <MixerGroup>k__BackingField: {fileID: -4805061913258453619, guid: 5070527f0a2f37141a4be3ac890c834f, type: 2}
-  pitchRange: {x: 0.9, y: 1.1}
+  pitchRange: {x: 0.95, y: 1.05}

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Light
   m_EditorClassIdentifier: 
   <Clips>k__BackingField:
-  - {fileID: 8300000, guid: 398a195bc831346a3aa47455ee63a070, type: 3}
+  - {fileID: 8300000, guid: d30d1a253fa31d7b3b6fde3024d3ff8a, type: 3}
+  - {fileID: 8300000, guid: 8503384f99a8bbac391ab86ad2d8fc7f, type: 3}
   <MixerGroup>k__BackingField: {fileID: -4805061913258453619, guid: 5070527f0a2f37141a4be3ac890c834f, type: 2}
-  pitchRange: {x: 0.9, y: 1.1}
+  pitchRange: {x: 0.95, y: 1.05}

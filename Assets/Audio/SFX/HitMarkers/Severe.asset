@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Severe
   m_EditorClassIdentifier: 
   <Clips>k__BackingField:
-  - {fileID: 8300000, guid: 6b335bf36c0450158b1f38ec3fcd82dc, type: 3}
+  - {fileID: 8300000, guid: ad1277fe8c4ba47a88537ddc1481d0f4, type: 3}
+  - {fileID: 8300000, guid: b89922913928c3be981933f9ebd5bd8b, type: 3}
   <MixerGroup>k__BackingField: {fileID: -4805061913258453619, guid: 5070527f0a2f37141a4be3ac890c834f, type: 2}
-  pitchRange: {x: 0.9, y: 1.1}
+  pitchRange: {x: 0.95, y: 1.05}
