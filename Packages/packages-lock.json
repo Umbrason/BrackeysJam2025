@@ -37,6 +37,13 @@
       },
       "hash": "6bdd62159a7d9625d3fcae5381e91cb1737230c7"
     },
+    "com.umbrason.velocitycontroller": {
+      "version": "https://github.com/Umbrason/VelocityController.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "028bcfe511b6a2269f7554668c8fe50f396bda83"
+    },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
       "depth": 0,
