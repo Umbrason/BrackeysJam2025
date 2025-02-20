@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class PersistantData : MonoBehaviour
 {
     private static PersistantData instance;
-
+    public static event Action<string> SettingChanged;
     public static PersistantData Instance
     {
         get
@@ -25,16 +26,19 @@ public class PersistantData : MonoBehaviour
     public void SetData(string key, int value)
     {
         PlayerPrefs.SetInt(key, value);
+        SettingChanged?.Invoke(key);
     }
 
     public void SetData(string key, float value)
     {
         PlayerPrefs.SetFloat(key, value);
+        SettingChanged?.Invoke(key);
     }
 
     public void SetData(string key, string value)
     {
         PlayerPrefs.SetString(key, value);
+        SettingChanged?.Invoke(key);
     }
 
     public bool TryGetData(string key, out int value)
