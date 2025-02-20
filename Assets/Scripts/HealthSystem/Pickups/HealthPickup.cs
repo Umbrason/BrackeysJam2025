@@ -17,7 +17,7 @@ public class HealthPickup : MonoBehaviour
     {
         Death.enabled = true;
         pickupRoutine = null;
-        collectionSpringConfig.AngularFrequency = 0;
+        collectionSpringConfig.AngularFrequency = 10;
     }
     Coroutine pickupRoutine;
     void OnTriggerEnter(Collider collider)
@@ -34,11 +34,12 @@ public class HealthPickup : MonoBehaviour
     {
         Death.enabled = false;
         positionSpring.Position = transform.position._xz();
-        positionSpring.Velocity = 15 * Random.insideUnitCircle + 25 * Random.Range(-1, 1) * Vector2.Perpendicular(target.transform.position._xz() - transform.position._xz()).normalized;
+        var delta = (target.transform.position._xz() - transform.position._xz()).normalized;
+        positionSpring.Velocity = 100 * (Random.insideUnitCircle - delta) + 200 * Random.Range(-1, 1) * Vector2.Perpendicular(delta);
         if (OnTriggerEnterSFX?.TryGetRandom(out var clip) ?? false) AudioSource.PlayClipAtPoint(clip, transform.position); //TODO: better audio playback, e.g. support audio mixing group
-        while ((target.transform.position - transform.position).sqrMagnitude > 4)
+        while ((target.transform.position - transform.position).sqrMagnitude > .64)
         {
-            collectionSpringConfig.AngularFrequency += Time.deltaTime * 10f;
+            collectionSpringConfig.AngularFrequency += Time.deltaTime * 30f;
             positionSpring.RestingPos = target.transform.position._xz();
             positionSpring.Step(Time.deltaTime);
             transform.position = positionSpring.Position._x0y();
