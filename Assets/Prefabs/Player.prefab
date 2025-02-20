@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <MaxHealth>k__BackingField:
-    <Base>k__BackingField: 5
+    <Base>k__BackingField: 200
   <Speed>k__BackingField:
     <Base>k__BackingField: 8
   <Firerate>k__BackingField:
@@ -164,7 +164,7 @@ MonoBehaviour:
   <BulletsPerShot>k__BackingField:
     <Base>k__BackingField: 1
   <DamagePerBullet>k__BackingField:
-    <Base>k__BackingField: 1
+    <Base>k__BackingField: 10
   <BulletRadius>k__BackingField:
     <Base>k__BackingField: 0.5
   <BulletBounces>k__BackingField:

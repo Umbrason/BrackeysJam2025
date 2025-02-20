@@ -7,6 +7,7 @@ public class HealthPool : MonoBehaviour
     [field: SerializeField] public int Size { get; private set; }
     [field: SerializeField] public int Current { get; private set; }
     public event Action<int> OnModified;
+    public event Action<int> OnModifiedClamped;
     public event Action OnDepleted;
     void FixedUpdate()
     {
