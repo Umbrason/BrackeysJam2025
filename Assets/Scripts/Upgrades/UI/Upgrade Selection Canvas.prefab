@@ -260,6 +260,7 @@ GameObject:
   - component: {fileID: 6407462268191504944}
   - component: {fileID: 1546644596821000795}
   - component: {fileID: 8980443527331446800}
+  - component: {fileID: 6688942474038702984}
   m_Layer: 5
   m_Name: Themed TMPro
   m_TagString: Untagged
@@ -314,10 +315,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: what could possible go wrong?
+  m_text: what could possibly go wrong?
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5985a72bfbbdc7c348008f82c6c5fd3c, type: 2}
+  m_sharedMaterial: {fileID: 2328702264611923293, guid: 5985a72bfbbdc7c348008f82c6c5fd3c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -385,6 +386,19 @@ MonoBehaviour:
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
   colorIndex: 1
   palette: {fileID: 11400000, guid: 18dd14820608a46d0b16f90b1bbef695, type: 2}
+--- !u!114 &6688942474038702984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4050777620965810943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0177dff1926450c32a7a542be2e98e79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  replacementFont: {fileID: 11400000, guid: 73de1283def92daa08f5b631bd83a2c2, type: 2}
 --- !u!1 &4553342632460890066
 GameObject:
   m_ObjectHideFlags: 0
@@ -649,6 +663,7 @@ GameObject:
   - component: {fileID: 4050425775785891908}
   - component: {fileID: 1376821473864880535}
   - component: {fileID: 8962444202486204340}
+  - component: {fileID: 7586527807497968731}
   m_Layer: 5
   m_Name: Themed TMPro
   m_TagString: Untagged
@@ -705,8 +720,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: UPGRADE TIME!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5985a72bfbbdc7c348008f82c6c5fd3c, type: 2}
+  m_sharedMaterial: {fileID: 2328702264611923293, guid: 5985a72bfbbdc7c348008f82c6c5fd3c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -774,6 +789,19 @@ MonoBehaviour:
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
   colorIndex: 0
   palette: {fileID: 11400000, guid: 18dd14820608a46d0b16f90b1bbef695, type: 2}
+--- !u!114 &7586527807497968731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5414807082778492021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0177dff1926450c32a7a542be2e98e79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  replacementFont: {fileID: 11400000, guid: 73de1283def92daa08f5b631bd83a2c2, type: 2}
 --- !u!1 &5871354672381342508
 GameObject:
   m_ObjectHideFlags: 0

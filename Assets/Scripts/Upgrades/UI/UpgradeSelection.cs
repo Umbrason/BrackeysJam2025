@@ -90,6 +90,8 @@ public class UpgradeSelection : MonoBehaviour
             yield return HideCardRoutine(card);
         }
         yield return HideCardRoutine(chosenCard);
+        foreach (var instance in instances)
+            Destroy(instance.gameObject);
         instances.Clear();
         gameObject.SetActive(false);
         Time.timeScale = 1;
@@ -105,7 +107,6 @@ public class UpgradeSelection : MonoBehaviour
             t += Time.unscaledDeltaTime / hideCardAnimationDuration;
             yield return null;
         }
-        Destroy(card);
     }
 
     public void Close(UpgradeCard card)
@@ -127,6 +128,7 @@ public class UpgradeSelection : MonoBehaviour
     {
         if (!acceptClicks) return;
         card.DisplayedUpgrade.OnApply(upgradeTarget);
+        if(!card.DisplayedUpgrade.Stackable) IUpgrade.UpgradePool.Remove(card.DisplayedUpgrade);
         acceptClicks = false;
         card.Shake();
         Close(card);

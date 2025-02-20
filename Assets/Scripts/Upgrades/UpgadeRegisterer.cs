@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class UpgradesRegisterer 
+public static class UpgradesRegisterer
 {
-    public static IUpgrade[] UpgradeList = {new UpgradeFireRate()};
+    public static IUpgrade[] UpgradeList = {
+        new UpgradeFireRate(),
+        new AlienEye()
+    };
 
     [RuntimeInitializeOnLoadMethod]
     public static void registerUpgrades()
