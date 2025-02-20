@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyPool : ObjectPool<EnemyPoolable>
 {
     [field: SerializeField] public GameObjectPool DeathVFXPool { get; private set; }
+    [field: SerializeField] public GameObjectPool HealthPickupPool { get; private set; }
     public void Pull(Vector3 position, Quaternion rotation)
     {
         var instance = this.Pull();

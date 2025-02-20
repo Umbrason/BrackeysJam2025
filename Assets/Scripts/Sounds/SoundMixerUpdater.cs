@@ -35,7 +35,6 @@ public class SoundMixerUpdater : MonoBehaviour
     }
     /*public void Save()
     {
-        Debug.Log($"Pref Save {Key} {slider.value}");
         PlayerPrefs.SetFloat(Key, slider.value);
         PlayerPrefs.Save();
     }*/

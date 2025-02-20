@@ -10,12 +10,14 @@ public class Bullet : MonoBehaviour
     Cached<Rigidbody> cached_RB;
     Rigidbody Rigidbody => cached_RB[this];
 
-    public void Init(int bounces, float lifetime, Vector3 direction, uint damage, float size)
+    public void Init(int bounces, float lifetime, Vector3 velocity, uint damage, float size)
     {
         this.remainingBounces = bounces;
         this.lifeTime = lifetime;
-        this.velocity = direction;
+        this.velocity = velocity;
         this.damage = damage;
+        Rigidbody.velocity = velocity;
+        Rigidbody.WakeUp();
         transform.localScale = Vector3.one * size;
         gameObject.SetActive(true);
     }

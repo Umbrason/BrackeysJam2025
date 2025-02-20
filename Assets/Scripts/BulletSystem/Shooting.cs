@@ -24,7 +24,7 @@ public class Shooting : MonoBehaviour
         var i = 0;
         while (shotCounter >= 1)
         {
-            FireShot((i++ + .5f) / shotsThisFrame);
+            FireShot(i++ / (float)shotsThisFrame);
             shotCounter -= 1;
         }
     }

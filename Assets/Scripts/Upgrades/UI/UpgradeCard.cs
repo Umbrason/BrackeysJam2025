@@ -66,6 +66,7 @@ public class UpgradeCard : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
             Position = 1f
         };
         scaleSpring.OnSpringUpdated += OnScaleUpdated;
+        transform.GetChild(0).gameObject.SetActive(false);
     }
 
     public void Shake()
