@@ -16,7 +16,7 @@ public class SpriteAnimator : MonoBehaviour, ISpriteAnimator
     }
     [field: SerializeField] public int Framerate { get; set; }
     [field: SerializeField] public float SpeedMultiplier { get; set; } = 1;
-    [SerializeField] private float time;
+    private float time;
 
     Cached<SpriteRenderer> cached_SpriteRenderer;
     SpriteRenderer SpriteRenderer => cached_SpriteRenderer[this];

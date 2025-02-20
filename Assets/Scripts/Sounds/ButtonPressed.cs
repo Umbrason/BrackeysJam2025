@@ -19,10 +19,14 @@ public class ButtonPressed : MonoBehaviour
             audioSource.PlayOneShot(clip);
     }
 
+
+    #if UNITY_EDITOR
     [EasyButtons.Button]
     public void GetAllButtons()
     {
         buttons = Resources.FindObjectsOfTypeAll<Button>();
+        UnityEditor.EditorUtility.SetDirty(gameObject);
     }
+    #endif
 
 }

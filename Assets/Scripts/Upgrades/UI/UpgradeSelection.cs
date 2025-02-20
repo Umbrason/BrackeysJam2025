@@ -41,9 +41,9 @@ public class UpgradeSelection : MonoBehaviour
         while (t <= 1)
         {
             var instanceID = Mathf.FloorToInt(t * (instances.Count - 1));
-            if (instanceID >= enabledInstances)
+            while (instanceID >= enabledInstances)
             {
-                instances[instanceID].enabled = true;
+                instances[enabledInstances].enabled = true;
                 enabledInstances++;
             }
             t += Time.unscaledDeltaTime / enableCardsAnimationDuration;
@@ -102,11 +102,9 @@ public class UpgradeSelection : MonoBehaviour
         var t = 0f;
         while (t < 1)
         {
-            Time.timeScale = 1 - t;
             t += Time.unscaledDeltaTime / hideCardAnimationDuration;
             yield return null;
         }
-        Time.timeScale = 0;
         Destroy(card);
     }
 
@@ -127,7 +125,9 @@ public class UpgradeSelection : MonoBehaviour
     private bool acceptClicks = false; //used to disable clicking during fade in animations
     private void OnOptionClicked(UpgradeCard card)
     {
-        if (acceptClicks) card.DisplayedUpgrade.OnApply(upgradeTarget);
+        if (!acceptClicks) return;
+        card.DisplayedUpgrade.OnApply(upgradeTarget);
+        acceptClicks = false;
         card.Shake();
         Close(card);
     }

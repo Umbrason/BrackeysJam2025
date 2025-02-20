@@ -6,7 +6,8 @@ public class HealthPool : MonoBehaviour
 {
     [field: SerializeField] public int Size { get; private set; }
     [field: SerializeField] public int Current { get; private set; }
-    public event Action OnModified;
+    public event Action<int> OnModified;
+    public event Action<int> OnModifiedClamped;
     public event Action OnDepleted;
     void FixedUpdate()
     {
@@ -25,26 +26,30 @@ public class HealthPool : MonoBehaviour
 
     public void Resize(int newSize)
     {
-        Current = Mathf.Min(newSize, Current);
+        var diff = newSize - Size;
+        var prev = Current;
+        Current = Mathf.Min(newSize, Current + Mathf.Max(0, diff));
         Size = newSize;
-        OnModified?.Invoke();
+        OnModified?.Invoke(Current - prev);
         if (Current == 0)
             OnDepleted?.Invoke();
     }
 
     private void ProcessHealthEvents()
     {
+        if (unprocessedDamageEvents.Count == 0) return;
         foreach ((var healthEvent, var multiplier) in unprocessedDamageEvents.Values)
         {
+            var prevHealth = Current;
             processedDamageEvents.Add(healthEvent.GUID);
             healthEvent.OnReleased += () => processedDamageEvents.Remove(healthEvent.GUID);
             this.Current += healthEvent.Amount * multiplier;
+            this.Current = Mathf.Clamp(Current, 0, Size);
+            OnModified?.Invoke(Current - prevHealth);
         }
-        this.Current = Mathf.Clamp(Current, 0, Size);
         foreach ((var healthEvent, var multiplier) in unprocessedDamageEvents.Values)
             healthEvent.ReportHit(this, healthEvent.Amount * multiplier, this.Current == 0);
         unprocessedDamageEvents.Clear();
-        OnModified?.Invoke();
         if (Current == 0) OnDepleted?.Invoke();
     }
 }

@@ -5,10 +5,11 @@ using UnityEngine;
 
 public class Attractee : MonoBehaviour
 {
-    Cached<Rigidbody> cached_Rigidbody;
-    Rigidbody RB => cached_Rigidbody[this];
+    Cached<VelocityController> cached_VelocityController;
+    VelocityController VC => cached_VelocityController[this];
 
     public float speed;
+    [SerializeField] private int attractionLayerMask;
 
     void OnDrawGizmos()
     {
@@ -39,10 +40,11 @@ public class Attractee : MonoBehaviour
         for (int i = 0; i < Attractor.attractors.Count; i++)
         {
             var attractor = Attractor.attractors[i];
+            if (((1 << attractor.AttractionLayer) & attractionLayerMask) == 0) continue;
             var (avx, avy) = attractor.GetInfluence(px, py);
             vx += avx;
             vy += avy;
         }
-        RB.velocity = new Vector3(vx, 0, vy).normalized * speed;
+        VC.AddOverwriteMovement(new(new Vector3(vx, 0, vy).normalized * speed), 0, 0);
     }
 }

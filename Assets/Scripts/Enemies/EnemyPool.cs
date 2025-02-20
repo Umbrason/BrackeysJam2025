@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class EnemyPool : ObjectPool<EnemyPoolable>
 {
-    [field: SerializeField] public GameObjectPool DeathVFXPool { get; private set; }
-    public void Pull(Vector3 position, Quaternion rotation)
+    public GameObjectPool DeathVFXPool { get; set; }
+    public GameObjectPool HitVFXPool { get; set; }
+    public GameObjectPool HealthPickupPool { get; set; }
+    public EnemyPoolable Pull(Vector3 position, Quaternion rotation)
     {
         var instance = this.Pull();
         instance.transform.SetPositionAndRotation(position, rotation);
+        return instance;
     }
 
     public override void OnCreate(EnemyPoolable instance)

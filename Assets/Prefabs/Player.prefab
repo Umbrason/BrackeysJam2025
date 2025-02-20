@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <MaxHealth>k__BackingField:
-    <Base>k__BackingField: 5
+    <Base>k__BackingField: 200
   <Speed>k__BackingField:
     <Base>k__BackingField: 8
   <Firerate>k__BackingField:
@@ -164,7 +164,7 @@ MonoBehaviour:
   <BulletsPerShot>k__BackingField:
     <Base>k__BackingField: 1
   <DamagePerBullet>k__BackingField:
-    <Base>k__BackingField: 1
+    <Base>k__BackingField: 10
   <BulletRadius>k__BackingField:
     <Base>k__BackingField: 0.5
   <BulletBounces>k__BackingField:
@@ -254,6 +254,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbab45723e4073531acd5da2b866c72c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <AttractionLayer>k__BackingField: 0
   falloffType: 0
   strength: 1
 --- !u!1 &7941322240413234857
