@@ -36,7 +36,7 @@ public class HealthPickup : MonoBehaviour
         positionSpring.Position = transform.position._xz();
         var delta = (target.transform.position._xz() - transform.position._xz()).normalized;
         positionSpring.Velocity = 100 * (Random.insideUnitCircle - delta) + 200 * Random.Range(-1, 1) * Vector2.Perpendicular(delta);
-        if (OnTriggerEnterSFX?.TryGetRandom(out var clip) ?? false) AudioSource.PlayClipAtPoint(clip, transform.position); //TODO: better audio playback, e.g. support audio mixing group
+        SFXPool.PlayAt(OnTriggerEnterSFX, transform.position);
         while ((target.transform.position - transform.position).sqrMagnitude > .64)
         {
             collectionSpringConfig.AngularFrequency += Time.deltaTime * 30f;
@@ -46,7 +46,7 @@ public class HealthPickup : MonoBehaviour
             yield return null;
         }
         target.RegisterHealthEvent(HealthEvent.Heal((uint)HealAmount));
-        if (OnCollectSFX?.TryGetRandom(out clip) ?? false) AudioSource.PlayClipAtPoint(clip, transform.position); //TODO: better audio playback, e.g. support audio mixing group
+        SFXPool.PlayAt(OnCollectSFX, transform.position);
         Poolable.Owner.Return(Poolable);
     }
 }

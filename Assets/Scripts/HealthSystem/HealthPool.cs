@@ -36,16 +36,16 @@ public class HealthPool : MonoBehaviour
 
     private void ProcessHealthEvents()
     {
-        if(unprocessedDamageEvents.Count == 0) return;
-        var prevHealth = Current;
+        if (unprocessedDamageEvents.Count == 0) return;
         foreach ((var healthEvent, var multiplier) in unprocessedDamageEvents.Values)
         {
+            var prevHealth = Current;
             processedDamageEvents.Add(healthEvent.GUID);
             healthEvent.OnReleased += () => processedDamageEvents.Remove(healthEvent.GUID);
             this.Current += healthEvent.Amount * multiplier;
+            this.Current = Mathf.Clamp(Current, 0, Size);
+            OnModified?.Invoke(Current - prevHealth);
         }
-        this.Current = Mathf.Clamp(Current, 0, Size);
-        OnModified?.Invoke(Current - prevHealth);
         foreach ((var healthEvent, var multiplier) in unprocessedDamageEvents.Values)
             healthEvent.ReportHit(this, healthEvent.Amount * multiplier, this.Current == 0);
         unprocessedDamageEvents.Clear();

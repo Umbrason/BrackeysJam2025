@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: HealthPickup_OnTriggerEnter
   m_EditorClassIdentifier: 
   <Clips>k__BackingField: []
+  <MixerGroup>k__BackingField: {fileID: -340919586334223705, guid: 5070527f0a2f37141a4be3ac890c834f, type: 2}
+  pitchRange: {x: 0.9, y: 1.1}

@@ -39,6 +39,6 @@ public class HitSound : MonoBehaviour
     {
         change = Mathf.FloorToInt(-change * 100f / HealthPool.Size); //change to percentage value
         var audioGroup = GetAudioGroup(change);
-        if (audioGroup.TryGetRandom(out var clip)) AudioSource.PlayClipAtPoint(clip, transform.position); //TODO: better audio playback using mixgroups and stuff
+        SFXPool.PlayAt(audioGroup, transform.position);
     }
 }
