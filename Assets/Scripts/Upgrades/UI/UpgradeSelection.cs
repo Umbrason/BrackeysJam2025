@@ -125,7 +125,9 @@ public class UpgradeSelection : MonoBehaviour
     private bool acceptClicks = false; //used to disable clicking during fade in animations
     private void OnOptionClicked(UpgradeCard card)
     {
-        if (acceptClicks) card.DisplayedUpgrade.OnApply(upgradeTarget);
+        if (!acceptClicks) return;
+        card.DisplayedUpgrade.OnApply(upgradeTarget);
+        acceptClicks = false;
         card.Shake();
         Close(card);
     }
