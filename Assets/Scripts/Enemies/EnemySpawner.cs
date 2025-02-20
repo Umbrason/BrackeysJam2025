@@ -25,9 +25,8 @@ public class EnemySpawner : MonoBehaviour
         enemyIncreaseTimer += Time.deltaTime;
        // print(enemyIncreaseTimer);
         while (enemyIncreaseTimer >= enemyIncreaseTick)
-        {
-            print("Test");
-            enemyIncreaseTimer -=enemyIncreaseTick;
+        { 
+             enemyIncreaseTimer -=enemyIncreaseTick;
              enemyDesiredCountIncrease+= enemyAmountGrowth;
         }
 
