@@ -45,6 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prewarmCount: 100
-  Template: {fileID: 883455606101652181, guid: 5ce4d5e575aed3ecabf05053f1b22116, type: 3}
-  <DeathVFXPool>k__BackingField: {fileID: 0}
-  <HealthPickupPool>k__BackingField: {fileID: 0}
+  Template: {fileID: 0}
