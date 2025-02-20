@@ -8486,6 +8486,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1551811909}
   - component: {fileID: 1551811910}
+  - component: {fileID: 1551811911}
   m_Layer: 0
   m_Name: Music
   m_TagString: Untagged
@@ -8518,7 +8519,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -8677567098334270392, guid: 5070527f0a2f37141a4be3ac890c834f, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 42459694e6087544b96591245741c1a9, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -8604,6 +8605,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1551811911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1551811908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e57f240f50e9134a86fa1d2cc0c586b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingClip: {fileID: 0}
+  audioMixerGroup: {fileID: -8677567098334270392, guid: 5070527f0a2f37141a4be3ac890c834f, type: 2}
 --- !u!1 &1557535088
 GameObject:
   m_ObjectHideFlags: 0
@@ -11201,13 +11216,33 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 629478626}
     - target: {fileID: 6389142224498748997, guid: d2ab72eb5cc648643ba2bc8f894ffeb1, type: 3}
+      propertyPath: onLoad.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6389142224498748997, guid: d2ab72eb5cc648643ba2bc8f894ffeb1, type: 3}
       propertyPath: onLoad.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 255551638}
     - target: {fileID: 6389142224498748997, guid: d2ab72eb5cc648643ba2bc8f894ffeb1, type: 3}
       propertyPath: onLoad.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 1551811910}
+      objectReference: {fileID: 1551811911}
+    - target: {fileID: 6389142224498748997, guid: d2ab72eb5cc648643ba2bc8f894ffeb1, type: 3}
+      propertyPath: onLoad.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: Play
+      objectReference: {fileID: 0}
+    - target: {fileID: 6389142224498748997, guid: d2ab72eb5cc648643ba2bc8f894ffeb1, type: 3}
+      propertyPath: onLoad.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: MusicPlayer, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6389142224498748997, guid: d2ab72eb5cc648643ba2bc8f894ffeb1, type: 3}
+      propertyPath: onLoad.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 8300000, guid: 42459694e6087544b96591245741c1a9, type: 3}
+    - target: {fileID: 6389142224498748997, guid: d2ab72eb5cc648643ba2bc8f894ffeb1, type: 3}
+      propertyPath: onLoad.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.AudioClip, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 8763063994923429591, guid: d2ab72eb5cc648643ba2bc8f894ffeb1, type: 3}
       propertyPath: slider
       value: 
