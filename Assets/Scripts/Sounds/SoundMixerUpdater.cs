@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
 // https://www.youtube.com/watch?v=DU7cgVsU2rM&t=517s&ab_channel=SasquatchBStudios
-public class SoundMixerUpdater : MonoBehaviour
+public class SoundMixerUpdater : MonoBehaviour, ISaveLoad
 {
     public AudioMixer audioMixer;
     public string mixerParameterName;
@@ -24,9 +23,18 @@ public class SoundMixerUpdater : MonoBehaviour
         Load();
     }
 
-    private void OnEnable() => slider.onValueChanged.AddListener(SetMixerValue);
-    private void OnDisable() => slider.onValueChanged.RemoveListener(SetMixerValue);
-    
+    private void OnEnable()
+    {
+        if (slider != null)
+            slider.onValueChanged.AddListener(SetMixerValue);
+    }
+
+    private void OnDisable()
+    {
+        if (slider != null)
+            slider.onValueChanged.RemoveListener(SetMixerValue);
+    }
+
     public void SetMixerValue(float val) => audioMixer.SetFloat(mixerParameterName, val == 0 ? -80 : Mathf.Log10(val) * 20f);
 
     public void Save()
