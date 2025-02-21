@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.Mathematics;
 using UnityEngine;
+
+
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -19,6 +22,11 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private GameObjectPool HitVFXPool;
     [SerializeField] private GameObjectPool DeathVFXPool;
     [SerializeField] private GameObjectPool HealthPickupPool;
+    [SerializeField] private float randomSpawnRange;
+    [SerializeField] private float worldBorder;
+    [SerializeField] private float playerVisionRadius = 15;
+
+    static GameObject player;
 
     void Awake()
     {
@@ -35,6 +43,7 @@ public class EnemySpawner : MonoBehaviour
             enemyPoolPool.Push(pool);
         }
         poolTemplate.Template = template;
+        player = GameObject.Find("Player");
     }
 
     void FixedUpdate()
@@ -52,13 +61,29 @@ public class EnemySpawner : MonoBehaviour
 
     void DoSpawn()
     {
-        var enemy = enemyPoolPool.Pull().Pull();
-        generateSpawnPosition();
+        var enemy = enemyPoolPool.Pull().Pull(generateSpawnPosition(), quaternion.identity);
     }
     
     Vector3 generateSpawnPosition()
     {
-        return new Vector3(0,0,0);
+        float locationRangeX = UnityEngine.Random.Range(-randomSpawnRange, randomSpawnRange);
+        float locationRangeY = UnityEngine.Random.Range(-randomSpawnRange, randomSpawnRange);
+        
+        
+
+        Vector3 spawnLocation = new Vector3 (locationRangeX, 0, locationRangeY); 
+        float distanceToWorld = Vector3.Distance(spawnLocation, Vector3.zero);
+        float distanceToPlayer = Vector3.Distance(spawnLocation,player.transform.position);
+        while (distanceToWorld > worldBorder || distanceToPlayer < playerVisionRadius)      
+        {
+            locationRangeX = UnityEngine.Random.Range(-randomSpawnRange, randomSpawnRange);
+            locationRangeY = UnityEngine.Random.Range(-randomSpawnRange, randomSpawnRange);
+            spawnLocation = new Vector3 (locationRangeX, 0, locationRangeY);
+            distanceToWorld = Vector3.Distance(spawnLocation, Vector3.zero);
+            distanceToPlayer = Vector3.Distance(spawnLocation,player.transform.position);           
+        }
+        return spawnLocation;
+        
 
     }
 
