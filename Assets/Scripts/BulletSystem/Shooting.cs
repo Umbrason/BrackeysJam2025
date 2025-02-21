@@ -5,6 +5,7 @@ using UnityEngine;
 public class Shooting : MonoBehaviour
 {
     [SerializeField] BulletPool pool;
+    [SerializeField] private AudioClipGroup SFX;
 
     public float Firerate { get; set; }
     public int SpreadDegrees { get; set; }
@@ -16,6 +17,7 @@ public class Shooting : MonoBehaviour
     public float BulletVelocity { get; set; }
     public Vector2 FireDirection { private get; set; } = Vector2.up;
     private float shotCounter;
+
 
     void FixedUpdate()
     {
@@ -39,6 +41,7 @@ public class Shooting : MonoBehaviour
             var startPos = transform.position + Vector3.up + dir * (.8f + BulletRadius + .1f) + timeOffset * Time.deltaTime * speed;
             Bullet newBullet = pool.Pull(startPos, Quaternion.LookRotation(dir));
             newBullet.Init(BulletBounces, BulletLifeTime, speed, (uint)DamagePerBullet, BulletRadius);
+            SFXPool.PlayAt(SFX, startPos);
         }
     }
 

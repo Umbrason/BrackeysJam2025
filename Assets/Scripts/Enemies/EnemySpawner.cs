@@ -13,8 +13,8 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private EnemyPoolable[] enemyTemplates;
     [SerializeField] private EnemyPool poolTemplate;
     private EnemyPool[] enemyPools;
-    int DesiredEnemyCount => 5;
-    int EnemyCount => enemyPools.Sum(pool => pool.InCirculation);
+    public int DesiredEnemyCount => 5;
+    public int EnemyCount => enemyPools.Sum(pool => pool.InCirculation);
 
     private float enemyIncreaseTimer;
     [SerializeField] private int enemyIncreaseTick;
@@ -62,7 +62,7 @@ public class EnemySpawner : MonoBehaviour
             DoSpawn();
     }
 
-    void DoSpawn()
+    public void DoSpawn()
     {
         var enemy = enemyPoolPool.Pull().Pull( new Vector3(0,0,-10), quaternion.identity);
         var radius = enemy.GetComponentInChildren<SphereCollider>().radius;

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,7 +34,7 @@ public class UpgradeSelection : MonoBehaviour
         StartCoroutine(ShowRoutine());
     }
 
-    const float enableCardsAnimationDuration = 2f;
+    const float enableCardsAnimationDuration = 1.5f;
     private IEnumerator EnableCardsRoutine()
     {
         var t = 0f;
@@ -50,35 +51,15 @@ public class UpgradeSelection : MonoBehaviour
             yield return null;
         }
         instances[^1].enabled = true;
+        foreach (var instance in instances)
+            instance.Disabled = false;
     }
 
-    const float pauseGameAnimationDuration = .5f;
-    private IEnumerator PauseGameRoutine()
-    {
-        var t = 0f;
-        while (t < 1)
-        {
-            Time.timeScale = 1 - t;
-            t += Time.unscaledDeltaTime / pauseGameAnimationDuration;
-            yield return null;
-        }
-        Time.timeScale = 0;
-    }
-
+    Guid pauseHandle;
     private IEnumerator ShowRoutine()
     {
-        IEnumerator[] enumerators = {
-            PauseGameRoutine(),
-            EnableCardsRoutine()
-        };
-        while (true)
-        {
-            var anyNotDone = false;
-            foreach (var enumerator in enumerators)
-                anyNotDone |= enumerator.MoveNext();
-            if (!anyNotDone) break;
-            yield return null;
-        }
+        pauseHandle = Pause.Request();
+        yield return EnableCardsRoutine();
         acceptClicks = true;
     }
 
@@ -90,12 +71,17 @@ public class UpgradeSelection : MonoBehaviour
             yield return HideCardRoutine(card);
         }
         yield return HideCardRoutine(chosenCard);
+        foreach (var instance in instances)
+            Destroy(instance.gameObject);
         instances.Clear();
         gameObject.SetActive(false);
-        Time.timeScale = 1;
+        Pause.Return(pauseHandle);
         Cursor.visible = cursorWasVisible;
+        var targetHealthpool = upgradeTarget.GetComponent<HealthPool>();
+        targetHealthpool.RegisterHealthEvent(HealthEvent.Heal((uint)targetHealthpool.Size, source: null));
+        upgradeTarget = null;
     }
-    const float hideCardAnimationDuration = 1f;
+    const float hideCardAnimationDuration = .5f;
     private IEnumerator HideCardRoutine(UpgradeCard card)
     {
         card.Hide();
@@ -105,7 +91,6 @@ public class UpgradeSelection : MonoBehaviour
             t += Time.unscaledDeltaTime / hideCardAnimationDuration;
             yield return null;
         }
-        Destroy(card);
     }
 
     public void Close(UpgradeCard card)
@@ -126,7 +111,11 @@ public class UpgradeSelection : MonoBehaviour
     private void OnOptionClicked(UpgradeCard card)
     {
         if (!acceptClicks) return;
+        foreach (var instance in instances)
+            instance.Disabled = true;
         card.DisplayedUpgrade.OnApply(upgradeTarget);
+        TransientScoring.AddUpgradesCollected(1);
+        if (!card.DisplayedUpgrade.Stackable) IUpgrade.UpgradePool.Remove(card.DisplayedUpgrade);
         acceptClicks = false;
         card.Shake();
         Close(card);

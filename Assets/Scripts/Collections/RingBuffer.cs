@@ -69,6 +69,6 @@ public class RingBuffer<T>
         this.tail = 0;
         this.Count = 0;
         for (int i = 0; i < oldData.Length; i++)
-            Push(oldData[i]);
+            Push(oldData[i], true);
     }
 }

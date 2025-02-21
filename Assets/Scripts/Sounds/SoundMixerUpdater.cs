@@ -46,7 +46,7 @@ public class SoundMixerUpdater : MonoBehaviour
         if (!PersistantData.Instance.TryGetData(Key, out value))
         {
             Debug.Log("Failed to get data for sound, setting default value.");
-            //value = 1.0f;
+            value = 100.0f;
         }
         else
         {
@@ -54,6 +54,7 @@ public class SoundMixerUpdater : MonoBehaviour
         }
         Debug.Log($"Pref Load {Key} {value}");
         onLoad?.Invoke(value);
+        slider.value = value;
         SetMixerValue(value);
     }
 }

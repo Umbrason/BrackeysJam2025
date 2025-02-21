@@ -37,6 +37,7 @@ public class HitSound : MonoBehaviour
 
     void OnHealthModified(int change)
     {
+        if (change >= 0) return;
         change = Mathf.FloorToInt(-change * 100f / HealthPool.Size); //change to percentage value
         var audioGroup = GetAudioGroup(change);
         SFXPool.PlayAt(audioGroup, transform.position);

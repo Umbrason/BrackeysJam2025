@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5615564865010231275}
   - component: {fileID: 3630285014498182206}
+  - component: {fileID: 4000490451259462526}
   m_Layer: 0
   m_Name: GameCamera
   m_TagString: Untagged
@@ -50,6 +51,14 @@ MonoBehaviour:
   springConfig:
     <AngularFrequency>k__BackingField: 10
     <DampingRatio>k__BackingField: 1
+--- !u!81 &4000490451259462526
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2019259589775303063}
+  m_Enabled: 1
 --- !u!1 &3221487277760317918
 GameObject:
   m_ObjectHideFlags: 0
@@ -60,7 +69,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6874251657165137875}
   - component: {fileID: 9037181374986679326}
-  - component: {fileID: 3794412050242327966}
   - component: {fileID: 6611461733279749512}
   m_Layer: 0
   m_Name: Main Camera
@@ -135,14 +143,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &3794412050242327966
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3221487277760317918}
-  m_Enabled: 1
 --- !u!114 &6611461733279749512
 MonoBehaviour:
   m_ObjectHideFlags: 0
