@@ -10,20 +10,20 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1348588414570229628, guid: 5ce4d5e575aed3ecabf05053f1b22116, type: 3}
       propertyPath: m_Name
-      value: Enemy 13
+      value: Ball
       objectReference: {fileID: 0}
     - target: {fileID: 1682464275626788903, guid: 5ce4d5e575aed3ecabf05053f1b22116, type: 3}
       propertyPath: Idle
       value: 
-      objectReference: {fileID: 11400000, guid: 25d3d0789dc54dbbf9eaf5b0d8fe2133, type: 2}
+      objectReference: {fileID: 11400000, guid: f2d9c3cfc74421b17af48f42b1fe5ef3, type: 2}
     - target: {fileID: 1682464275626788903, guid: 5ce4d5e575aed3ecabf05053f1b22116, type: 3}
       propertyPath: animations.Array.data[0].animation
       value: 
-      objectReference: {fileID: 11400000, guid: 27c827e4837a3fa4d8c27751c5f34017, type: 2}
+      objectReference: {fileID: 11400000, guid: f8742a6910d3f273baadc3e555c9c993, type: 2}
     - target: {fileID: 1682464275626788903, guid: 5ce4d5e575aed3ecabf05053f1b22116, type: 3}
       propertyPath: animations.Array.data[1].animation
       value: 
-      objectReference: {fileID: 11400000, guid: 19420df37f0406613969ef84817449c7, type: 2}
+      objectReference: {fileID: 11400000, guid: 002fd306d11811ee2af8bc882eadacc8, type: 2}
     - target: {fileID: 2932398625593272729, guid: 5ce4d5e575aed3ecabf05053f1b22116, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -64,37 +64,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3935415122424587351, guid: 5ce4d5e575aed3ecabf05053f1b22116, type: 3}
+      propertyPath: <Size>k__BackingField
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6446945546147750669, guid: 5ce4d5e575aed3ecabf05053f1b22116, type: 3}
+      propertyPath: speed
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 6756183668947585300, guid: 5ce4d5e575aed3ecabf05053f1b22116, type: 3}
       propertyPath: m_Size.x
-      value: 2.46
+      value: 1.14
       objectReference: {fileID: 0}
     - target: {fileID: 6756183668947585300, guid: 5ce4d5e575aed3ecabf05053f1b22116, type: 3}
       propertyPath: m_Size.y
-      value: 2.9
+      value: 1.12
       objectReference: {fileID: 0}
     - target: {fileID: 6756183668947585300, guid: 5ce4d5e575aed3ecabf05053f1b22116, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: a44cfa4f4c05d2e459d5fd4cfdedb5b6, type: 3}
+      objectReference: {fileID: 21300000, guid: 1e6a8fc2bde823d06a4df00c3638cf9a, type: 3}
     - target: {fileID: 6756183668947585300, guid: 5ce4d5e575aed3ecabf05053f1b22116, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6963621467495321009, guid: 5ce4d5e575aed3ecabf05053f1b22116, type: 3}
-      propertyPath: m_Radius
-      value: 1.2
-      objectReference: {fileID: 0}
     - target: {fileID: 7109458363653395783, guid: 5ce4d5e575aed3ecabf05053f1b22116, type: 3}
       propertyPath: damageAmount
-      value: 30
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7109458363653395783, guid: 5ce4d5e575aed3ecabf05053f1b22116, type: 3}
       propertyPath: damageInterval
-      value: 0.75
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 8843254817029319994, guid: 5ce4d5e575aed3ecabf05053f1b22116, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
