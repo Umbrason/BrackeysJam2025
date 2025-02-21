@@ -156,7 +156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e679328faa4d9bca29e03c434d887338, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 6
   attractionLayerMask: 1
 --- !u!114 &4301773695702898412
 MonoBehaviour:
