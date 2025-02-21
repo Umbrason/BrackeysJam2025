@@ -1,11 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.Mathematics;
 using UnityEditor;
 using UnityEngine;
-
-
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -13,13 +10,12 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private EnemyPoolable[] enemyTemplates;
     [SerializeField] private EnemyPool poolTemplate;
     private EnemyPool[] enemyPools;
-    public int DesiredEnemyCount => 5;
+    public int DesiredEnemyCount {get; set;}
     public int EnemyCount => enemyPools.Sum(pool => pool.InCirculation);
 
     private float enemyIncreaseTimer;
     [SerializeField] private int enemyIncreaseTick;
     [SerializeField] private int enemyAmountGrowth;
-    private int enemyDesiredCountIncrease;
     [SerializeField] private GameObjectPool HitVFXPool;
     [SerializeField] private GameObjectPool DeathVFXPool;
     [SerializeField] private GameObjectPool HealthPickupPool;
@@ -54,8 +50,8 @@ public class EnemySpawner : MonoBehaviour
         enemyIncreaseTimer += Time.deltaTime;
         while (enemyIncreaseTimer >= enemyIncreaseTick)
         { 
-             enemyIncreaseTimer -=enemyIncreaseTick;
-             enemyDesiredCountIncrease+= enemyAmountGrowth;
+             enemyIncreaseTimer -= enemyIncreaseTick;
+             DesiredEnemyCount += enemyAmountGrowth;
         }
 
         while (EnemyCount < DesiredEnemyCount + enemyDesiredCountIncrease)
@@ -64,45 +60,29 @@ public class EnemySpawner : MonoBehaviour
 
     public void DoSpawn()
     {
-        var enemy = enemyPoolPool.Pull().Pull( new Vector3(0,0,-10), quaternion.identity);
+        var enemy = enemyPoolPool.Pull().Pull();
         var radius = enemy.GetComponentInChildren<SphereCollider>().radius;
         Vector3 enemyPosition = generateSpawnPosition();
-
         enemy.transform.SetLocalPositionAndRotation(enemyPosition, quaternion.identity);
-        //TODO change 3 to dynamic layermask int of obstacles
-        Collider[] invalidCollisionList = Physics.OverlapSphere(enemyPosition, radius, LayerMask.GetMask("Obstacles"));
-        if (invalidCollisionList.Length > 0 )
-        {
-            enemy.Owner.Return(enemy);
-            ArrayUtility.Clear<Collider>(ref invalidCollisionList);
-        }
-        else{
-            enemy.transform.SetPositionAndRotation(enemyPosition, quaternion.identity);
-            }
-
-        
-
     }
-    
-    Vector3 generateSpawnPosition()
-    {
-        float locationRange = UnityEngine.Random.Range(-randomSpawnRange, randomSpawnRange);
-        float locationRangeY = UnityEngine.Random.Range(-randomSpawnRange, randomSpawnRange);
 
-        Vector3 spawnLocation = new Vector3 (locationRange, 0, locationRangeY); 
-        float distanceToWorld = Vector3.Distance(spawnLocation, Vector3.zero);
-        float distanceToPlayer = Vector3.Distance(spawnLocation,player.transform.position);
-        while (distanceToWorld > worldBorder || distanceToPlayer < playerVisionRadius)      
+
+    const int maxAttempts = 10;
+    Collider[] _discard = new Collider[0];
+    Vector3 generateSpawnPosition(float radius)
+    {        
+        Vector3 spawnLocation;
+        for(int i = 0; i < maxAttempts; i++)
         {
-            locationRange = UnityEngine.Random.Range(-randomSpawnRange, randomSpawnRange);
-            locationRangeY = UnityEngine.Random.Range(-randomSpawnRange, randomSpawnRange);
-            spawnLocation = new Vector3 (locationRange, 0, locationRangeY);
+            spawnLocation = UnityEngine.Random.InsideUnitSphere * randomSpawnRange;
             distanceToWorld = Vector3.Distance(spawnLocation, Vector3.zero);
             distanceToPlayer = Vector3.Distance(spawnLocation,player.transform.position);       
+            if(distanceToWorld > worldBorder || distanceToPlayer < playerVisionRadius)
+                continue;            
+            if (Physics.OverlapSphereNonAlloc(spawnLocation, radius, _discard, LayerMask.GetMask("Obstacles")) > 0)
+                continue;
+            break;
         }
         return spawnLocation;
-        
-
     }
-
 }
