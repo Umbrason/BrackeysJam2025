@@ -4980,7 +4980,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82a1398094c3bbe4785573684754a2c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingClip: {fileID: 0}
+  startingClip: {fileID: 8300000, guid: 42459694e6087544b96591245741c1a9, type: 3}
   audioMixerGroup: {fileID: -8677567098334270392, guid: 5070527f0a2f37141a4be3ac890c834f, type: 2}
 --- !u!1 &1557535088
 GameObject:
