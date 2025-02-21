@@ -74,14 +74,14 @@ public class UpgradeCard : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         rotationSpring.Velocity = new(0, 0, 200);
     }
 
-    bool disabled = false;
+    public bool Disabled { get; set; } = true;
     public void Hide()
     {
         rotationSpring.RestingPos = new(0, 90);
-        scaleSpring.AngularFrequency = 10;
+        scaleSpring.AngularFrequency = 15;
         scaleSpring.DampingRatio = .9f;
         scaleSpring.RestingPos = 0;
-        disabled = true;
+        Disabled = true;
     }
 
     private void OnScaleUpdated(float scale)
@@ -100,34 +100,34 @@ public class UpgradeCard : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     const float PressedScale = .9f;
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (disabled) return;
+        if (Disabled) return;
         scaleSpring.RestingPos = HoveredScale;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        if (disabled) return;
+        if (Disabled) return;
         scaleSpring.RestingPos = 1;
         rotationSpring.RestingPos = Vector2.zero;
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (disabled) return;
+        if (Disabled) return;
         scaleSpring.RestingPos = PressedScale;
         scaleSpring.Velocity = (scaleSpring.RestingPos - scaleSpring.Position) * 20f; //speed up downscale motion a bit
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        if (disabled) return;
+        if (Disabled) return;
         if (scaleSpring.RestingPos < 1) //only set back to hovered scale when the pointer is still on the card
             scaleSpring.RestingPos = HoveredScale;
     }
 
     public void OnPointerMove(PointerEventData eventData)
     {
-        if (disabled) return;
+        if (Disabled) return;
         var localPos = ScreenToRectLocalPosition(eventData.position);
         rotationSpring.RestingPos = (Vector2.one * .5f - new Vector2(1 - localPos.y, localPos.x)) * RotationAmplitude;
     }
