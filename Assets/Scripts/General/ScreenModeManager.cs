@@ -81,9 +81,30 @@ public class ScreenModeManager : MonoBehaviour, ISaveLoad
 
     public void Load()
     {
-        IsFullScreen = PlayerPrefs.GetInt(KeyFullScreen, 1) == 1;
-        ScreenModeIndex = PlayerPrefs.GetInt(KeyScreenMode, 0);
-        ResolutionIndex = PlayerPrefs.GetInt(KeyScreenResolution, ResolutionIndex);
+        int valueFullScreen;
+
+        if(!PersistantData.Instance.TryGetData(KeyFullScreen, out valueFullScreen))
+        {
+            valueFullScreen = 1;    
+        }
+
+        IsFullScreen = valueFullScreen == 1;
+
+        int valueScreenMode;
+        if(!PersistantData.Instance.TryGetData(KeyScreenMode, out valueScreenMode))
+        {
+            valueScreenMode = 0;
+        }
+
+        ScreenModeIndex = valueScreenMode;
+
+        int resolutionIndex;
+        if(!PersistantData.Instance.TryGetData(KeyScreenResolution, out resolutionIndex))
+        {
+            resolutionIndex = ResolutionIndex;
+        }
+
+        ResolutionIndex = resolutionIndex;
         
         SetFullScreenMode(IsFullScreen);
         SetScreenResolution(ResolutionIndex);
@@ -95,5 +116,10 @@ public class ScreenModeManager : MonoBehaviour, ISaveLoad
         PlayerPrefs.SetInt(KeyScreenMode, ScreenModeIndex);
         PlayerPrefs.SetInt(KeyScreenResolution, ResolutionIndex);
         PlayerPrefs.Save();
+
+        //I have commented this because it may be possible that Persistant Data gameobject
+        //will destroy before this script does.
+
+        //PersistantData.Instance.Save();
     }
 }
