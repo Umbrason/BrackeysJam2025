@@ -9,8 +9,8 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private EnemyPoolable[] enemyTemplates;
     [SerializeField] private EnemyPool poolTemplate;
     private EnemyPool[] enemyPools;
-    int DesiredEnemyCount => 5;
-    int EnemyCount => enemyPools.Sum(pool => pool.InCirculation);
+    public int DesiredEnemyCount => 5;
+    public int EnemyCount => enemyPools.Sum(pool => pool.InCirculation);
 
     [SerializeField] private GameObjectPool HitVFXPool;
     [SerializeField] private GameObjectPool DeathVFXPool;
@@ -39,7 +39,7 @@ public class EnemySpawner : MonoBehaviour
             DoSpawn();
     }
 
-    void DoSpawn()
+    public void DoSpawn()
     {
         var enemy = enemyPoolPool.Pull().Pull();
     }

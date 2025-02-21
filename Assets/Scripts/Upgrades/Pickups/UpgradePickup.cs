@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class UpgradePickup : MonoBehaviour
 {
+    public static UpgradePickup Instance;
+    void Awake() => Instance = this;
+    void OnDestroy() => Instance = null;
     void OnTriggerEnter(Collider collider) => TriggerPickUp(collider?.attachedRigidbody?.gameObject);
     void TriggerPickUp(GameObject target)
     {
@@ -24,8 +27,6 @@ public class UpgradePickup : MonoBehaviour
         Animator.Sprites = OpenAnimation;
         yield return new WaitForSeconds(OpenAnimation.Length / (float)openAnimationFramerate);
         UpgradeSelection.Show(target, options);
-        var targetHealthpool = target.GetComponent<HealthPool>();
-        targetHealthpool.RegisterHealthEvent(HealthEvent.Heal((uint)targetHealthpool.Size, source: gameObject));
         Destroy(gameObject);
     }
 }
