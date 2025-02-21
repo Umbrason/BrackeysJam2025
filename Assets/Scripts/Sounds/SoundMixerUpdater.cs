@@ -54,6 +54,7 @@ public class SoundMixerUpdater : MonoBehaviour
         }
         Debug.Log($"Pref Load {Key} {value}");
         onLoad?.Invoke(value);
+        slider.value = value;
         SetMixerValue(value);
     }
 }
