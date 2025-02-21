@@ -33,7 +33,7 @@ public class UpgradeSelection : MonoBehaviour
         StartCoroutine(ShowRoutine());
     }
 
-    const float enableCardsAnimationDuration = 2f;
+    const float enableCardsAnimationDuration = 1.5f;
     private IEnumerator EnableCardsRoutine()
     {
         var t = 0f;
@@ -50,6 +50,8 @@ public class UpgradeSelection : MonoBehaviour
             yield return null;
         }
         instances[^1].enabled = true;
+        foreach (var instance in instances)
+            instance.Disabled = false;
     }
 
     const float pauseGameAnimationDuration = .5f;
@@ -96,8 +98,11 @@ public class UpgradeSelection : MonoBehaviour
         gameObject.SetActive(false);
         Time.timeScale = 1;
         Cursor.visible = cursorWasVisible;
+        var targetHealthpool = upgradeTarget.GetComponent<HealthPool>();
+        targetHealthpool.RegisterHealthEvent(HealthEvent.Heal((uint)targetHealthpool.Size, source: null));
+        upgradeTarget = null;
     }
-    const float hideCardAnimationDuration = 1f;
+    const float hideCardAnimationDuration = .5f;
     private IEnumerator HideCardRoutine(UpgradeCard card)
     {
         card.Hide();
@@ -127,8 +132,10 @@ public class UpgradeSelection : MonoBehaviour
     private void OnOptionClicked(UpgradeCard card)
     {
         if (!acceptClicks) return;
+        foreach (var instance in instances)
+            instance.Disabled = true;
         card.DisplayedUpgrade.OnApply(upgradeTarget);
-        if(!card.DisplayedUpgrade.Stackable) IUpgrade.UpgradePool.Remove(card.DisplayedUpgrade);
+        if (!card.DisplayedUpgrade.Stackable) IUpgrade.UpgradePool.Remove(card.DisplayedUpgrade);
         acceptClicks = false;
         card.Shake();
         Close(card);
