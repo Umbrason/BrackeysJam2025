@@ -51,7 +51,7 @@ public class EnemySpawner : MonoBehaviour
              DesiredEnemyCount += enemyAmountGrowth;
         }
 
-        while (EnemyCount < DesiredEnemyCount + enemyDesiredCountIncrease)
+        while (EnemyCount < DesiredEnemyCount)
             DoSpawn();
     }
 
@@ -60,7 +60,7 @@ public class EnemySpawner : MonoBehaviour
         var enemy = enemyPoolPool.Pull().Pull();
         var radius = enemy.GetComponentInChildren<SphereCollider>().radius;
         var enemyPosition = generateSpawnPosition(radius);
-        enemy.transform.SetLocalPositionAndRotation(enemyPosition, quaternion.identity);
+        enemy.transform.SetLocalPositionAndRotation(enemyPosition, Quaternion.identity);
     }
 
 
@@ -71,7 +71,7 @@ public class EnemySpawner : MonoBehaviour
         var spawnLocation = Vector3.zero;
         for(int i = 0; i < maxAttempts; i++)
         {
-            spawnLocation = UnityEngine.Random.InsideUnitSphere * randomSpawnRange;
+            spawnLocation = Random.insideUnitCircle._x0y() * randomSpawnRange;
             var distanceToWorld = (spawnLocation - Vector3.zero).sqrMagnitude;
             var distanceToPlayer = (spawnLocation - player.position).sqrMagnitude;
             if(distanceToWorld > worldBorder * worldBorder || distanceToPlayer < playerVisionRadius * playerVisionRadius)
