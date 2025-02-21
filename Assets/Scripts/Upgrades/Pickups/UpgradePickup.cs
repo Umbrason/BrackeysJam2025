@@ -12,6 +12,7 @@ public class UpgradePickup : MonoBehaviour
     {
         if (pickingUp) return;
         pickingUp = true;
+        TransientScoring.AddUpgradesCollected(1);
         StartCoroutine(PickupRoutine(target));
     }
     bool pickingUp = false;
