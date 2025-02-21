@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
@@ -10,11 +9,11 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private EnemyPoolable[] enemyTemplates;
     [SerializeField] private EnemyPool poolTemplate;
     private EnemyPool[] enemyPools;
-    public int DesiredEnemyCount {get; set;}
+    public int DesiredEnemyCount => CalcEnemyCount();
     public int EnemyCount => enemyPools.Sum(pool => pool.InCirculation);
 
     private float enemyIncreaseTimer;
-    [SerializeField] private int enemyIncreaseTick;
+    [SerializeField] private int enemyIncreaseInterval;
     [SerializeField] private int enemyAmountGrowth;
     [SerializeField] private GameObjectPool HitVFXPool;
     [SerializeField] private GameObjectPool DeathVFXPool;
@@ -24,7 +23,8 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float playerVisionRadius = 15;
 
     [SerializeField] private Transform player;
-    
+
+    private float startTime;
     void Awake()
     {
         var template = poolTemplate.Template;
@@ -40,18 +40,22 @@ public class EnemySpawner : MonoBehaviour
             enemyPoolPool.Push(pool);
         }
         poolTemplate.Template = template;
+        startTime = Time.time;
+    }
+
+    int CalcEnemyCount()
+    {
+        var playtime = Time.time - startTime;
+        playtime = Mathf.Min(12000, playtime);
+        var a = Mathf.Pow(playtime, 1.4f) * 0.022f;
+        var b = Mathf.Pow(playtime, 1.5f) * 0.008f;
+        return Mathf.FloorToInt(a - b + 2);
     }
 
     void FixedUpdate()
-    { 
-        enemyIncreaseTimer += Time.deltaTime;
-        while (enemyIncreaseTimer >= enemyIncreaseTick)
-        { 
-             enemyIncreaseTimer -= enemyIncreaseTick;
-             DesiredEnemyCount += enemyAmountGrowth;
-        }
-
-        while (EnemyCount < DesiredEnemyCount)
+    {
+        var missingEnemies = DesiredEnemyCount - EnemyCount;
+        for (int i = 0; i < missingEnemies; i++)
             DoSpawn();
     }
 
@@ -64,22 +68,33 @@ public class EnemySpawner : MonoBehaviour
     }
 
 
-    const int maxAttempts = 10;
-    Collider[] _discard = new Collider[0];
+    private const int maxAttempts = 10;
+    private static readonly Collider[] _discard = new Collider[1];
     Vector3 generateSpawnPosition(float radius)
-    {        
+    {
         var spawnLocation = Vector3.zero;
-        for(int i = 0; i < maxAttempts; i++)
+        for (int i = 0; i < maxAttempts; i++)
         {
-            spawnLocation = Random.insideUnitCircle._x0y() * randomSpawnRange;
-            var distanceToWorld = (spawnLocation - Vector3.zero).sqrMagnitude;
-            var distanceToPlayer = (spawnLocation - player.position).sqrMagnitude;
-            if(distanceToWorld > worldBorder * worldBorder || distanceToPlayer < playerVisionRadius * playerVisionRadius)
-                continue;            
-            if (Physics.OverlapSphereNonAlloc(spawnLocation, radius, _discard, LayerMask.GetMask("Obstacles")) > 0)
-                continue;
+            var angle = Random.value * Mathf.PI * 2;
+            var mag = Random.value * (randomSpawnRange - playerVisionRadius) + playerVisionRadius;
+            var dir = new Vector3(Mathf.Sin(angle), 0, Mathf.Cos(angle));
+            spawnLocation = player.position + dir * mag;
+            if (spawnLocation.sqrMagnitude > worldBorder * worldBorder) continue;
+            if (Physics.OverlapSphereNonAlloc(spawnLocation, radius, _discard, LayerMask.GetMask("Obstacles")) > 0) continue;
             break;
         }
         return spawnLocation;
     }
+
+#if UNITY_EDITOR
+    void OnDrawGizmosSelected()
+    {
+        UnityEditor.Handles.color = Color.green;
+        UnityEditor.Handles.DrawWireDisc(transform.position + Vector3.up, Vector3.up, worldBorder);
+        UnityEditor.Handles.color = Color.red;
+        UnityEditor.Handles.DrawWireDisc(player.position + Vector3.up, Vector3.up, randomSpawnRange);
+        UnityEditor.Handles.color = Color.blue;
+        UnityEditor.Handles.DrawWireDisc(player.position + Vector3.up, Vector3.up, playerVisionRadius);
+    }
+#endif
 }
