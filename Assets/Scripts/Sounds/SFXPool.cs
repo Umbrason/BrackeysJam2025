@@ -59,15 +59,15 @@ public class SFXPool : MonoBehaviour
         AS.pitch = group.RandomPitch();
         AS.transform.position = position;
         AS.clip = clip;
-        AS.enabled = true;
+        AS.gameObject.SetActive(true);
         AS.Play();
         audioSources.Push(AS);
         StartCoroutine(DisableAfterPlaying(AS));
     }
 
-    IEnumerator DisableAfterPlaying(AudioSource s)
+    IEnumerator DisableAfterPlaying(AudioSource AS)
     {
-        yield return new WaitUntil(() => !s.isPlaying);
-        s.enabled = false;
+        yield return new WaitUntil(() => !AS.isPlaying);
+        AS.gameObject.SetActive(false);
     }
 }
