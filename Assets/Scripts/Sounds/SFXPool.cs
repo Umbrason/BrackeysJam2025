@@ -34,7 +34,7 @@ public class SFXPool : MonoBehaviour
     void CreateAudioSource()
     {
         var AS = Instantiate(Template, transform);
-        AS.enabled = false;
+        AS.gameObject.SetActive(false);
         AS.outputAudioMixerGroup = group.MixerGroup;
         audioSources.Push(AS);
     }
@@ -44,7 +44,7 @@ public class SFXPool : MonoBehaviour
     float lastTimePlayed;
     public void PlayAt(Vector3 position)
     {
-        if (audioSources.NextValue.enabled) //check if advanced enough to interrput
+        if (audioSources.NextValue.gameObject.activeSelf) //check if advanced enough to interrput
         {
             var progress = audioSources.NextValue.time / audioSources.NextValue.clip.length;
             if (progress < interrupt) return;
@@ -59,15 +59,15 @@ public class SFXPool : MonoBehaviour
         AS.pitch = group.RandomPitch();
         AS.transform.position = position;
         AS.clip = clip;
-        AS.enabled = true;
+        AS.gameObject.SetActive(true);
         AS.Play();
         audioSources.Push(AS);
         StartCoroutine(DisableAfterPlaying(AS));
     }
 
-    IEnumerator DisableAfterPlaying(AudioSource s)
+    IEnumerator DisableAfterPlaying(AudioSource AS)
     {
-        yield return new WaitUntil(() => !s.isPlaying);
-        s.enabled = false;
+        yield return new WaitUntil(() => !AS.isPlaying);
+        AS.gameObject.SetActive(false);
     }
 }
