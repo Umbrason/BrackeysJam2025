@@ -149,7 +149,8 @@ MonoBehaviour:
   - {fileID: 937507582045551795}
   - {fileID: 2041602368562243856}
   - {fileID: 7576490545715141280}
-  m_RendererFeatureMap: a700ffc3e8a123e3329f87dbbf030f5fc6ef79c90db48bce66b9acc0e780f1ecb37c0fc22db2020d10a9bf8e893a551ca0da7465021a2569
+  - {fileID: 8630859030883185532}
+  m_RendererFeatureMap: a700ffc3e8a123e3329f87dbbf030f5fc6ef79c90db48bce66b9acc0e780f1ecb37c0fc22db2020d10a9bf8e893a551ca0da7465021a25697cb343728ff8c677
   m_UseNativeRenderPass: 1
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   shaders:
@@ -355,3 +356,22 @@ MonoBehaviour:
       restoreCamera: 1
       offset: {x: 0, y: 0, z: 0, w: 0}
       cameraFieldOfView: 60
+--- !u!114 &8630859030883185532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fc37506247f7d14daed2e9e2d30bd49, type: 3}
+  m_Name: HitFlashRenderFeature
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  settings:
+    color:
+      serializedVersion: 2
+      rgba: 4294967295
+    renderPassEvent: 550
+    duration: 0.2
