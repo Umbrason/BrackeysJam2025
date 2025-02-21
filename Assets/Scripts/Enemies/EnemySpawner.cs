@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -12,9 +13,6 @@ public class EnemySpawner : MonoBehaviour
     public int DesiredEnemyCount => CalcEnemyCount();
     public int EnemyCount => enemyPools.Sum(pool => pool.InCirculation);
 
-    private float enemyIncreaseTimer;
-    [SerializeField] private int enemyIncreaseInterval;
-    [SerializeField] private int enemyAmountGrowth;
     [SerializeField] private GameObjectPool HitVFXPool;
     [SerializeField] private GameObjectPool DeathVFXPool;
     [SerializeField] private GameObjectPool HealthPickupPool;
@@ -37,8 +35,8 @@ public class EnemySpawner : MonoBehaviour
             pool.DeathVFXPool = DeathVFXPool;
             pool.HitVFXPool = HitVFXPool;
             enemyPools[i] = pool;
-            enemyPoolPool.Push(pool);
         }
+        AddNextEnemyType();
         poolTemplate.Template = template;
         startTime = Time.time;
     }
@@ -50,6 +48,13 @@ public class EnemySpawner : MonoBehaviour
         var a = Mathf.Pow(playtime, 1.4f) * 0.022f;
         var b = Mathf.Pow(playtime, 1.5f) * 0.008f;
         return Mathf.FloorToInt(a - b + 2);
+    }
+
+    public void AddNextEnemyType()
+    {
+        if (enemyPoolPool.Size >= enemyPools.Length)
+            return;
+        enemyPoolPool.Push(enemyPools[enemyPoolPool.Size]);
     }
 
     void FixedUpdate()

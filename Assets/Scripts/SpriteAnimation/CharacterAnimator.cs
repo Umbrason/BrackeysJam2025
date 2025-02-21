@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 public class CharacterAnimator : MonoBehaviour
@@ -16,6 +17,7 @@ public class CharacterAnimator : MonoBehaviour
     }
     [SerializeField] DirectionalAnimation[] animations;
     [SerializeField] AnimationSet Idle;
+    public AnimationSet[] Animations => animations.Select(d => d.animation).Prepend(Idle).ToArray();
 
     AnimationSet m_CurrentAnimation;
     AnimationSet CurrentAnimation

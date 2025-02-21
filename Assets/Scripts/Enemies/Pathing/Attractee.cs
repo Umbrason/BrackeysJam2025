@@ -28,9 +28,9 @@ public class Attractee : MonoBehaviour
         }
         Gizmos.DrawLine(transform.position, transform.position + new Vector3(vx, 0, vy).normalized * speed);
     }
-
     void FixedUpdate()
     {
+
         Vector3 position = transform.position;
         float px = position.x;
         float py = position.z;

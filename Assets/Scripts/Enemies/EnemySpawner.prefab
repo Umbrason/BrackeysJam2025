@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4279616359189798579
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8689209617594794927}
+  - component: {fileID: 205863504072219114}
+  m_Layer: 0
+  m_Name: EnemySpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8689209617594794927
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4279616359189798579}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &205863504072219114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4279616359189798579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e0cdd13dc2373cfc99b1bf862cf8a90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyTemplates:
+  - {fileID: 7908879850163488909, guid: 3f35523e130b3b1ceb1aa2b1513bab6e, type: 3}
+  - {fileID: 7908879850163488909, guid: 30349d7737469e29cbb3962dc7e9fe4f, type: 3}
+  - {fileID: 7908879850163488909, guid: 652a56a462c2b448c892a9c28bedf162, type: 3}
+  - {fileID: 7908879850163488909, guid: 12a4c1e1fdb47a4398a5d14e619965d5, type: 3}
+  - {fileID: 7908879850163488909, guid: 32056b992949d5d48afade0cb7316662, type: 3}
+  - {fileID: 7908879850163488909, guid: c50603463ea134c60a0c444a2d243f8a, type: 3}
+  - {fileID: 7908879850163488909, guid: c933f0ce4d8d28edba4f8a6ee7f2908c, type: 3}
+  - {fileID: 7908879850163488909, guid: 5403da37c13d68471b2866098fa1cb55, type: 3}
+  - {fileID: 7908879850163488909, guid: efa415b7e2f3778ffb2ae7dcb7358fdf, type: 3}
+  - {fileID: 7908879850163488909, guid: 3055839247b05db0e85a86a0b5e60fd5, type: 3}
+  - {fileID: 7908879850163488909, guid: ce01da6c9fcbb4db49fd2e3ad885ade1, type: 3}
+  - {fileID: 7908879850163488909, guid: 849b50be1fa0a5c51ade0ebb0da31d43, type: 3}
+  - {fileID: 7908879850163488909, guid: b97439be290c2c9fa9a4e3d7f6ea6e02, type: 3}
+  - {fileID: 7908879850163488909, guid: 35cc3f2c6b90ff09da6208919403b32c, type: 3}
+  poolTemplate: {fileID: 121079885725608570, guid: dc0df4db414b629ed9cf27059462fccc, type: 3}
+  enemyIncreaseInterval: 0
+  enemyAmountGrowth: 0
+  HitVFXPool: {fileID: 0}
+  DeathVFXPool: {fileID: 0}
+  HealthPickupPool: {fileID: 0}
+  randomSpawnRange: 60
+  worldBorder: 185
+  playerVisionRadius: 30
+  player: {fileID: 0}

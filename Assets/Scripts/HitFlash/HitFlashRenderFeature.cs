@@ -51,7 +51,7 @@ public class HitFlashRenderFeature : ScriptableRendererFeature
                     meshIndices[i] = indices[i];
                 spriteMesh.SetVertices(verts);
                 spriteMesh.SetIndices(meshIndices, MeshTopology.Triangles, 0);
-                Mesh = new();
+                Mesh = spriteMesh;
             }
             public Renderer Renderer => sr;
             private SpriteRenderer sr;
