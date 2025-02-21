@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.Mathematics;
+using UnityEditor;
 using UnityEngine;
 
 
@@ -22,12 +23,12 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private GameObjectPool HitVFXPool;
     [SerializeField] private GameObjectPool DeathVFXPool;
     [SerializeField] private GameObjectPool HealthPickupPool;
-    [SerializeField] private float randomSpawnRange;
+    [SerializeField] private float randomSpawnRange = 200;
     [SerializeField] private float worldBorder;
     [SerializeField] private float playerVisionRadius = 15;
 
     static GameObject player;
-
+    
     void Awake()
     {
         var template = poolTemplate.Template;
@@ -44,6 +45,8 @@ public class EnemySpawner : MonoBehaviour
         }
         poolTemplate.Template = template;
         player = GameObject.Find("Player");
+
+
     }
 
     void FixedUpdate()
@@ -61,26 +64,41 @@ public class EnemySpawner : MonoBehaviour
 
     void DoSpawn()
     {
-        var enemy = enemyPoolPool.Pull().Pull(generateSpawnPosition(), quaternion.identity);
+        var enemy = enemyPoolPool.Pull().Pull( new Vector3(0,0,-10), quaternion.identity);
+        var radius = enemy.GetComponentInChildren<SphereCollider>().radius;
+        Vector3 enemyPosition = generateSpawnPosition();
+
+        enemy.transform.SetLocalPositionAndRotation(enemyPosition, quaternion.identity);
+        //TODO change 3 to dynamic layermask int of obstacles
+        Collider[] invalidCollisionList = Physics.OverlapSphere(enemyPosition, radius, LayerMask.GetMask("Obstacles"));
+        if (invalidCollisionList.Length > 0 )
+        {
+            enemy.Owner.Return(enemy);
+            ArrayUtility.Clear<Collider>(ref invalidCollisionList);
+        }
+        else{
+            enemy.transform.SetPositionAndRotation(enemyPosition, quaternion.identity);
+            }
+
+        
+
     }
     
     Vector3 generateSpawnPosition()
     {
-        float locationRangeX = UnityEngine.Random.Range(-randomSpawnRange, randomSpawnRange);
+        float locationRange = UnityEngine.Random.Range(-randomSpawnRange, randomSpawnRange);
         float locationRangeY = UnityEngine.Random.Range(-randomSpawnRange, randomSpawnRange);
-        
-        
 
-        Vector3 spawnLocation = new Vector3 (locationRangeX, 0, locationRangeY); 
+        Vector3 spawnLocation = new Vector3 (locationRange, 0, locationRangeY); 
         float distanceToWorld = Vector3.Distance(spawnLocation, Vector3.zero);
         float distanceToPlayer = Vector3.Distance(spawnLocation,player.transform.position);
         while (distanceToWorld > worldBorder || distanceToPlayer < playerVisionRadius)      
         {
-            locationRangeX = UnityEngine.Random.Range(-randomSpawnRange, randomSpawnRange);
+            locationRange = UnityEngine.Random.Range(-randomSpawnRange, randomSpawnRange);
             locationRangeY = UnityEngine.Random.Range(-randomSpawnRange, randomSpawnRange);
-            spawnLocation = new Vector3 (locationRangeX, 0, locationRangeY);
+            spawnLocation = new Vector3 (locationRange, 0, locationRangeY);
             distanceToWorld = Vector3.Distance(spawnLocation, Vector3.zero);
-            distanceToPlayer = Vector3.Distance(spawnLocation,player.transform.position);           
+            distanceToPlayer = Vector3.Distance(spawnLocation,player.transform.position);       
         }
         return spawnLocation;
         
