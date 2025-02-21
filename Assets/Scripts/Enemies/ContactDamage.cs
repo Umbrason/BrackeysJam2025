@@ -15,8 +15,8 @@ public class ContactDamage : MonoBehaviour
     void TryDamage(GameObject target)
     {
         if (Time.time - lastDamageTime <= damageInterval) return;
-        lastDamageTime = Time.time;
         if (target.layer != playerLayer) return;
+        lastDamageTime = Time.time;
         var hitbox = target.GetComponentInParent<Hitbox>();
         hitbox.RegisterDamageEvent(HealthEvent.Damage((uint)damageAmount, gameObject));
     }

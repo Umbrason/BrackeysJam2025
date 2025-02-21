@@ -96,6 +96,14 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7109458363653395783, guid: 5ce4d5e575aed3ecabf05053f1b22116, type: 3}
+      propertyPath: damageAmount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7109458363653395783, guid: 5ce4d5e575aed3ecabf05053f1b22116, type: 3}
+      propertyPath: damageInterval
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 8843254817029319994, guid: 5ce4d5e575aed3ecabf05053f1b22116, type: 3}
       propertyPath: m_LocalPosition.y
       value: 1
