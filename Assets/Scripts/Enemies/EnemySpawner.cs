@@ -23,7 +23,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float worldBorder;
     [SerializeField] private float playerVisionRadius = 15;
 
-    static GameObject player;
+    [SerializeField] private Transform player;
     
     void Awake()
     {
@@ -40,9 +40,6 @@ public class EnemySpawner : MonoBehaviour
             enemyPoolPool.Push(pool);
         }
         poolTemplate.Template = template;
-        player = GameObject.Find("Player");
-
-
     }
 
     void FixedUpdate()
@@ -62,7 +59,7 @@ public class EnemySpawner : MonoBehaviour
     {
         var enemy = enemyPoolPool.Pull().Pull();
         var radius = enemy.GetComponentInChildren<SphereCollider>().radius;
-        Vector3 enemyPosition = generateSpawnPosition();
+        var enemyPosition = generateSpawnPosition(radius);
         enemy.transform.SetLocalPositionAndRotation(enemyPosition, quaternion.identity);
     }
 
@@ -71,13 +68,13 @@ public class EnemySpawner : MonoBehaviour
     Collider[] _discard = new Collider[0];
     Vector3 generateSpawnPosition(float radius)
     {        
-        Vector3 spawnLocation;
+        var spawnLocation = Vector3.zero;
         for(int i = 0; i < maxAttempts; i++)
         {
             spawnLocation = UnityEngine.Random.InsideUnitSphere * randomSpawnRange;
-            distanceToWorld = Vector3.Distance(spawnLocation, Vector3.zero);
-            distanceToPlayer = Vector3.Distance(spawnLocation,player.transform.position);       
-            if(distanceToWorld > worldBorder || distanceToPlayer < playerVisionRadius)
+            var distanceToWorld = (spawnLocation - Vector3.zero).sqrMagnitude;
+            var distanceToPlayer = (spawnLocation - player.position).sqrMagnitude;
+            if(distanceToWorld > worldBorder * worldBorder || distanceToPlayer < playerVisionRadius * playerVisionRadius)
                 continue;            
             if (Physics.OverlapSphereNonAlloc(spawnLocation, radius, _discard, LayerMask.GetMask("Obstacles")) > 0)
                 continue;
