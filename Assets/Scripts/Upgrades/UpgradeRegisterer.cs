@@ -1,24 +1,23 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using UnityEngine;
 
 public static class UpgradesRegisterer
 {
-    public static IUpgrade[] UpgradeList = {
-        new UpgradeFireRate(),
-        new UpgradeBounceIncrease(),
-        new UpgradeBulletSize(),
-        new UpgradeSpeed(),
-        new AlienEye()
-    };
-
     [RuntimeInitializeOnLoadMethod]
     public static void registerUpgrades()
     {
-        for (int i = 0; i < UpgradeList.Length; i++)
+        var upgradeTypes = Assembly.GetAssembly(typeof(IUpgrade)).GetTypes().Where(type => typeof(IUpgrade).IsAssignableFrom(type));
+        foreach (var upgrade in upgradeTypes)
         {
-            UpgradeList[i].Register();
-
+            if (upgrade.GetConstructor(Type.EmptyTypes) != null)
+            {
+                var instance = (IUpgrade)Activator.CreateInstance(upgrade);
+                instance.Register();
+            }
         }
     }
 }
