@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Clips>k__BackingField:
   - {fileID: 8300000, guid: c8c9ced454b78804e85342e5f935cab9, type: 3}
+  <MixerGroup>k__BackingField: {fileID: 1141603825351207739, guid: 5070527f0a2f37141a4be3ac890c834f, type: 2}
+  pitchRange: {x: 1, y: 1}

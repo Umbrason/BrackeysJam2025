@@ -5,33 +5,35 @@ using UnityEngine;
 
 public class ScreenModeManager : MonoBehaviour, ISaveLoad
 {
-    public static ScreenModeManager Instance { get; private set; }
+    private static ScreenModeManager _instance;
+    public static bool HasInstance => _instance != null;
+    public static ScreenModeManager Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                var obj = new GameObject(nameof(ScreenModeManager));
+                _instance = obj.AddComponent<ScreenModeManager>();
+                DontDestroyOnLoad(obj);
+            }
+            
+            return _instance;
+        }
+    }
     
     public bool IsFullScreen {get; private set; }
     public int ResolutionIndex {get; private set; }
     public int ScreenModeIndex {get; private set; }
 
-    public event Action<List<Vector2Int>> OnScreenResolutionsUpdated; 
+    public static event Action OnLoaded;
+
+    public static event Action<List<Vector2Int>> OnScreenResolutionsUpdated; 
     public List<Vector2Int> ScreenResolutions { get; private set; } = new();
     
     public string KeyFullScreen => $"Screen_FullScreen";
     public string KeyScreenMode => $"Screen_Mode";
     public string KeyScreenResolution => $"Screen_Resolution";
-
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(this);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
-
-    private void OnDestroy() => Save();
 
     private IEnumerator Start()
     {
@@ -43,6 +45,8 @@ public class ScreenModeManager : MonoBehaviour, ISaveLoad
     public void SetFullScreenMode(bool flag)
     {
         IsFullScreen = flag;
+        if (PersistantData.Instance != null)
+            PersistantData.Instance.SetData(KeyFullScreen, IsFullScreen ? 1 : 0);
         Screen.fullScreen = IsFullScreen;
     }
 
@@ -50,6 +54,8 @@ public class ScreenModeManager : MonoBehaviour, ISaveLoad
     {
         FullScreenMode mode = (FullScreenMode)flag;
         ScreenModeIndex = flag;
+        if (PersistantData.Instance != null)
+            PersistantData.Instance.SetData(KeyScreenMode, ScreenModeIndex);
         Screen.SetResolution(ScreenResolutions[ResolutionIndex].x, ScreenResolutions[ResolutionIndex].y, mode);
     }
 
@@ -57,8 +63,9 @@ public class ScreenModeManager : MonoBehaviour, ISaveLoad
     {
         if (flag >= ScreenResolutions.Count)
             return;
-
         ResolutionIndex = flag;
+        if (PersistantData.Instance != null)
+            PersistantData.Instance.SetData(KeyScreenResolution, ResolutionIndex);
         SetScreenMode(ScreenModeIndex);
     }
 
@@ -81,45 +88,26 @@ public class ScreenModeManager : MonoBehaviour, ISaveLoad
 
     public void Load()
     {
-        int valueFullScreen;
-
-        if(!PersistantData.Instance.TryGetData(KeyFullScreen, out valueFullScreen))
-        {
-            valueFullScreen = 1;    
-        }
-
+        if(!PersistantData.Instance.TryGetData(KeyFullScreen, out int valueFullScreen)) 
+            valueFullScreen = 1;
         IsFullScreen = valueFullScreen == 1;
 
-        int valueScreenMode;
-        if(!PersistantData.Instance.TryGetData(KeyScreenMode, out valueScreenMode))
-        {
+        if(!PersistantData.Instance.TryGetData(KeyScreenMode, out int valueScreenMode)) 
             valueScreenMode = 0;
-        }
-
         ScreenModeIndex = valueScreenMode;
 
-        int resolutionIndex;
-        if(!PersistantData.Instance.TryGetData(KeyScreenResolution, out resolutionIndex))
-        {
+        if(!PersistantData.Instance.TryGetData(KeyScreenResolution, out int resolutionIndex))
             resolutionIndex = ResolutionIndex;
-        }
-
         ResolutionIndex = resolutionIndex;
         
         SetFullScreenMode(IsFullScreen);
         SetScreenResolution(ResolutionIndex);
+        
+        OnLoaded?.Invoke();
     }
 
     public void Save()
     {
-        PlayerPrefs.SetInt(KeyFullScreen, IsFullScreen ? 1 : 0);
-        PlayerPrefs.SetInt(KeyScreenMode, ScreenModeIndex);
-        PlayerPrefs.SetInt(KeyScreenResolution, ResolutionIndex);
-        PlayerPrefs.Save();
-
-        //I have commented this because it may be possible that Persistant Data gameobject
-        //will destroy before this script does.
-
-        //PersistantData.Instance.Save();
+        // Does nothing
     }
 }

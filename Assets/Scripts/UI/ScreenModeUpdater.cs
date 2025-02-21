@@ -22,11 +22,18 @@ public class ScreenModeUpdater : MonoBehaviour
 
     private void OnEnable()
     {
+        ScreenModeManager.OnLoaded += RefreshDisplay;
         dropdown.onValueChanged.AddListener(UpdateScreenMode);
         RefreshDisplay();
     }
 
-    private void OnDisable() => dropdown.onValueChanged.RemoveListener(UpdateScreenMode);
+    
+
+    private void OnDisable()
+    {
+        ScreenModeManager.OnLoaded -= RefreshDisplay;
+        dropdown.onValueChanged.RemoveListener(UpdateScreenMode);
+    }
 
     private void UpdateScreenMode(int flag)
     {
