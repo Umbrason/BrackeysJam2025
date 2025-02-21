@@ -17,14 +17,20 @@ public class ScreenResolutionChanger : MonoBehaviour
 
     private void OnEnable()
     {
-        ScreenModeManager.Instance.OnScreenResolutionsUpdated += SetOptions;
+        ScreenModeManager.OnScreenResolutionsUpdated += SetOptions;
+        ScreenModeManager.OnLoaded += RefreshDisplay;
         dropdown.onValueChanged.AddListener(UpdateScreenResolution);
         RefreshDisplay();
     }
     
     private void OnDisable()
     {
-        ScreenModeManager.Instance.OnScreenResolutionsUpdated -= SetOptions;
+        if (ScreenModeManager.HasInstance) // refrain from creating instance when closing the application
+        {
+            ScreenModeManager.OnScreenResolutionsUpdated -= SetOptions;
+            ScreenModeManager.OnLoaded += RefreshDisplay;
+        }
+        
         dropdown.onValueChanged.RemoveListener(UpdateScreenResolution);
     }
 
@@ -36,7 +42,11 @@ public class ScreenResolutionChanger : MonoBehaviour
 
     public void RefreshDisplay()
     {
+        if (ScreenModeManager.Instance.ScreenResolutions.Count == 0)
+            return;
+        
         Vector2Int res = ScreenModeManager.Instance.ScreenResolutions[ScreenModeManager.Instance.ResolutionIndex];
+        dropdown.SetValueWithoutNotify(ScreenModeManager.Instance.ResolutionIndex);
         text.text = $"{res.x}x{res.y}";
     }
 

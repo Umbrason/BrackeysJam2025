@@ -7,11 +7,18 @@ public class FullScreenModeToggle : MonoBehaviour
 
     private void OnEnable()
     {
+        ScreenModeManager.OnLoaded += OnLoad;
         toggle.onValueChanged.AddListener(UpdateFullScreenMode);
-        toggle.SetIsOnWithoutNotify(ScreenModeManager.Instance.IsFullScreen);
+        OnLoad();
     }
 
-    private void OnDisable() => toggle.onValueChanged.RemoveListener(UpdateFullScreenMode);
+    private void OnDisable()
+    {
+        ScreenModeManager.OnLoaded -= OnLoad;
+        toggle.onValueChanged.RemoveListener(UpdateFullScreenMode);
+    }
 
     private void UpdateFullScreenMode(bool flag) => ScreenModeManager.Instance.SetFullScreenMode(flag);
+    
+    private void OnLoad() => toggle.SetIsOnWithoutNotify(ScreenModeManager.Instance.IsFullScreen);
 }
