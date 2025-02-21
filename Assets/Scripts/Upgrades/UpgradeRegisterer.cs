@@ -6,6 +6,9 @@ public static class UpgradesRegisterer
 {
     public static IUpgrade[] UpgradeList = {
         new UpgradeFireRate(),
+        new UpgradeBounceIncrease(),
+        new UpgradeBulletSize(),
+        new UpgradeSpeed(),
         new AlienEye()
     };
 
