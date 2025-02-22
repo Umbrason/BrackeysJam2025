@@ -302,8 +302,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <AttractionLayer>k__BackingField: 0
-  falloffType: 3
-  strength: 100
+  falloffType: 2
+  strength: 500
 --- !u!114 &6353046019351536512
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -380,6 +380,8 @@ MonoBehaviour:
   healed: {fileID: 11400000, guid: 2fb481cd26401f9d486f68d36795d0f9, type: 2}
   hurt: {fileID: 11400000, guid: 8a091df29f7ba50a6bb697551f91d8fa, type: 2}
   lowHP: {fileID: 11400000, guid: c234513abe5fa30db811357973035f5e, type: 2}
+  died: {fileID: 0}
+  probability: 1
 --- !u!1 &7941322240413234857
 GameObject:
   m_ObjectHideFlags: 0
