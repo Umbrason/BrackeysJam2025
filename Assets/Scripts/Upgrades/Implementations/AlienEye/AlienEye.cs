@@ -8,6 +8,7 @@ public class AlienEye : MonoBehaviour, IUpgrade
     public Sprite Icon => Resources.Load<Sprite>($"Upgrades/{GetType().Name}");
     public string Name => "Alien Eye";
     public string Description => "Lets you see more";
+    AudioClipGroup IUpgrade.UpgradeVoiceLine => Resources.Load<AudioClipGroup>("FontUpgradePicked");
     public bool Stackable => false;
     public static bool IsActive { get; private set; }
     public static event Action<bool> ActiveChanged;

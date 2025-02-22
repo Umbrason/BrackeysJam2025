@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30d31d1a64d24ed89700f1c787873286, type: 3}
+  m_Name: GenericUpgradePicked
+  m_EditorClassIdentifier: 
+  <Clips>k__BackingField:
+  - {fileID: 8300000, guid: 057dbf6a3e5cae0089a393faa1cafe3c, type: 3}
+  - {fileID: 8300000, guid: 062a6dbb42da54deea3aacb81714bf53, type: 3}
+  - {fileID: 8300000, guid: 21fc6407745b3bf67800106de5872597, type: 3}
+  - {fileID: 8300000, guid: ca97db7e96d5cc2d890c38e201d83a9e, type: 3}
+  <MixerGroup>k__BackingField: {fileID: -6468018710755739179, guid: 5070527f0a2f37141a4be3ac890c834f, type: 2}
+  pitchRange: {x: 1, y: 1}

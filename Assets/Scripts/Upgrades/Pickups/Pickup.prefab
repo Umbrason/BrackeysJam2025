@@ -55,6 +55,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: c8ddbd1095db5e90ca85e10134779954, type: 3}
   - {fileID: 21300000, guid: 1c5f17a93ac9a5ebcb8636c5c5f2ec2d, type: 3}
   openAnimationFramerate: 7
+  upgradeVoiceLines: {fileID: 11400000, guid: d9b71a7b2d7f8455690605453ac3403a, type: 2}
 --- !u!54 &7063017031468791055
 Rigidbody:
   m_ObjectHideFlags: 0
