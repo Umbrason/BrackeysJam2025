@@ -10,6 +10,19 @@ public class Bullet : MonoBehaviour
     Cached<Rigidbody> cached_RB;
     Rigidbody Rigidbody => cached_RB[this];
 
+    [SerializeField] private AudioClipGroup RicochetSFX;
+    [SerializeField] private SpriteRenderer[] srs;
+    [SerializeField] private Color FFModeColorTint;
+
+    int noFFLayer;
+    int FFLayer;
+
+    void Awake()
+    {
+        noFFLayer = LayerMask.NameToLayer("PlayerProjectiles");
+        FFLayer = LayerMask.NameToLayer("EnemyProjectiles");
+    }
+
     public void Init(int bounces, float lifetime, Vector3 velocity, uint damage, float size)
     {
         this.remainingBounces = bounces;
@@ -20,8 +33,16 @@ public class Bullet : MonoBehaviour
         Rigidbody.WakeUp();
         transform.localScale = Vector3.one * size;
         gameObject.SetActive(true);
+        SetLayer(noFFLayer);
+        foreach (var sr in srs) sr.color = Color.white;
     }
     public event Action<Bullet> OnDespawn;
+
+    private void SetLayer(int id)
+    {
+        gameObject.layer = id;
+        transform.GetChild(0).gameObject.layer = id;
+    }
 
     void Update()
     {
@@ -44,6 +65,7 @@ public class Bullet : MonoBehaviour
 
         if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Obstacles"))
         {
+            SFXPool.PlayAt(RicochetSFX, transform.position);
             velocity = Vector3.Reflect(velocity, normal);
             Rigidbody.MovePosition(Rigidbody.position + velocity.normalized * .05f);
             if (remainingBounces <= 0)
@@ -51,6 +73,8 @@ public class Bullet : MonoBehaviour
                 Despawn();
                 return;
             }
+            SetLayer(FFLayer);
+            foreach (var sr in srs) sr.color = FFModeColorTint;
             remainingBounces--;
         }
         else

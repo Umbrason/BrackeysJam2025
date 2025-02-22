@@ -13,9 +13,9 @@ public class EnemySpawner : MonoBehaviour
     public int DesiredEnemyCount => CalcEnemyCount();
     public int EnemyCount => enemyPools.Sum(pool => pool.InCirculation);
 
-    [SerializeField] private GameObjectPool HitVFXPool;
-    [SerializeField] private GameObjectPool DeathVFXPool;
-    [SerializeField] private GameObjectPool HealthPickupPool;
+    public GameObjectPool HitVFXPool;
+    public GameObjectPool DeathVFXPool;
+    public GameObjectPool HealthPickupPool;
     [SerializeField] private float randomSpawnRange = 200;
     [SerializeField] private float worldBorder;
     [SerializeField] private float playerVisionRadius = 15;
@@ -31,9 +31,7 @@ public class EnemySpawner : MonoBehaviour
         {
             poolTemplate.Template = enemyTemplates[i];
             var pool = Instantiate(poolTemplate, transform);
-            pool.HealthPickupPool = HealthPickupPool;
-            pool.DeathVFXPool = DeathVFXPool;
-            pool.HitVFXPool = HitVFXPool;
+            pool.Spawner = this;
             enemyPools[i] = pool;
         }
         AddNextEnemyType();
@@ -44,9 +42,9 @@ public class EnemySpawner : MonoBehaviour
     int CalcEnemyCount()
     {
         var playtime = Time.time - startTime;
-        playtime = Mathf.Min(12000, playtime);
-        var a = Mathf.Pow(playtime, 1.4f) * 0.022f;
-        var b = Mathf.Pow(playtime, 1.5f) * 0.008f;
+        playtime = Mathf.Min(12000, playtime + 60 * TransientScoring.UpgradesCollected);
+        var a = Mathf.Pow(playtime, 1.4f) * 0.022f / 3f;
+        var b = Mathf.Pow(playtime, 1.5f) * 0.008f / 3f;
         return Mathf.FloorToInt(a - b + 2);
     }
 
@@ -68,14 +66,14 @@ public class EnemySpawner : MonoBehaviour
     {
         var enemy = enemyPoolPool.Pull().Pull();
         var radius = enemy.GetComponentInChildren<SphereCollider>().radius;
-        var enemyPosition = generateSpawnPosition(radius);
+        var enemyPosition = GenerateSpawnPosition(radius);
         enemy.transform.SetLocalPositionAndRotation(enemyPosition, Quaternion.identity);
     }
 
 
     private const int maxAttempts = 10;
     private static readonly Collider[] _discard = new Collider[1];
-    Vector3 generateSpawnPosition(float radius)
+    public Vector3 GenerateSpawnPosition(float radius)
     {
         var spawnLocation = Vector3.zero;
         for (int i = 0; i < maxAttempts; i++)

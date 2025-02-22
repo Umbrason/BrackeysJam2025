@@ -5,40 +5,57 @@ using UnityEngine.Audio;
 
 public class MusicPlayer : MonoBehaviour
 {
-    [SerializeField] private AudioClip startingClip;
-    [SerializeField] private AudioMixerGroup audioMixerGroup;
+    [Header("Clips")]
+    [SerializeField] private AudioClip calmStartingClip;
+    [SerializeField] private AudioClip calmLoopingClip;
+    [SerializeField] private AudioClip exitingStartingClip;
+    [SerializeField] private AudioClip exitingLoopingClip;
 
-    private AudioSource audioSource;
+    [Header("Refs")]
+    [SerializeField] private AudioSource calmAudioSource;
+    [SerializeField] private AudioSource exitingAudioSource;
+    [SerializeField] private EnemySpawner enemySpawner;
 
-    public void Play(AudioClip clip)
+    [SerializeField] private Spring.Config CrossfadeSpringConfig = new(5, 1);
+    BaseSpring CrossFadeSpring;
+
+
+    public void Play(AudioClip clip, AudioSource source)
     {
-        Debug.Log("Playing music");
-        if(audioSource.isPlaying)
+        if (source.isPlaying)
         {
-            audioSource.Stop();
+            calmAudioSource.Stop();
         }
-        audioSource.outputAudioMixerGroup = audioMixerGroup;
-        audioSource.clip = clip;
-        audioSource.loop = true;
-        audioSource.playOnAwake = false;
-        audioSource.Play();
+        source.clip = clip;
+        source.Play();
     }
 
     private void Awake()
     {
-        audioSource = GetComponent<AudioSource>();
-        audioSource.outputAudioMixerGroup = null;
-        audioSource.clip = null;
-        audioSource.loop = false;
-        audioSource.playOnAwake = false;
+        CrossFadeSpring = new(CrossfadeSpringConfig)
+        {
+            Position = 0,
+            RestingPos = 0
+        };
+        StartCoroutine(Playback());
     }
 
-    // Start is called before the first frame update
-    void Start()
+    IEnumerator Playback()
     {
-        if(startingClip != null)
-        {
-            Play(startingClip);
-        }
+        Play(calmStartingClip, calmAudioSource);
+        Play(exitingStartingClip, exitingAudioSource);
+        yield return new WaitUntil(() => !calmAudioSource.isPlaying);
+        calmAudioSource.clip = calmLoopingClip;
+        Play(calmLoopingClip, calmAudioSource);
+        Play(exitingLoopingClip, exitingAudioSource);
+        calmAudioSource.loop = true;
+        exitingAudioSource.loop = true;
+    }
+    void Update()
+    {
+        CrossFadeSpring.RestingPos = Mathf.Clamp01((enemySpawner.EnemyCount - enemySpawner.DesiredEnemyCount)  * 2f / enemySpawner.DesiredEnemyCount); //1 => exiting
+        CrossFadeSpring.Step(Time.deltaTime);
+        calmAudioSource.volume = 1 - CrossFadeSpring.Position;
+        exitingAudioSource.volume = CrossFadeSpring.Position;
     }
 }
