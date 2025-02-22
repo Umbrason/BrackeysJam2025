@@ -115,6 +115,7 @@ GameObject:
   - component: {fileID: 3298893486816734503}
   - component: {fileID: 67574768731552049}
   - component: {fileID: 4522184543382156028}
+  - component: {fileID: 5563455360085435419}
   - component: {fileID: 6353046019351536512}
   - component: {fileID: 8654082801287201087}
   - component: {fileID: 7564687382853669594}
@@ -157,7 +158,7 @@ MonoBehaviour:
   <MaxHealth>k__BackingField:
     <Base>k__BackingField: 200
   <Speed>k__BackingField:
-    <Base>k__BackingField: 8
+    <Base>k__BackingField: 10
   <Firerate>k__BackingField:
     <Base>k__BackingField: 1
   <SpreadDegrees>k__BackingField:
@@ -173,7 +174,7 @@ MonoBehaviour:
   <BulletLifeTime>k__BackingField:
     <Base>k__BackingField: 4
   <BulletVelocity>k__BackingField:
-    <Base>k__BackingField: 40
+    <Base>k__BackingField: 20
 --- !u!54 &7516577151370499795
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -243,7 +244,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Size>k__BackingField: 5
-  <Current>k__BackingField: 5
 --- !u!114 &4522184543382156028
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -259,6 +259,21 @@ MonoBehaviour:
   <AttractionLayer>k__BackingField: 0
   falloffType: 0
   strength: 1
+--- !u!114 &5563455360085435419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2978175645772338982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbab45723e4073531acd5da2b866c72c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <AttractionLayer>k__BackingField: 0
+  falloffType: 3
+  strength: 100
 --- !u!114 &6353046019351536512
 MonoBehaviour:
   m_ObjectHideFlags: 0

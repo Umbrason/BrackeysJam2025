@@ -20,7 +20,7 @@ public class SpriteAnimator : MonoBehaviour, ISpriteAnimator
 
     Cached<SpriteRenderer> cached_SpriteRenderer;
     SpriteRenderer SpriteRenderer => cached_SpriteRenderer[this];
-    public bool FlipX { get => SpriteRenderer.flipX; set => SpriteRenderer.flipX = value; }
+    public bool FlipX { get => SpriteRenderer.transform.localScale.x < 0; set => SpriteRenderer.transform.localScale = new((value ? -1 : 1) * Mathf.Abs(SpriteRenderer.transform.localScale.x), SpriteRenderer.transform.localScale.y, SpriteRenderer.transform.localScale.z); }
 
     void Update()
     {

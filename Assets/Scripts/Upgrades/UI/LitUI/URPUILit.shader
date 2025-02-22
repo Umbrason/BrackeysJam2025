@@ -93,7 +93,6 @@ Shader "URP/UI/Lit"
 			#pragma multi_compile _ DIRLIGHTMAP_COMBINED
 			#pragma multi_compile_fog
 
-            #pragma multi_compile_local _ UNITY_UI_CLIP_RECT
             #pragma multi_compile_local _ UNITY_UI_ALPHACLIP
 
 			// Includes
@@ -168,10 +167,6 @@ Shader "URP/UI/Lit"
 				normalWS = normalize(normalWS);
 				#ifdef UNITY_UI_ALPHACLIP
                 clip (baseMap.a - 0.001);
-                #endif
-
-                #ifdef UNITY_UI_CLIP_RECT
-                color.a *= UnityGet2DClipping(IN.worldPosition.xy, _ClipRect);
                 #endif
 
 				// Get Baked GI
