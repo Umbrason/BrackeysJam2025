@@ -203,7 +203,7 @@ PrefabInstance:
       objectReference: {fileID: 140237364}
     - target: {fileID: 4565929640483868503, guid: b62501f927cf6cf21b98cf1df6f234cf, type: 3}
       propertyPath: m_PlaneDistance
-      value: 12.61682
+      value: 14.198293
       objectReference: {fileID: 0}
     - target: {fileID: 4752286795911190476, guid: b62501f927cf6cf21b98cf1df6f234cf, type: 3}
       propertyPath: m_Pivot.x
@@ -590,6 +590,53 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4699748262551610187, guid: eb4d52ff0100508258a5548ad1620ce5, type: 3}
   m_PrefabInstance: {fileID: 152662149}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &176359919
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 176359920}
+  - component: {fileID: 176359921}
+  m_Layer: 0
+  m_Name: Low pass Filter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &176359920
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 176359919}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 995851532}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &176359921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 176359919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c92ffbac0ea949c49a0a2f0a56f5f170, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioMixerGroup: {fileID: 24300002, guid: 5070527f0a2f37141a4be3ac890c834f, type: 2}
+  defaultCutoffFreq: 5000
+  minCutoffFreq: 200
 --- !u!1 &195871174
 GameObject:
   m_ObjectHideFlags: 0
@@ -1322,6 +1369,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1278086558}
+  - {fileID: 176359920}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &1024463369 stripped
@@ -1467,7 +1515,7 @@ PrefabInstance:
       objectReference: {fileID: 140237364}
     - target: {fileID: 6062696188663480480, guid: ec21f6dddc821d7fa9036ac8a2250827, type: 3}
       propertyPath: m_PlaneDistance
-      value: 12.61682
+      value: 14.198293
       objectReference: {fileID: 0}
     - target: {fileID: 6317069039511381192, guid: ec21f6dddc821d7fa9036ac8a2250827, type: 3}
       propertyPath: m_Name
@@ -2638,7 +2686,7 @@ PrefabInstance:
       objectReference: {fileID: 140237364}
     - target: {fileID: 692663098516493234, guid: 397b91b025a85ae33894bf2b3bc992d7, type: 3}
       propertyPath: m_PlaneDistance
-      value: 12.61682
+      value: 14.198293
       objectReference: {fileID: 0}
     - target: {fileID: 2745776846117149296, guid: 397b91b025a85ae33894bf2b3bc992d7, type: 3}
       propertyPath: m_Name
@@ -2808,7 +2856,7 @@ PrefabInstance:
       objectReference: {fileID: 140237364}
     - target: {fileID: 4889225409337670596, guid: 12e3b4cc876f919e4ae4dd1f9d8b2330, type: 3}
       propertyPath: m_PlaneDistance
-      value: 12.61682
+      value: 14.198293
       objectReference: {fileID: 0}
     - target: {fileID: 5190426805249218833, guid: 12e3b4cc876f919e4ae4dd1f9d8b2330, type: 3}
       propertyPath: m_Pivot.x
