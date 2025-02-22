@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc0ea106fd85f51be877ed9040b4a7b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prewarmCount: 100
+  prewarmCount: 20
   Template: {fileID: 3186113479353487079, guid: c4cc1f7dbd848961da108dff57878b3e, type: 3}
