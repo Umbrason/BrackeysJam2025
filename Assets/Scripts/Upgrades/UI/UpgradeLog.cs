@@ -12,5 +12,18 @@ public class UpgradeLog : MonoBehaviour
         counts[upgrade]++;
     }
 
+    [SerializeField] UpgradeLogEntry template;
+    void OnEnable()
+    {
+        while (transform.childCount > 0)
+            Destroy(transform.GetChild(0));
+        foreach (var (upgrade, count) in counts)
+        {
+            var instance = Instantiate(template, transform);
+            instance.Upgrade = upgrade;
+            instance.Count = count;
+        }
+    }
+
     void OnDisable() => counts.Clear();
 }
