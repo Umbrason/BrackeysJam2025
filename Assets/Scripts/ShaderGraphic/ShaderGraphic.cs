@@ -4,8 +4,8 @@ using UnityEngine.UI;
 [RequireComponent(typeof(RectTransform), typeof(CanvasRenderer))]
 public class ShaderGraphic : MaskableGraphic
 {
-    [SerializeField]
-    private Shader shader;
+    [SerializeField] private Shader shader;
+    [SerializeField] private new Texture2D mainTexture;
 
     protected override void UpdateGeometry()
     {
@@ -23,10 +23,8 @@ public class ShaderGraphic : MaskableGraphic
     {
         if (m_Material == null || m_Material.shader != shader)
         {
-            m_Material = new Material(shader)
-            {
-                hideFlags = HideFlags.HideAndDontSave
-            };
+            m_Material = new Material(shader) { };
+            m_Material.SetTexture("_Texture", mainTexture);
             canvasRenderer.materialCount = 1;
             canvasRenderer.SetMaterial(m_Material, 0);
         }

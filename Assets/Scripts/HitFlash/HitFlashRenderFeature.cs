@@ -33,8 +33,8 @@ public class HitFlashRenderFeature : ScriptableRendererFeature
             public SkinnedMeshRendererRenderTarget(SkinnedMeshRenderer renderer) => smr = renderer;
             public Renderer Renderer => smr;
             private SkinnedMeshRenderer smr;
-            public Mesh Mesh => smr.sharedMesh;
-            public Material[] Materials => smr.sharedMaterials;
+            public Mesh Mesh => smr != null ? smr.sharedMesh : null;
+            public Material[] Materials => smr != null ? smr.sharedMaterials : null;
         }
         public class SpriteRendererRenderTarget : IRenderTarget
         {
@@ -56,7 +56,7 @@ public class HitFlashRenderFeature : ScriptableRendererFeature
             public Renderer Renderer => sr;
             private SpriteRenderer sr;
             public Mesh Mesh { get; private set; }
-            public Material[] Materials => sr.sharedMaterials;
+            public Material[] Materials => sr != null ? sr.sharedMaterials : null;
         }
 
         private class MeshRendererRenderTarget : IRenderTarget
@@ -65,8 +65,8 @@ public class HitFlashRenderFeature : ScriptableRendererFeature
             public Renderer Renderer => mr;
             private MeshFilter mf;
             private MeshRenderer mr;
-            public Mesh Mesh => mf.sharedMesh;
-            public Material[] Materials => mr.sharedMaterials;
+            public Mesh Mesh => mf != null ? mf.sharedMesh : null;
+            public Material[] Materials => mr != null ? mr.sharedMaterials : null;
         }
         public interface IRenderTarget
         {
@@ -148,6 +148,7 @@ public class HitFlashRenderFeature : ScriptableRendererFeature
                 for (int r = 0; r < hitflash.renderTargets.Length; r++)
                 {
                     var renderTarget = hitflash.renderTargets[r];
+                    if (renderTarget.Renderer == null) continue;
                     var mesh = renderTarget.Mesh;
                     var materials = renderTarget.Materials;
                     for (int m = 0; m < mesh.subMeshCount; m++)
