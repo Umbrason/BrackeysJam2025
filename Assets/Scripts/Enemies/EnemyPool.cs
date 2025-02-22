@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class EnemyPool : ObjectPool<EnemyPoolable>
 {
-    public GameObjectPool DeathVFXPool { get; set; }
-    public GameObjectPool HitVFXPool { get; set; }
-    public GameObjectPool HealthPickupPool { get; set; }
+    public EnemySpawner Spawner { get; set; }
+    public GameObjectPool DeathVFXPool => Spawner.DeathVFXPool;
+    public GameObjectPool HitVFXPool => Spawner.HitVFXPool;
+    public GameObjectPool HealthPickupPool => Spawner.HealthPickupPool;
     public EnemyPoolable Pull(Vector3 position, Quaternion rotation)
     {
         var instance = this.Pull();

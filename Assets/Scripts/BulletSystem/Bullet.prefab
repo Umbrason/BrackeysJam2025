@@ -160,6 +160,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocity: {x: 0, y: 0, z: 0}
+  RicochetSFX: {fileID: 11400000, guid: 172152daff5736b9c83e1336bbdd1f4e, type: 2}
+  srs:
+  - {fileID: 4697952190637922494}
+  - {fileID: 5308254327907992659}
+  FFModeColorTint: {r: 0.98039216, g: 0.27450982, b: 0.105882354, a: 1}
 --- !u!136 &3519258943307212982
 CapsuleCollider:
   m_ObjectHideFlags: 0

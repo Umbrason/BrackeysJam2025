@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.Collections;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -149,6 +150,7 @@ public class HitFlashRenderFeature : ScriptableRendererFeature
                 {
                     var renderTarget = hitflash.renderTargets[r];
                     if (renderTarget.Renderer == null) continue;
+                    if (renderTarget.Mesh == null) continue;
                     var mesh = renderTarget.Mesh;
                     var materials = renderTarget.Materials;
                     for (int m = 0; m < mesh.subMeshCount; m++)

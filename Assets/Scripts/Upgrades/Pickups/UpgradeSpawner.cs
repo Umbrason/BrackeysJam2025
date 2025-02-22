@@ -25,8 +25,8 @@ public class UpgradeSpawner : MonoBehaviour
             yield return new WaitUntil(() => UpgradePickup.Instance == null);
 
             enemySpawner.AddNextEnemyType();
-            for (int i = 0; i < enemySpawner.DesiredEnemyCount; i++)
-                enemySpawner.DoSpawn(); //Spawn twice as many enemies as "desired" by difficulty
+            for (int i = 0; i < enemySpawner.DesiredEnemyCount * 3; i++)
+                enemySpawner.DoSpawn(); //Spawn four times as many enemies as "desired" by difficulty
 
             yield return new WaitUntil(() => enemySpawner.EnemyCount <= enemySpawner.DesiredEnemyCount);
 

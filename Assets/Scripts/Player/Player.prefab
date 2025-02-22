@@ -114,11 +114,13 @@ GameObject:
   - component: {fileID: 2064229555496378927}
   - component: {fileID: 3298893486816734503}
   - component: {fileID: 67574768731552049}
+  - component: {fileID: 3725573065112097632}
   - component: {fileID: 4522184543382156028}
   - component: {fileID: 5563455360085435419}
   - component: {fileID: 6353046019351536512}
   - component: {fileID: 8654082801287201087}
   - component: {fileID: 7564687382853669594}
+  - component: {fileID: 6539601014453703353}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -244,6 +246,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Size>k__BackingField: 5
+--- !u!114 &3725573065112097632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2978175645772338982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddcb4fbc89d52d44b94363601d0711d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &4522184543382156028
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -323,6 +352,18 @@ MonoBehaviour:
   - angle: -45
     animation: {fileID: 11400000, guid: 04b4b4669fb99c6689480490d38c60ac, type: 2}
   Idle: {fileID: 11400000, guid: 767cc9763c1a6e4ecb166dd44d022839, type: 2}
+--- !u!114 &6539601014453703353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2978175645772338982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eb8d7ad126d1e8e0aac11e74fc34f20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7941322240413234857
 GameObject:
   m_ObjectHideFlags: 0
