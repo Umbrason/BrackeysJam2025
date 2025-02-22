@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 public class CharacterAnimator : MonoBehaviour
@@ -16,6 +17,7 @@ public class CharacterAnimator : MonoBehaviour
     }
     [SerializeField] DirectionalAnimation[] animations;
     [SerializeField] AnimationSet Idle;
+    public AnimationSet[] Animations => animations.Select(d => d.animation).Prepend(Idle).ToArray();
 
     AnimationSet m_CurrentAnimation;
     AnimationSet CurrentAnimation
@@ -28,6 +30,7 @@ public class CharacterAnimator : MonoBehaviour
             m_CurrentAnimation = value;
             SpriteAnimator.Sprites = value.Sprites;
             SpriteAnimator.Framerate = value.FrameRate;
+            SpriteAnimator.FlipX = value.MirrorX;
         }
     }
 
@@ -41,11 +44,11 @@ public class CharacterAnimator : MonoBehaviour
         var bestScore = float.PositiveInfinity;
         var bestAnimation = Idle;
         var vx = RB.velocity.x;
-        var vy = RB.velocity.y;
-        var movementAngle = Mathf.Atan2(vy, vx);
+        var vy = RB.velocity.z;
+        var movementAngle = Mathf.Atan2(-vy, vx) * 180 / Mathf.PI + 90;
         for (int i = 0; i < animations.Length; i++)
         {
-            var alpha = Mathf.DeltaAngle(animations[i].angle, movementAngle);
+            var alpha = Mathf.Abs(Mathf.DeltaAngle(animations[i].angle, movementAngle));
             if (bestScore > alpha)
             {
                 bestScore = alpha;
