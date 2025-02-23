@@ -11,7 +11,8 @@ public class UpgradeBulletSize : MonoBehaviour, IUpgrade
     public static float GrowthPerSecond { get; private set; } = 0;
     void IUpgrade.OnApply(GameObject PlayerObject)
     {
-        PlayerObject.AddComponent<UpgradeBulletSize>();
+        if (!PlayerObject.GetComponent<UpgradeBulletSize>())
+            PlayerObject.AddComponent<UpgradeBulletSize>();
         GrowthPerSecond += 1f;
     }
 
