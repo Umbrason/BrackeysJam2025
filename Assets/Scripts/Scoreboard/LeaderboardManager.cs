@@ -12,25 +12,6 @@ public static class LeaderboardManager
     private const string LEADERBOARD_ID = "Times-0";
     public static async void SetCurrentPlayerScore(int score)
     {
-        int previousScore = 0;
-        try
-        {
-            var previousEntry = await LeaderboardsService.Instance.GetPlayerScoreAsync(LEADERBOARD_ID);
-            previousScore = (int)previousEntry.Score;
-        }
-        catch(LeaderboardsException e)
-        {
-            Debug.LogError("Exception while retreiving previous score: \n" + e);
-            previousScore = -1;
-        }
-
-        if (previousScore > score)
-        {
-            Debug.Log("Already higher score, no need to update");
-            return;
-        }
-
-
         try
         {
             var playerEntry = await LeaderboardsService.Instance
