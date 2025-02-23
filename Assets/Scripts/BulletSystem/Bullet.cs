@@ -1,7 +1,6 @@
 using System;
 using System.Linq;
 using UnityEngine;
-
 public class Bullet : MonoBehaviour
 {
     uint damage;
@@ -72,6 +71,13 @@ public class Bullet : MonoBehaviour
             SFXPool.PlayAt(RicochetSFX, transform.position);
             velocity = Vector3.Reflect(velocity, normal);
             Rigidbody.MovePosition(Rigidbody.position + velocity.normalized * .05f);
+            if (UpgradeBounceIncrease.IsActive)
+            {
+
+                this.damage = (uint)Mathf.Floor(this.damage * 1.25f); 
+                transform.localScale = transform.localScale * 1.25f;
+
+            }
             if (remainingBounces <= 0)
             {
                 Despawn();
