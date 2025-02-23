@@ -6,6 +6,6 @@ public class UpgradeProjectileCount : IUpgrade
     public string Name => "Projectile Count Up";
     public string Description => $"Increases Projectile by +{increase}";
     public bool Stackable => true;
-    private const int increase = 4;
+    private const int increase = 1;
     public void OnApply(GameObject PlayerObject) => PlayerObject.GetComponent<PlayerStats>().BulletsPerShot.RegisterAdd(increase);
 }
