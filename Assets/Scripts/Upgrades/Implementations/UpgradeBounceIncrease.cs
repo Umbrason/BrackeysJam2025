@@ -14,7 +14,12 @@ public class UpgradeBounceIncrease : MonoBehaviour,IUpgrade
         PlayerObject.AddComponent<UpgradeBounceIncrease>();
         PlayerObject.GetComponent<PlayerStats>().BulletBounces.RegisterAdd(4);
         IsActive = true;
-        //bullet grows in size and damage each bounce       
+            
         
+    }
+
+       void OnDestroy()
+    {
+        IsActive = false;
     }
 }
