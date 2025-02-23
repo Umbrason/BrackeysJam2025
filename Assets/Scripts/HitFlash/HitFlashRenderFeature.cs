@@ -145,6 +145,7 @@ public class HitFlashRenderFeature : ScriptableRendererFeature
                 context.ExecuteCommandBuffer(cmd);
                 cmd.Clear();
                 var hitflash = activeHitFlashes[i];
+                if (hitflashBlitMaterial == null) break;
                 hitflashBlitMaterial.SetFloat("t", (hitflash.startTime - Time.time) / settings.duration);
                 for (int r = 0; r < hitflash.renderTargets.Length; r++)
                 {

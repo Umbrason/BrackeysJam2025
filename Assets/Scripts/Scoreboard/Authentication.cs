@@ -14,7 +14,7 @@ public static class Authentication
     public static async Task<string> GetPlayerName()
     {
         await Initialize();
-        return AuthenticationService.Instance.PlayerName[..^5];
+        return (AuthenticationService.Instance.PlayerName??"_____")[..^5];
     }
 
     public static async Task Initialize()

@@ -1,4 +1,6 @@
-﻿public static class TransientScoring
+﻿using System.Threading.Tasks;
+
+public static class TransientScoring
 {
     public static int TimeAlive { get; private set; } = 0;
     public static int EnemyKillScore { get; private set; } = 0;
@@ -17,7 +19,7 @@
 
     public static bool HasScoreToSave = true;
 
-    public async static System.Threading.Tasks.Task Save()
+    public async static Task Save()
     {
         if (!HasScoreToSave) return;
         await LeaderboardManager.SetCurrentPlayerScore(TotalScore);
