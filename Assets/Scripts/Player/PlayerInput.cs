@@ -21,14 +21,13 @@ public class PlayerInput : MonoBehaviour, GameInput.IMovementActions
 
     public enum InputMode
     {
-        Pointer,
-        Direct,
-        Controller
+        MouseNKeyboard,
+        Gamepad
     }
     public InputMode CurrentInputMode { get; private set; }
+    private Vector2 DirectMoveInput;
+    private Vector2 DirectAimInput;
     private Vector2 PointerPosition;
-    private Vector2 InputDirection;
-
     private Vector2 PointerDirection
     {
         get
@@ -56,34 +55,34 @@ public class PlayerInput : MonoBehaviour, GameInput.IMovementActions
 
     void FixedUpdate()
     {
-        var moveDirection = CurrentInputMode switch
-        {
-            InputMode.Pointer => PointerMoveDirection,
-            InputMode.Direct => InputDirection,
-            _ => Vector2.zero
-        };
-        playerMovement.InputDirection = moveDirection;
+        playerMovement.InputDirection = DirectMoveInput;
         cameraMovement.LookAheadDirection = playerMovement.RB.velocity._xz() / playerMovement.Velocity; //TODO: try setting this to input instead of velocity?
+
         var shootingDirection = CurrentInputMode switch
         {
-            InputMode.Pointer => PointerDirection,
-            InputMode.Direct => InputDirection,
+            InputMode.MouseNKeyboard => PointerDirection,
+            InputMode.Gamepad => DirectAimInput,
             _ => Vector2.zero
         };
         if (shootingDirection.magnitude > 0) playerShooting.FireDirection = shootingDirection.normalized;
     }
 
-    public void OnPointerMovement(InputAction.CallbackContext context)
+    public void OnDirectMovement(InputAction.CallbackContext context)
     {
-        CurrentInputMode = InputMode.Pointer;
+        DirectMoveInput = context.ReadValue<Vector2>();
+    }
+
+    public void OnPointerAim(InputAction.CallbackContext context)
+    {
+        CurrentInputMode = InputMode.MouseNKeyboard;
         Cursor.visible = true;
         PointerPosition = context.ReadValue<Vector2>();
     }
 
-    public void OnDirectMovement(InputAction.CallbackContext context)
+    public void OnDirectAim(InputAction.CallbackContext context)
     {
-        CurrentInputMode = InputMode.Direct;
+        CurrentInputMode = InputMode.Gamepad;
         Cursor.visible = false;
-        InputDirection = context.ReadValue<Vector2>();
+        DirectAimInput = context.ReadValue<Vector2>();
     }
 }

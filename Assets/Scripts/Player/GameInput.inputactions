@@ -6,7 +6,7 @@
             "id": "bff2eb48-2d63-4b79-a724-34f851209978",
             "actions": [
                 {
-                    "name": "PointerMovement",
+                    "name": "PointerAim",
                     "type": "Value",
                     "id": "2a90bc6f-6591-4086-8b31-384c7a62edab",
                     "expectedControlType": "Vector2",
@@ -22,6 +22,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "DirectAim",
+                    "type": "Value",
+                    "id": "6a100653-4eb1-4fef-8806-06c9d02cd5ed",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -32,7 +41,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "PointerMovement",
+                    "action": "PointerAim",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -99,6 +108,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "DirectMovement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "887f964a-21e4-47a8-baa5-f77123f4c4f6",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DirectAim",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

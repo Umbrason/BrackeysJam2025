@@ -28,7 +28,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
             ""id"": ""bff2eb48-2d63-4b79-a724-34f851209978"",
             ""actions"": [
                 {
-                    ""name"": ""PointerMovement"",
+                    ""name"": ""PointerAim"",
                     ""type"": ""Value"",
                     ""id"": ""2a90bc6f-6591-4086-8b31-384c7a62edab"",
                     ""expectedControlType"": ""Vector2"",
@@ -44,6 +44,15 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""DirectAim"",
+                    ""type"": ""Value"",
+                    ""id"": ""6a100653-4eb1-4fef-8806-06c9d02cd5ed"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -54,7 +63,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""PointerMovement"",
+                    ""action"": ""PointerAim"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -123,6 +132,17 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""action"": ""DirectMovement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""887f964a-21e4-47a8-baa5-f77123f4c4f6"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DirectAim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -159,8 +179,9 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
 }");
         // Movement
         m_Movement = asset.FindActionMap("Movement", throwIfNotFound: true);
-        m_Movement_PointerMovement = m_Movement.FindAction("PointerMovement", throwIfNotFound: true);
+        m_Movement_PointerAim = m_Movement.FindAction("PointerAim", throwIfNotFound: true);
         m_Movement_DirectMovement = m_Movement.FindAction("DirectMovement", throwIfNotFound: true);
+        m_Movement_DirectAim = m_Movement.FindAction("DirectAim", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Pause = m_UI.FindAction("Pause", throwIfNotFound: true);
@@ -231,14 +252,16 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
     // Movement
     private readonly InputActionMap m_Movement;
     private List<IMovementActions> m_MovementActionsCallbackInterfaces = new List<IMovementActions>();
-    private readonly InputAction m_Movement_PointerMovement;
+    private readonly InputAction m_Movement_PointerAim;
     private readonly InputAction m_Movement_DirectMovement;
+    private readonly InputAction m_Movement_DirectAim;
     public struct MovementActions
     {
         private @GameInput m_Wrapper;
         public MovementActions(@GameInput wrapper) { m_Wrapper = wrapper; }
-        public InputAction @PointerMovement => m_Wrapper.m_Movement_PointerMovement;
+        public InputAction @PointerAim => m_Wrapper.m_Movement_PointerAim;
         public InputAction @DirectMovement => m_Wrapper.m_Movement_DirectMovement;
+        public InputAction @DirectAim => m_Wrapper.m_Movement_DirectAim;
         public InputActionMap Get() { return m_Wrapper.m_Movement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -248,22 +271,28 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_MovementActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_MovementActionsCallbackInterfaces.Add(instance);
-            @PointerMovement.started += instance.OnPointerMovement;
-            @PointerMovement.performed += instance.OnPointerMovement;
-            @PointerMovement.canceled += instance.OnPointerMovement;
+            @PointerAim.started += instance.OnPointerAim;
+            @PointerAim.performed += instance.OnPointerAim;
+            @PointerAim.canceled += instance.OnPointerAim;
             @DirectMovement.started += instance.OnDirectMovement;
             @DirectMovement.performed += instance.OnDirectMovement;
             @DirectMovement.canceled += instance.OnDirectMovement;
+            @DirectAim.started += instance.OnDirectAim;
+            @DirectAim.performed += instance.OnDirectAim;
+            @DirectAim.canceled += instance.OnDirectAim;
         }
 
         private void UnregisterCallbacks(IMovementActions instance)
         {
-            @PointerMovement.started -= instance.OnPointerMovement;
-            @PointerMovement.performed -= instance.OnPointerMovement;
-            @PointerMovement.canceled -= instance.OnPointerMovement;
+            @PointerAim.started -= instance.OnPointerAim;
+            @PointerAim.performed -= instance.OnPointerAim;
+            @PointerAim.canceled -= instance.OnPointerAim;
             @DirectMovement.started -= instance.OnDirectMovement;
             @DirectMovement.performed -= instance.OnDirectMovement;
             @DirectMovement.canceled -= instance.OnDirectMovement;
+            @DirectAim.started -= instance.OnDirectAim;
+            @DirectAim.performed -= instance.OnDirectAim;
+            @DirectAim.canceled -= instance.OnDirectAim;
         }
 
         public void RemoveCallbacks(IMovementActions instance)
@@ -329,8 +358,9 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
     public UIActions @UI => new UIActions(this);
     public interface IMovementActions
     {
-        void OnPointerMovement(InputAction.CallbackContext context);
+        void OnPointerAim(InputAction.CallbackContext context);
         void OnDirectMovement(InputAction.CallbackContext context);
+        void OnDirectAim(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

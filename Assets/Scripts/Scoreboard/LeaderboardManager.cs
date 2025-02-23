@@ -9,7 +9,7 @@ using Unity.Services.Leaderboards.Exceptions;
 using LeaderboardEntry = Unity.Services.Leaderboards.Models.LeaderboardEntry;
 public static class LeaderboardManager
 {
-    private const string LEADERBOARD_ID = "Highscores";
+    private const string LEADERBOARD_ID = "Highscores-Twinstick";
     public static async Task SetCurrentPlayerScore(int score)
     {
         try
