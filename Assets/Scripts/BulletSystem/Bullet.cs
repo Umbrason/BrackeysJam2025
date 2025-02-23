@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using UnityEngine;
 public class Bullet : MonoBehaviour
 {
@@ -49,10 +50,13 @@ public class Bullet : MonoBehaviour
         if (lifeTime <= 0)
             Despawn();
     }
+
+
     void FixedUpdate()
     {
         Rigidbody.velocity = velocity;
         transform.forward = velocity;
+        transform.localScale = Vector3.one * (transform.localScale.x + UpgradeBulletSize.GrowthPerSecond * Time.deltaTime);
     }
 
     void OnCollisionEnter(Collision collision)

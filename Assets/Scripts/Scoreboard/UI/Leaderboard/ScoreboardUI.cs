@@ -24,7 +24,7 @@ public class ScoreboardUI : MonoBehaviour
         currentEntries = entries;
         while (singleUIs.Count > 0)
         {
-            Destroy(singleUIs[^1]);
+            Destroy(singleUIs[^1].gameObject);
             singleUIs.RemoveAt(singleUIs.Count - 1);
         }
         foreach (var entry in entries)
@@ -36,7 +36,6 @@ public class ScoreboardUI : MonoBehaviour
     }
 
     List<Unity.Services.Leaderboards.Models.LeaderboardEntry> currentEntries;
-
     private async void Start()
     {
         await TransientScoring.Save();

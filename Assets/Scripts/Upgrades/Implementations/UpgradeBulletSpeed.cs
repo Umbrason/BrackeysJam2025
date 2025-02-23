@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class UpgradeBulletSpeed : IUpgrade
 {
-    public Sprite Icon => null;
-    public string Name => "Bullet Speed Up";
+    public Sprite Icon => Resources.Load<Sprite>("ProjectileSpeedUp");
+    public string Name => "Energetic Bullets";
     public string Description => $"Increases bullets speed by +{increase}.";
     public bool Stackable => true;
      private const int increase = 10;

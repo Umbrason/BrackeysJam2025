@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -11,6 +12,8 @@ public class UpgradeCard : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     [SerializeField] private TMP_Text title;
     [SerializeField] private TMP_Text description;
 
+    [SerializeField] private Sprite[] ReplacementIcons;
+
     IUpgrade m_displayedUpgrade;
     public IUpgrade DisplayedUpgrade
     {
@@ -18,7 +21,9 @@ public class UpgradeCard : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         set
         {
             m_displayedUpgrade = value;
-            icon.sprite = m_displayedUpgrade.Icon;
+            if (UpgradeLog.counts.Any(c => c.Key is AlienEye))
+                icon.sprite = ReplacementIcons[UnityEngine.Random.Range(0, ReplacementIcons.Length)];
+            else icon.sprite = m_displayedUpgrade.Icon;
             title.text = m_displayedUpgrade.Name;
             description.text = m_displayedUpgrade.Description;
         }
@@ -30,8 +35,14 @@ public class UpgradeCard : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     {
         scaleSpring.Position = 0;
         transform.GetChild(0).gameObject.SetActive(true);
+        AlienEye.ActiveChanged += AlienEyeReplaceIcon;
     }
-    void OnDisable() => transform.GetChild(0).gameObject.SetActive(false);
+    void OnDisable()
+    {
+        transform.GetChild(0).gameObject.SetActive(false);
+        AlienEye.ActiveChanged -= AlienEyeReplaceIcon;
+    }
+    void AlienEyeReplaceIcon(bool active) => icon.sprite = active ? ReplacementIcons[UnityEngine.Random.Range(0, ReplacementIcons.Length)] : m_displayedUpgrade.Icon;
 
     #region Cosmetics
     [Header("Visual Settings")]
