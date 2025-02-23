@@ -7,6 +7,7 @@ public class BulletPool : MonoBehaviour
     [SerializeField] int prewarm = 500;
     [SerializeField] Bullet bulletTemplate;
     List<Bullet> Available = new();
+    [SerializeField] GameObjectPool FireVFXPool;
 
     void Awake()
     {
@@ -19,6 +20,7 @@ public class BulletPool : MonoBehaviour
         var bullet = Instantiate(bulletTemplate, transform);
         bullet.gameObject.SetActive(false);
         bullet.OnDespawn += ReturnToPool;
+        bullet.FlameVFXPool = this.FireVFXPool;
         Available.Add(bullet);
     }
 

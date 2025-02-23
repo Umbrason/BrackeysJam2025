@@ -9,12 +9,12 @@ using UnityEngine.Events;
 public class SoundMixerManager : MonoBehaviour
 {
     public static SoundMixerManager Instance;
-    
+
     public AudioMixer audioMixer;
     public UnityEvent onLoad;
     public List<SoundMixerParam> mixerParameterName;
     private Dictionary<SoundMixerParam, float> _dictionary = new();
-    
+
     public static event Action<SoundMixerParam, float> OnLoad;
 
     private void Awake()
@@ -25,15 +25,15 @@ public class SoundMixerManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        
         Instance = this;
+#if !UNITY_EDITOR
+        Load();
+#endif
     }
 
-    private IEnumerator Start()
-    {
-        yield return new WaitForSeconds(0.1f);
-        Load();
-    }
+#if UNITY_EDITOR
+    void Start() => Load();
+#endif
 
     public void SetMixerValue(SoundMixerParam param, float val)
     {
@@ -55,12 +55,10 @@ public class SoundMixerManager : MonoBehaviour
             {
                 Debug.Log($"Found {param} data {value}");
             }
-            
             _dictionary.TryAdd(param, value);
             OnLoad?.Invoke(param, value);
             SetMixerValue(param, value);
         });
-        
         onLoad?.Invoke();
     }
 

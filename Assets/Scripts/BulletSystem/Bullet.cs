@@ -16,6 +16,8 @@ public class Bullet : MonoBehaviour
     [SerializeField] private AudioClipGroup RicochetSFX;
     [SerializeField] private SpriteRenderer[] srs;
     [SerializeField] private Color FFModeColorTint;
+    [SerializeField] private AudioClipGroup FireSFX;
+    public GameObjectPool FlameVFXPool;
 
     int noFFLayer;
     int FFLayer;
@@ -59,9 +61,11 @@ public class Bullet : MonoBehaviour
     {
         Rigidbody.velocity = velocity;
         transform.forward = velocity;
+        if (Time.time - lastBounceTime < .25f) return;
         transform.localScale = Vector3.one * (transform.localScale.x + UpgradeBulletSize.GrowthPerSecond * Time.deltaTime);
     }
 
+    float lastBounceTime;
     void OnCollisionEnter(Collision collision)
     {
         Vector3 normal = Vector3.zero;
@@ -74,16 +78,12 @@ public class Bullet : MonoBehaviour
             SFXPool.PlayAt(RicochetSFX, transform.position);
             velocity = Vector3.Reflect(velocity, normal);
             Rigidbody.MovePosition(Rigidbody.position + velocity.normalized * .05f);
+            lastBounceTime = Time.time;
             if (UpgradeBounceIncrease.IsActive)
             {
-             
-                this.damage = (uint)Mathf.Floor(this.damage * 1.25f); 
-                
-                     if (scaleRoutine == null)
-                {
-                     scaleRoutine = StartCoroutine(scaleBullet());      
-                }
-                        
+                this.damage = (uint)Mathf.Floor(this.damage * 1.25f);
+                if (scaleRoutine == null)
+                    scaleRoutine = StartCoroutine(scaleBullet());
             }
             if (remainingBounces <= 0)
             {
@@ -115,13 +115,26 @@ public class Bullet : MonoBehaviour
         Rigidbody.velocity = default;
         gameObject.SetActive(false);
         OnDespawn?.Invoke(this);
+        if (UpgradeBulletLifeTime.IsActive)
+            DoFireThings();
+    }
+
+
+    void DoFireThings()
+    {
+        var hits = Physics.OverlapSphere(transform.position, 4);
+        var dmgEvent = HealthEvent.Damage(damage * 5, false, gameObject);
+        foreach (var collider in hits)
+            collider.GetComponent<Hitbox>()?.RegisterDamageEvent(dmgEvent);
+        SFXPool.PlayAt(FireSFX, transform.position);
+        FlameVFXPool.Pull(transform.position, Quaternion.identity);
     }
 
     IEnumerator scaleBullet()
     {
-         yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(0.25f);
         Vector3 changedScale = transform.localScale + (Vector3.one * .5f);
         transform.localScale = changedScale;
-       scaleRoutine = null;
+        scaleRoutine = null;
     }
 }

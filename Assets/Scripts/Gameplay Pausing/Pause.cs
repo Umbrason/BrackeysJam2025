@@ -21,7 +21,11 @@ public class Pause : MonoBehaviour
     void Awake()
     {
         pauseHandles.Clear();
-        timescaleSpring = new(timescaleSpringConfig);
+        timescaleSpring = new(timescaleSpringConfig)
+        {
+            RestingPos = 1,
+            Position = 1
+        };
     }
     void OnDestroy() => pauseHandles.Clear();
 
