@@ -17,9 +17,10 @@ public class UpgradeDirectionMarker : MonoBehaviour
         if (UpgradePickup.Instance == null)
             return;
         var viewport = WSCamera.WorldToViewportPoint(UpgradePickup.Instance.transform.position + Vector3.up * 2.5f);
+        viewport *= Mathf.Sign(viewport.z);
         viewport = (Vector2)viewport - Vector2.one * .5f;
-        var clampX = Mathf.Abs(.5f / viewport.x);
-        var clampY = Mathf.Abs(.5f / viewport.y);
+        var clampX = Mathf.Abs(.45f / viewport.x);
+        var clampY = Mathf.Abs(.45f / viewport.y);
         var minClamp = Mathf.Min(1, Mathf.Min(clampX, clampY));
         transform.localPosition = CanvasRectTransform.rect.size * viewport * minClamp;
         var angle = minClamp < 1 ? Mathf.Atan2(viewport.y, viewport.x) * 180 / Mathf.PI : -90;

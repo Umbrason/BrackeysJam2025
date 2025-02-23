@@ -16,6 +16,6 @@ public class ShaderGraphicEditor : Editor
 
     public override void OnInspectorGUI()
     {
-        
+        base.OnInspectorGUI();
     }
 }

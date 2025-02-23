@@ -171,7 +171,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6848473481769518016}
   - component: {fileID: 3522806200547976755}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Bloom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -297,7 +297,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 68d5b6638ffca2180b234af024c20f17, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

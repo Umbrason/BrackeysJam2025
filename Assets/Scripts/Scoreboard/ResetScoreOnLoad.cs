@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class ResetScoreOnLoad : MonoBehaviour
 {
-    void Awake() => TransientScoring.Reset();
+    void Awake() => TransientScoring.Restart();
 }

@@ -43,7 +43,7 @@ PrefabInstance:
     - target: {fileID: 1682464275626788903, guid: 5ce4d5e575aed3ecabf05053f1b22116, type: 3}
       propertyPath: animations.Array.data[0].animation
       value: 
-      objectReference: {fileID: 11400000, guid: c488de02918b5e95da240c9c5dcac5de, type: 2}
+      objectReference: {fileID: 11400000, guid: 6c46f21a91118025c917a1411aad86ca, type: 2}
     - target: {fileID: 1682464275626788903, guid: 5ce4d5e575aed3ecabf05053f1b22116, type: 3}
       propertyPath: animations.Array.data[1].animation
       value: 
@@ -90,7 +90,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3935415122424587351, guid: 5ce4d5e575aed3ecabf05053f1b22116, type: 3}
       propertyPath: <Size>k__BackingField
-      value: 200
+      value: 600
       objectReference: {fileID: 0}
     - target: {fileID: 4708323150062138207, guid: 5ce4d5e575aed3ecabf05053f1b22116, type: 3}
       propertyPath: animations.Array.data[0].animation
@@ -122,11 +122,87 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7109458363653395783, guid: 5ce4d5e575aed3ecabf05053f1b22116, type: 3}
       propertyPath: damageAmount
-      value: 50
+      value: 55
       objectReference: {fileID: 0}
     - target: {fileID: 7109458363653395783, guid: 5ce4d5e575aed3ecabf05053f1b22116, type: 3}
       propertyPath: damageInterval
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8778541560271195019, guid: 5ce4d5e575aed3ecabf05053f1b22116, type: 3}
+      propertyPath: movementProfile.m_Curve.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8778541560271195019, guid: 5ce4d5e575aed3ecabf05053f1b22116, type: 3}
+      propertyPath: movementProfile.m_Curve.Array.data[1].time
+      value: 0.53756833
+      objectReference: {fileID: 0}
+    - target: {fileID: 8778541560271195019, guid: 5ce4d5e575aed3ecabf05053f1b22116, type: 3}
+      propertyPath: movementProfile.m_Curve.Array.data[2].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8778541560271195019, guid: 5ce4d5e575aed3ecabf05053f1b22116, type: 3}
+      propertyPath: movementProfile.m_Curve.Array.data[0].value
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8778541560271195019, guid: 5ce4d5e575aed3ecabf05053f1b22116, type: 3}
+      propertyPath: movementProfile.m_Curve.Array.data[1].value
+      value: 1.5732138
+      objectReference: {fileID: 0}
+    - target: {fileID: 8778541560271195019, guid: 5ce4d5e575aed3ecabf05053f1b22116, type: 3}
+      propertyPath: movementProfile.m_Curve.Array.data[2].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8778541560271195019, guid: 5ce4d5e575aed3ecabf05053f1b22116, type: 3}
+      propertyPath: movementProfile.m_Curve.Array.data[0].inSlope
+      value: -0.036302526
+      objectReference: {fileID: 0}
+    - target: {fileID: 8778541560271195019, guid: 5ce4d5e575aed3ecabf05053f1b22116, type: 3}
+      propertyPath: movementProfile.m_Curve.Array.data[1].inSlope
+      value: -1.2730483
+      objectReference: {fileID: 0}
+    - target: {fileID: 8778541560271195019, guid: 5ce4d5e575aed3ecabf05053f1b22116, type: 3}
+      propertyPath: movementProfile.m_Curve.Array.data[2].inSlope
+      value: -1.2395643
+      objectReference: {fileID: 0}
+    - target: {fileID: 8778541560271195019, guid: 5ce4d5e575aed3ecabf05053f1b22116, type: 3}
+      propertyPath: movementProfile.m_Curve.Array.data[0].outSlope
+      value: -0.036302526
+      objectReference: {fileID: 0}
+    - target: {fileID: 8778541560271195019, guid: 5ce4d5e575aed3ecabf05053f1b22116, type: 3}
+      propertyPath: movementProfile.m_Curve.Array.data[1].inWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 8778541560271195019, guid: 5ce4d5e575aed3ecabf05053f1b22116, type: 3}
+      propertyPath: movementProfile.m_Curve.Array.data[1].outSlope
+      value: -1.2730483
+      objectReference: {fileID: 0}
+    - target: {fileID: 8778541560271195019, guid: 5ce4d5e575aed3ecabf05053f1b22116, type: 3}
+      propertyPath: movementProfile.m_Curve.Array.data[2].inWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 8778541560271195019, guid: 5ce4d5e575aed3ecabf05053f1b22116, type: 3}
+      propertyPath: movementProfile.m_Curve.Array.data[2].outSlope
+      value: -1.2395643
+      objectReference: {fileID: 0}
+    - target: {fileID: 8778541560271195019, guid: 5ce4d5e575aed3ecabf05053f1b22116, type: 3}
+      propertyPath: movementProfile.m_Curve.Array.data[0].outWeight
+      value: 0.42483827
+      objectReference: {fileID: 0}
+    - target: {fileID: 8778541560271195019, guid: 5ce4d5e575aed3ecabf05053f1b22116, type: 3}
+      propertyPath: movementProfile.m_Curve.Array.data[1].outWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 8778541560271195019, guid: 5ce4d5e575aed3ecabf05053f1b22116, type: 3}
+      propertyPath: movementProfile.m_Curve.Array.data[0].tangentMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8778541560271195019, guid: 5ce4d5e575aed3ecabf05053f1b22116, type: 3}
+      propertyPath: movementProfile.m_Curve.Array.data[1].tangentMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8778541560271195019, guid: 5ce4d5e575aed3ecabf05053f1b22116, type: 3}
+      propertyPath: movementProfile.m_Curve.Array.data[2].tangentMode
+      value: 34
       objectReference: {fileID: 0}
     - target: {fileID: 8843254817029319994, guid: 5ce4d5e575aed3ecabf05053f1b22116, type: 3}
       propertyPath: m_LocalPosition.y

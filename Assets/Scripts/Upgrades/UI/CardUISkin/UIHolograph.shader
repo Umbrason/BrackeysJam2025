@@ -56,7 +56,6 @@ Shader "UI/Holograph"
             #include "UnityUI.cginc"
             #include "Assets/ShaderLib/Noise.hlsl"
 
-            #pragma multi_compile_local _ UNITY_UI_CLIP_RECT
             #pragma multi_compile_local _ UNITY_UI_ALPHACLIP
 
             struct appdata_t
@@ -104,9 +103,6 @@ Shader "UI/Holograph"
             {
                 float4 color = tex2D(_Texture, IN.texcoord);
                 color *= 1 - scanlines(IN.texcoord) * .15;
-                #ifdef UNITY_UI_CLIP_RECT
-                color.a *= UnityGet2DClipping(IN.worldPosition.xy, _ClipRect);
-                #endif
 
                 #ifdef UNITY_UI_ALPHACLIP
                 clip (color.a - 0.001);

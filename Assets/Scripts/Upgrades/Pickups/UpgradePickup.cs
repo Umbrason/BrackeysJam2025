@@ -20,11 +20,13 @@ public class UpgradePickup : MonoBehaviour
     [SerializeField] private int openAnimationFramerate;
     Cached<ISpriteAnimator> cached_Animator = new(Cached<ISpriteAnimator>.GetOption.Children);
     ISpriteAnimator Animator => cached_Animator[this];
+    [SerializeField] AudioClipGroup upgradeVoiceLines;
     IEnumerator PickupRoutine(GameObject target)
     {
-        var options = Enumerable.Range(0, UpgradeOptionCount).Select(_ => IUpgrade.UpgradePool.Pull()).ToArray();
+        var options = Enumerable.Range(0, UpgradeOptionCount + (AlienEye.IsActive ? 1 : 0)).Select(_ => IUpgrade.UpgradePool.Pull()).ToArray();
         Animator.Framerate = openAnimationFramerate;
         Animator.Sprites = OpenAnimation;
+        VoicelinePlayer.Play(upgradeVoiceLines);
         yield return new WaitForSeconds(OpenAnimation.Length / (float)openAnimationFramerate);
         UpgradeSelection.Show(target, options);
         Destroy(gameObject);

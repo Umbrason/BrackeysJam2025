@@ -1,6 +1,6 @@
 using System;
+using System.Linq;
 using UnityEngine;
-
 public class Bullet : MonoBehaviour
 {
     uint damage;
@@ -9,6 +9,19 @@ public class Bullet : MonoBehaviour
     public Vector3 velocity;
     Cached<Rigidbody> cached_RB;
     Rigidbody Rigidbody => cached_RB[this];
+
+    [SerializeField] private AudioClipGroup RicochetSFX;
+    [SerializeField] private SpriteRenderer[] srs;
+    [SerializeField] private Color FFModeColorTint;
+
+    int noFFLayer;
+    int FFLayer;
+
+    void Awake()
+    {
+        noFFLayer = LayerMask.NameToLayer("PlayerProjectiles");
+        FFLayer = LayerMask.NameToLayer("EnemyProjectiles");
+    }
 
     public void Init(int bounces, float lifetime, Vector3 velocity, uint damage, float size)
     {
@@ -20,8 +33,16 @@ public class Bullet : MonoBehaviour
         Rigidbody.WakeUp();
         transform.localScale = Vector3.one * size;
         gameObject.SetActive(true);
+        SetLayer(noFFLayer);
+        foreach (var sr in srs) sr.color = Color.white;
     }
     public event Action<Bullet> OnDespawn;
+
+    private void SetLayer(int id)
+    {
+        gameObject.layer = id;
+        transform.GetChild(0).gameObject.layer = id;
+    }
 
     void Update()
     {
@@ -29,10 +50,13 @@ public class Bullet : MonoBehaviour
         if (lifeTime <= 0)
             Despawn();
     }
+
+
     void FixedUpdate()
     {
         Rigidbody.velocity = velocity;
         transform.forward = velocity;
+        transform.localScale = Vector3.one * (transform.localScale.x + UpgradeBulletSize.GrowthPerSecond * Time.deltaTime);
     }
 
     void OnCollisionEnter(Collision collision)
@@ -44,22 +68,34 @@ public class Bullet : MonoBehaviour
 
         if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Obstacles"))
         {
+            SFXPool.PlayAt(RicochetSFX, transform.position);
             velocity = Vector3.Reflect(velocity, normal);
             Rigidbody.MovePosition(Rigidbody.position + velocity.normalized * .05f);
+            if (UpgradeBounceIncrease.IsActive)
+            {
+
+                this.damage = (uint)Mathf.Floor(this.damage * 1.25f); 
+                transform.localScale = transform.localScale * 1.25f;
+
+            }
             if (remainingBounces <= 0)
             {
                 Despawn();
                 return;
             }
+            SetLayer(FFLayer);
+            foreach (var sr in srs) sr.color = FFModeColorTint;
             remainingBounces--;
         }
         else
         {
             var hitbox = collision.collider.GetComponent<Hitbox>();
-            hitbox?.RegisterDamageEvent(HealthEvent.Damage(damage));
+            hitbox?.RegisterDamageEvent(HealthEvent.Damage(damage, false, gameObject));
             Despawn();
         }
     }
+
+    void OnCollisionStay(Collision collision) => OnCollisionEnter(collision);
 
     void Despawn()
     {

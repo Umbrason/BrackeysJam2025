@@ -114,7 +114,10 @@ public class UpgradeSelection : MonoBehaviour
         foreach (var instance in instances)
             instance.Disabled = true;
         card.DisplayedUpgrade.OnApply(upgradeTarget);
+        UpgradeLog.Log(card.DisplayedUpgrade);
         TransientScoring.AddUpgradesCollected(1);
+        if (card.DisplayedUpgrade.UpgradeVoiceLine != null)
+            VoicelinePlayer.Play(card.DisplayedUpgrade.UpgradeVoiceLine, true);
         if (!card.DisplayedUpgrade.Stackable) IUpgrade.UpgradePool.Remove(card.DisplayedUpgrade);
         acceptClicks = false;
         card.Shake();

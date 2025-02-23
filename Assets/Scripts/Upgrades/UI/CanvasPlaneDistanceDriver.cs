@@ -8,6 +8,7 @@ public class CanvasPlaneDistanceDriver : MonoBehaviour
 
     public void Update()
     {
+        if (!Canvas.worldCamera) return;
         if (Canvas.worldCamera.orthographic)
         {
             Canvas.planeDistance = 1;

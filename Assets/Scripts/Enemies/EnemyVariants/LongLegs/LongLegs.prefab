@@ -94,7 +94,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3935415122424587351, guid: 5ce4d5e575aed3ecabf05053f1b22116, type: 3}
       propertyPath: <Size>k__BackingField
-      value: 130
+      value: 230
       objectReference: {fileID: 0}
     - target: {fileID: 4708323150062138207, guid: 5ce4d5e575aed3ecabf05053f1b22116, type: 3}
       propertyPath: animations.Array.data[0].animation
@@ -126,7 +126,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7109458363653395783, guid: 5ce4d5e575aed3ecabf05053f1b22116, type: 3}
       propertyPath: damageAmount
-      value: 50
+      value: 55
       objectReference: {fileID: 0}
     - target: {fileID: 7109458363653395783, guid: 5ce4d5e575aed3ecabf05053f1b22116, type: 3}
       propertyPath: damageInterval

@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class UpgradeHealthUp : IUpgrade
 {
-    public Sprite Icon => null;
-    public string Name => "Health Up";
+    public Sprite Icon => Resources.Load<Sprite>("HealthUpSpeedDown");
+    public string Name => "Turtle Shell";
     public string Description => "Increases health by +50%, decreases speed by -25%";
     public bool Stackable => true;
     public void OnApply(GameObject PlayerObject)

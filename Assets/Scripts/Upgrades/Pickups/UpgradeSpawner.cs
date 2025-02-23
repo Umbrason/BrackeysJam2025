@@ -17,6 +17,9 @@ public class UpgradeSpawner : MonoBehaviour
     [SerializeField] private float minDistance = 25f;
     [SerializeField] private Transform player;
 
+    [SerializeField] private AudioClipGroup ExtraEnemiesVoiceLines;
+
+
     IEnumerator UpgradeGameLoop()
     {
         Instantiate(pickupTemplate, SpawnPositions.Pull());
@@ -24,9 +27,12 @@ public class UpgradeSpawner : MonoBehaviour
         {
             yield return new WaitUntil(() => UpgradePickup.Instance == null);
 
+
+            yield return new WaitForSeconds(5);
             enemySpawner.AddNextEnemyType();
-            for (int i = 0; i < enemySpawner.DesiredEnemyCount; i++)
-                enemySpawner.DoSpawn(); //Spawn twice as many enemies as "desired" by difficulty
+            for (int i = 0; i < enemySpawner.DesiredEnemyCount * 3; i++)
+                enemySpawner.DoSpawn(); //Spawn four times as many enemies as "desired" by difficulty
+            VoicelinePlayer.Play(ExtraEnemiesVoiceLines, true);
 
             yield return new WaitUntil(() => enemySpawner.EnemyCount <= enemySpawner.DesiredEnemyCount);
 
