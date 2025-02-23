@@ -15,7 +15,7 @@ public class ScoreboardUI : MonoBehaviour
     [SerializeField] private ScoreboardSingleUI scoreboardSingleUITemplate;
     [SerializeField] private RectTransform content;
 
-    [SerializeField] private TMP_InputField nameInput;
+    [SerializeField] private LeaderboardInputField nameInput;
 
     private List<ScoreboardSingleUI> singleUIs = new();
 
@@ -50,8 +50,9 @@ public class ScoreboardUI : MonoBehaviour
             {
                 var entry = currentEntries[i];
                 if (entry.PlayerId == AuthenticationService.Instance.PlayerId)
-                    currentEntries[i] = new(entry.PlayerId, name, entry.Rank, entry.Score);
+                    currentEntries[i] = new(entry.PlayerId, name+"#1234", entry.Rank, entry.Score);
             }
+            ShowScores(currentEntries);
         });
     }
 
