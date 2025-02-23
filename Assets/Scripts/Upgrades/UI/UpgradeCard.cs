@@ -14,6 +14,10 @@ public class UpgradeCard : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
     [SerializeField] private Sprite[] ReplacementIcons;
 
+    [SerializeField] private AudioClipGroup Hover;
+    [SerializeField] private AudioClipGroup Click;
+    [SerializeField] private AudioClipGroup Reveal;
+
     IUpgrade m_displayedUpgrade;
     public IUpgrade DisplayedUpgrade
     {
@@ -29,13 +33,18 @@ public class UpgradeCard : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         }
     }
     public event Action<UpgradeCard> OnClicked;
-    public void OnPointerClick(PointerEventData eventData) => OnClicked?.Invoke(this);
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        OnClicked?.Invoke(this);
+        SFXPool.PlayAt(Click, default);
+    }
 
     void OnEnable()
     {
         scaleSpring.Position = 0;
         transform.GetChild(0).gameObject.SetActive(true);
         AlienEye.ActiveChanged += AlienEyeReplaceIcon;
+        SFXPool.PlayAt(Reveal, default);
     }
     void OnDisable()
     {
@@ -113,6 +122,7 @@ public class UpgradeCard : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     {
         if (Disabled) return;
         scaleSpring.RestingPos = HoveredScale;
+        SFXPool.PlayAt(Hover, default);
     }
 
     public void OnPointerExit(PointerEventData eventData)

@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 30d31d1a64d24ed89700f1c787873286, type: 3}
-  m_Name: HealthPickup_OnCollect
+  m_Name: Reveal
   m_EditorClassIdentifier: 
   <Clips>k__BackingField:
-  - {fileID: 8300000, guid: 1c53672a17cc7d6efb79439bc1b3e2c2, type: 3}
-  <MixerGroup>k__BackingField: {fileID: -340919586334223705, guid: 5070527f0a2f37141a4be3ac890c834f, type: 2}
-  pitchRange: {x: 0.8, y: 1}
+  - {fileID: 8300000, guid: 1d6f05e59b9728256a5d7ab8fcb9613e, type: 3}
+  <MixerGroup>k__BackingField: {fileID: 348937664903323918, guid: 5070527f0a2f37141a4be3ac890c834f, type: 2}
+  pitchRange: {x: 1, y: 1}

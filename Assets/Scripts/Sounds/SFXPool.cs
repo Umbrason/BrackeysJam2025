@@ -49,8 +49,8 @@ public class SFXPool : MonoBehaviour
             var progress = audioSources.NextValue.time / audioSources.NextValue.clip.length;
             if (progress < interrupt) return;
         }
-        if (Time.time - lastTimePlayed < minPlayDelay) return;
-        lastTimePlayed = Time.time;
+        if (Time.unscaledTime - lastTimePlayed < minPlayDelay) return;
+        lastTimePlayed = Time.unscaledTime;
 
 
         if (!group.TryGetRandom(out var clip)) return;
