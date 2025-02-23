@@ -53,7 +53,7 @@ public class MusicPlayer : MonoBehaviour
     }
     void Update()
     {
-        CrossFadeSpring.RestingPos = Mathf.Clamp01((enemySpawner.EnemyCount - enemySpawner.DesiredEnemyCount)  * 2f / enemySpawner.DesiredEnemyCount); //1 => exiting
+        if(enemySpawner != null) CrossFadeSpring.RestingPos = Mathf.Clamp01((enemySpawner.EnemyCount - enemySpawner.DesiredEnemyCount)  * 2f / enemySpawner.DesiredEnemyCount); //1 => exiting
         CrossFadeSpring.Step(Time.deltaTime);
         calmAudioSource.volume = 1 - CrossFadeSpring.Position;
         exitingAudioSource.volume = CrossFadeSpring.Position;

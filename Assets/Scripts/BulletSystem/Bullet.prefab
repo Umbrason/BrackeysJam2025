@@ -165,6 +165,8 @@ MonoBehaviour:
   - {fileID: 4697952190637922494}
   - {fileID: 5308254327907992659}
   FFModeColorTint: {r: 0.98039216, g: 0.27450982, b: 0.105882354, a: 1}
+  FireSFX: {fileID: 11400000, guid: 47c979803d6c266eb8b226412c86d6ba, type: 2}
+  FlameVFXPool: {fileID: 0}
 --- !u!136 &3519258943307212982
 CapsuleCollider:
   m_ObjectHideFlags: 0

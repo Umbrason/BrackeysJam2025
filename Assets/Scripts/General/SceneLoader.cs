@@ -31,6 +31,5 @@ public class SceneLoader : MonoBehaviour
         }
 
         loadingCoroutine = null;
-
     }
 }
