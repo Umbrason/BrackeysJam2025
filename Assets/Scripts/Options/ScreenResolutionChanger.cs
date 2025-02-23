@@ -2,12 +2,10 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class ScreenResolutionChanger : MonoBehaviour
 {
     public TMP_Dropdown dropdown;
-    public TMP_Text text;
 
     private IEnumerator Start()
     {
@@ -47,7 +45,6 @@ public class ScreenResolutionChanger : MonoBehaviour
         
         Vector2Int res = ScreenModeManager.Instance.ScreenResolutions[ScreenModeManager.Instance.ResolutionIndex];
         dropdown.SetValueWithoutNotify(ScreenModeManager.Instance.ResolutionIndex);
-        text.text = $"{res.x}x{res.y}";
     }
 
     private void SetOptions(List<Vector2Int> options)
