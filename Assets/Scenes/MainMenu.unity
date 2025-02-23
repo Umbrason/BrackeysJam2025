@@ -1375,6 +1375,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: AudioManager
       objectReference: {fileID: 0}
+    - target: {fileID: 6389142224498748997, guid: d2ab72eb5cc648643ba2bc8f894ffeb1, type: 3}
+      propertyPath: onLoad.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6389142224498748997, guid: d2ab72eb5cc648643ba2bc8f894ffeb1, type: 3}
+      propertyPath: onLoad.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6389142224498748997, guid: d2ab72eb5cc648643ba2bc8f894ffeb1, type: 3}
+      propertyPath: onLoad.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1551811910}
+    - target: {fileID: 6389142224498748997, guid: d2ab72eb5cc648643ba2bc8f894ffeb1, type: 3}
+      propertyPath: onLoad.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6389142224498748997, guid: d2ab72eb5cc648643ba2bc8f894ffeb1, type: 3}
+      propertyPath: onLoad.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Play
+      objectReference: {fileID: 0}
+    - target: {fileID: 6389142224498748997, guid: d2ab72eb5cc648643ba2bc8f894ffeb1, type: 3}
+      propertyPath: onLoad.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.AudioSource, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6389142224498748997, guid: d2ab72eb5cc648643ba2bc8f894ffeb1, type: 3}
+      propertyPath: onLoad.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 8865377252227858674, guid: d2ab72eb5cc648643ba2bc8f894ffeb1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1420.7399
@@ -3903,14 +3931,13 @@ GameObject:
   m_Component:
   - component: {fileID: 1551811909}
   - component: {fileID: 1551811910}
-  - component: {fileID: 1551811911}
   m_Layer: 0
   m_Name: Music
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1551811909
 Transform:
   m_ObjectHideFlags: 0
@@ -3936,11 +3963,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -8677567098334270392, guid: 5070527f0a2f37141a4be3ac890c834f, type: 2}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 0c95b0957aae76e4da32b307e42dfeab, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -4022,28 +4049,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1551811911
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1551811908}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82a1398094c3bbe4785573684754a2c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  calmStartingClip: {fileID: 0}
-  calmLoopingClip: {fileID: 0}
-  exitingStartingClip: {fileID: 0}
-  exitingLoopingClip: {fileID: 0}
-  calmAudioSource: {fileID: 0}
-  exitingAudioSource: {fileID: 0}
-  enemySpawner: {fileID: 0}
-  CrossfadeSpringConfig:
-    <AngularFrequency>k__BackingField: 5
-    <DampingRatio>k__BackingField: 1
 --- !u!1 &1581346321
 GameObject:
   m_ObjectHideFlags: 0
@@ -4189,6 +4194,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1670180319}
   - component: {fileID: 1670180320}
+  - component: {fileID: 1670180321}
   m_Layer: 5
   m_Name: Buttons
   m_TagString: Untagged
@@ -4247,6 +4253,18 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!225 &1670180321
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1670180318}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1689156804
 GameObject:
   m_ObjectHideFlags: 0
@@ -5214,6 +5232,7 @@ GameObject:
   - component: {fileID: 1954986351}
   - component: {fileID: 1954986350}
   - component: {fileID: 1954986349}
+  - component: {fileID: 1954986352}
   m_Layer: 5
   m_Name: Start
   m_TagString: Untagged
@@ -5284,7 +5303,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1954986350}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1954986352}
+        m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
+        m_MethodName: LoadScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: GameplayScene
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1670180321}
+        m_TargetAssemblyTypeName: UnityEngine.CanvasGroup, UnityEngine
+        m_MethodName: set_interactable
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1954986350
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5323,6 +5366,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1954986347}
   m_CullTransparentMesh: 1
+--- !u!114 &1954986352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1954986347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32cef5d860a20ff418e1447ac7d978e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnBeforeLoading:
+    m_PersistentCalls:
+      m_Calls: []
+  OnLoading:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &2018812871
 GameObject:
   m_ObjectHideFlags: 0

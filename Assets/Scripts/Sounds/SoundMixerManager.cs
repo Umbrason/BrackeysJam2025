@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.Events;
 
 // https://www.youtube.com/watch?v=DU7cgVsU2rM&t=517s&ab_channel=SasquatchBStudios
 public class SoundMixerManager : MonoBehaviour
@@ -10,6 +11,7 @@ public class SoundMixerManager : MonoBehaviour
     public static SoundMixerManager Instance;
     
     public AudioMixer audioMixer;
+    public UnityEvent onLoad;
     public List<SoundMixerParam> mixerParameterName;
     private Dictionary<SoundMixerParam, float> _dictionary = new();
     
@@ -19,6 +21,7 @@ public class SoundMixerManager : MonoBehaviour
     {
         if (Instance != null)
         {
+            onLoad?.Invoke();
             Destroy(gameObject);
             return;
         }
@@ -57,6 +60,8 @@ public class SoundMixerManager : MonoBehaviour
             OnLoad?.Invoke(param, value);
             SetMixerValue(param, value);
         });
+        
+        onLoad?.Invoke();
     }
 
     private string CreateKey(SoundMixerParam param) => $"Audio_{param.ToString()}";
