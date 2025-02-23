@@ -203,7 +203,7 @@ PrefabInstance:
       objectReference: {fileID: 140237364}
     - target: {fileID: 4565929640483868503, guid: b62501f927cf6cf21b98cf1df6f234cf, type: 3}
       propertyPath: m_PlaneDistance
-      value: 13.506292
+      value: 14.137888
       objectReference: {fileID: 0}
     - target: {fileID: 4752286795911190476, guid: b62501f927cf6cf21b98cf1df6f234cf, type: 3}
       propertyPath: m_Pivot.x
@@ -377,7 +377,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1795028965796531093, guid: 5891e5a4979bd0f45800d25ed4376d0e, type: 3}
       propertyPath: m_PlaneDistance
-      value: 13.506292
+      value: 14.137888
       objectReference: {fileID: 0}
     - target: {fileID: 8208631659514824376, guid: 5891e5a4979bd0f45800d25ed4376d0e, type: 3}
       propertyPath: m_Pivot.x
@@ -925,7 +925,7 @@ Material:
     - _Amplitude: 20
     - _ColorMask: 15
     - _Frequency: 4
-    - _Random: 0.11186509
+    - _Random: 0.22344932
     - _Stencil: 0
     - _StencilComp: 8
     - _StencilOp: 0
@@ -934,7 +934,7 @@ Material:
     - _UseUIAlphaClip: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _PixelRect: {r: 1199, g: 87.84699, b: 0.00083402835, a: 0.011383429}
+    - _PixelRect: {r: 879, g: 78.35829, b: 0.0011376564, a: 0.012761891}
   m_BuildTextureStacks: []
 --- !u!4 &414429582 stripped
 Transform:
@@ -1291,7 +1291,7 @@ Material:
     - _Amplitude: 20
     - _ColorMask: 15
     - _Frequency: 4
-    - _Random: 0.30455378
+    - _Random: 0.41613802
     - _Stencil: 0
     - _StencilComp: 8
     - _StencilOp: 0
@@ -1300,7 +1300,7 @@ Material:
     - _UseUIAlphaClip: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _PixelRect: {r: 1199, g: 87.84699, b: 0.00083402835, a: 0.011383429}
+    - _PixelRect: {r: 879, g: 78.35829, b: 0.0011376564, a: 0.012761891}
   m_BuildTextureStacks: []
 --- !u!1 &552997304
 GameObject:
@@ -2037,7 +2037,7 @@ PrefabInstance:
       objectReference: {fileID: 140237364}
     - target: {fileID: 6062696188663480480, guid: ec21f6dddc821d7fa9036ac8a2250827, type: 3}
       propertyPath: m_PlaneDistance
-      value: 13.506292
+      value: 14.137888
       objectReference: {fileID: 0}
     - target: {fileID: 6317069039511381192, guid: ec21f6dddc821d7fa9036ac8a2250827, type: 3}
       propertyPath: m_Name
@@ -3035,6 +3035,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.x
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 8114633053869412216, guid: 37c5a8b9e80b06d4f9d01f0c170091d2, type: 3}
+      propertyPath: <SpreadDegrees>k__BackingField.<Base>k__BackingField
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3611,7 +3615,7 @@ Material:
     - _UseUIAlphaClip: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _PixelRect: {r: 49.634964, g: 12.408743, b: 0.020147089, a: 0.08058834}
+    - _PixelRect: {r: 38.08953, g: 9.522383, b: 0.026253933, a: 0.10501573}
   m_BuildTextureStacks: []
 --- !u!21 &2047071138
 Material:
@@ -3648,7 +3652,7 @@ Material:
     - _UseUIAlphaClip: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _PixelRect: {r: 49.634964, g: 12.408743, b: 0.020147089, a: 0.08058834}
+    - _PixelRect: {r: 38.08953, g: 9.522383, b: 0.026253933, a: 0.10501573}
   m_BuildTextureStacks: []
 --- !u!1 &2048583130
 GameObject:
@@ -3873,7 +3877,7 @@ PrefabInstance:
       objectReference: {fileID: 140237364}
     - target: {fileID: 692663098516493234, guid: 397b91b025a85ae33894bf2b3bc992d7, type: 3}
       propertyPath: m_PlaneDistance
-      value: 13.506292
+      value: 14.137888
       objectReference: {fileID: 0}
     - target: {fileID: 2745776846117149296, guid: 397b91b025a85ae33894bf2b3bc992d7, type: 3}
       propertyPath: m_Name
@@ -4074,7 +4078,7 @@ PrefabInstance:
       objectReference: {fileID: 140237364}
     - target: {fileID: 4889225409337670596, guid: 12e3b4cc876f919e4ae4dd1f9d8b2330, type: 3}
       propertyPath: m_PlaneDistance
-      value: 13.506292
+      value: 14.137888
       objectReference: {fileID: 0}
     - target: {fileID: 5190426805249218833, guid: 12e3b4cc876f919e4ae4dd1f9d8b2330, type: 3}
       propertyPath: m_Pivot.x
