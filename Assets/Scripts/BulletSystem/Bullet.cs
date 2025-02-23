@@ -80,7 +80,7 @@ public class Bullet : MonoBehaviour
         else
         {
             var hitbox = collision.collider.GetComponent<Hitbox>();
-            hitbox?.RegisterDamageEvent(HealthEvent.Damage(damage));
+            hitbox?.RegisterDamageEvent(HealthEvent.Damage(damage, false, gameObject));
             Despawn();
         }
     }
