@@ -2321,6 +2321,53 @@ MonoBehaviour:
   group: {fileID: 11400000, guid: 5ed38c9186bc732b895dbb9c52407a5c, type: 2}
   Size: 3
   Template: {fileID: 2545799631519408329, guid: 0662d2b7ac037e61396a10d11a534eef, type: 3}
+--- !u!1 &1177056019
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1177056020}
+  - component: {fileID: 1177056021}
+  m_Layer: 0
+  m_Name: SFX_UpgradeSelected
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1177056020
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1177056019}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1278086558}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1177056021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1177056019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bdd2f4a0665146e28378c9b2c9fe510, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  group: {fileID: 11400000, guid: 83263a5ed6e25caffb4a7e61b37e8b8e, type: 2}
+  Size: 1
+  Template: {fileID: 1977145959474639408, guid: 5ecf07046f665e03eba64e18f6a1e97c, type: 3}
 --- !u!1001 &1220978352
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3013,6 +3060,7 @@ Transform:
   - {fileID: 821625398}
   - {fileID: 64705375}
   - {fileID: 1170495197}
+  - {fileID: 1177056020}
   m_Father: {fileID: 995851532}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1378220723
@@ -3755,7 +3803,7 @@ Material:
     - _UseUIAlphaClip: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _PixelRect: {r: 49.634968, g: 12.408743, b: 0.020147087, a: 0.08058834}
+    - _PixelRect: {r: 49.634964, g: 12.408743, b: 0.020147089, a: 0.08058834}
   m_BuildTextureStacks: []
 --- !u!21 &2047071138
 Material:
@@ -3792,7 +3840,7 @@ Material:
     - _UseUIAlphaClip: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _PixelRect: {r: 49.634968, g: 12.408743, b: 0.020147087, a: 0.08058834}
+    - _PixelRect: {r: 49.634964, g: 12.408743, b: 0.020147089, a: 0.08058834}
   m_BuildTextureStacks: []
 --- !u!1 &2048583130
 GameObject:
