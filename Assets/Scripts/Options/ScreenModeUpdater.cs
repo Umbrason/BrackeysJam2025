@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class ScreenModeUpdater : MonoBehaviour
 {
     public TMP_Dropdown dropdown;
-    public TMP_Text text;
-
+    
     private void Awake()
     {
         dropdown.ClearOptions();
@@ -43,7 +40,6 @@ public class ScreenModeUpdater : MonoBehaviour
 
     private void RefreshDisplay()
     {
-        text.text = ((FullScreenMode)ScreenModeManager.Instance.ScreenModeIndex).ToString();
         dropdown.SetValueWithoutNotify(ScreenModeManager.Instance.ScreenModeIndex);
     }
 }
