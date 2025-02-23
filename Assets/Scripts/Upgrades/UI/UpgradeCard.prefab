@@ -497,6 +497,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 0f3b3a621302af917a23bea3370c0a02, type: 3}
   - {fileID: 21300000, guid: 4abc7ab194b9493d697fb80bcea1e069, type: 3}
   - {fileID: 21300000, guid: 26911d3b28298e4ce88f23b2e7e5d0dc, type: 3}
+  Hover: {fileID: 11400000, guid: 2bd2e9b99c0d2166f91401aaacace230, type: 2}
+  Click: {fileID: 11400000, guid: 444fbc5a0dacf6bd7bb8b894ada27fbd, type: 2}
+  Reveal: {fileID: 11400000, guid: 5ed38c9186bc732b895dbb9c52407a5c, type: 2}
   scaleSpringConfig:
     <AngularFrequency>k__BackingField: 20
     <DampingRatio>k__BackingField: 0.6

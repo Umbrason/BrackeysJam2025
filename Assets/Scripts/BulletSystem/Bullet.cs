@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Linq;
 using UnityEngine;
 public class Bullet : MonoBehaviour
@@ -9,6 +10,8 @@ public class Bullet : MonoBehaviour
     public Vector3 velocity;
     Cached<Rigidbody> cached_RB;
     Rigidbody Rigidbody => cached_RB[this];
+
+    Coroutine scaleRoutine;
 
     [SerializeField] private AudioClipGroup RicochetSFX;
     [SerializeField] private SpriteRenderer[] srs;
@@ -73,10 +76,14 @@ public class Bullet : MonoBehaviour
             Rigidbody.MovePosition(Rigidbody.position + velocity.normalized * .05f);
             if (UpgradeBounceIncrease.IsActive)
             {
-
+             
                 this.damage = (uint)Mathf.Floor(this.damage * 1.25f); 
-                transform.localScale = transform.localScale * 1.25f;
-
+                
+                     if (scaleRoutine == null)
+                {
+                     scaleRoutine = StartCoroutine(scaleBullet());      
+                }
+                        
             }
             if (remainingBounces <= 0)
             {
@@ -97,11 +104,24 @@ public class Bullet : MonoBehaviour
 
     void OnCollisionStay(Collision collision) => OnCollisionEnter(collision);
 
+    void OnEnable()
+    {
+        scaleRoutine = null;
+    }
+
     void Despawn()
     {
         Rigidbody.Sleep();
         Rigidbody.velocity = default;
         gameObject.SetActive(false);
         OnDespawn?.Invoke(this);
+    }
+
+    IEnumerator scaleBullet()
+    {
+         yield return new WaitForSeconds(0.25f);
+        Vector3 changedScale = transform.localScale + (Vector3.one * .5f);
+        transform.localScale = changedScale;
+       scaleRoutine = null;
     }
 }
