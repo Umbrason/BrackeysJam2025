@@ -23,8 +23,8 @@ public class EnemyPoolable : MonoBehaviour, EnemyPool.IPoolTarget
         {
             var pos = transform.position;
             var srcPos = evt.Source?.transform?.position ?? transform.position + Vector3.up;
-            var delta = pos - srcPos;
-            HitVFXPool.Pull(transform.position, Quaternion.LookRotation(delta));
+            var delta = (pos - srcPos)._x0z();
+            HitVFXPool.Pull(pos, Quaternion.FromToRotation(Vector3.forward, delta));
         };
     }
 

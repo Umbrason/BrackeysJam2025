@@ -15,7 +15,7 @@ MonoBehaviour:
   m_Active: 1
   settings:
     passTag: RenderObjects
-    Event: 500
+    Event: 550
     filterSettings:
       RenderQueueType: 1
       LayerMask:
@@ -191,9 +191,9 @@ MonoBehaviour:
   - {fileID: 937507582045551795}
   - {fileID: 2041602368562243856}
   - {fileID: 7576490545715141280}
-  - {fileID: -6932536895252875467}
   - {fileID: 8630859030883185532}
-  m_RendererFeatureMap: a700ffc3e8a123e3329f87dbbf030f5fc6ef79c90db48bce66b9acc0e780f1ecb37c0fc22db2020d10a9bf8e893a551ca0da7465021a256935b729866caeca9f7cb343728ff8c677
+  - {fileID: -6932536895252875467}
+  m_RendererFeatureMap: a700ffc3e8a123e3329f87dbbf030f5fc6ef79c90db48bce66b9acc0e780f1ecb37c0fc22db2020d10a9bf8e893a551ca0da7465021a25697cb343728ff8c67735b729866caeca9f
   m_UseNativeRenderPass: 1
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   shaders:

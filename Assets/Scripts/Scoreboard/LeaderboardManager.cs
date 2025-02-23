@@ -9,11 +9,12 @@ using Unity.Services.Leaderboards.Exceptions;
 using LeaderboardEntry = Unity.Services.Leaderboards.Models.LeaderboardEntry;
 public static class LeaderboardManager
 {
-    private const string LEADERBOARD_ID = "Times-0";
-    public static async void SetCurrentPlayerScore(int score)
+    private const string LEADERBOARD_ID = "Highscores";
+    public static async Task SetCurrentPlayerScore(int score)
     {
         try
         {
+            await Authentication.Initialize();
             var playerEntry = await LeaderboardsService.Instance
             .AddPlayerScoreAsync(LEADERBOARD_ID, score);
         }
@@ -27,6 +28,7 @@ public static class LeaderboardManager
     {
         try
         {
+            await Authentication.Initialize();
             var scores = await LeaderboardsService.Instance.GetPlayerRangeAsync(
                                 LEADERBOARD_ID,
                                 new GetPlayerRangeOptions { RangeLimit = rangeLimit }
@@ -37,13 +39,14 @@ public static class LeaderboardManager
         {
             Debug.LogError("Error while getting scores around player: \n" + e);
             return new List<LeaderboardEntry>();
-        }       
+        }
     }
 
     public static async Task<List<LeaderboardEntry>> GetBestScores(int rangeLimit, int offset)
     {
         try
         {
+            await Authentication.Initialize();
             var scores = await LeaderboardsService.Instance.GetScoresAsync(
                                 LEADERBOARD_ID,
                                 new GetScoresOptions { Limit = rangeLimit, Offset = offset }
