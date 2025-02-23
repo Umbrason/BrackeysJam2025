@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class AlienEye : MonoBehaviour, IUpgrade
 {
-    public Sprite Icon => Resources.Load<Sprite>($"Upgrades/{GetType().Name}");
+    public Sprite Icon => Resources.Load<Sprite>($"AlienEye");
     public string Name => "Alien Eye";
     public string Description => "Lets you see more";
     AudioClipGroup IUpgrade.UpgradeVoiceLine => Resources.Load<AudioClipGroup>("FontUpgradePicked");

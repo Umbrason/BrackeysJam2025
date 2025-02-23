@@ -36,7 +36,6 @@ public class ScoreboardUI : MonoBehaviour
     }
 
     List<Unity.Services.Leaderboards.Models.LeaderboardEntry> currentEntries;
-
     private async void Start()
     {
         await TransientScoring.Save();

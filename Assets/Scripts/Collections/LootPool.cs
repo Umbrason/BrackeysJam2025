@@ -5,7 +5,7 @@ using UnityEngine;
 public class LootPool<T>
 {
     const float VarietyGuaranteeRatio = .5f;
-    private readonly HashSet<T> Options = new();
+    private readonly List<T> Options = new();
     private readonly RingBuffer<T> LastLoot = new(0);
     public int Size => Options.Count;
     public void Push(T item)

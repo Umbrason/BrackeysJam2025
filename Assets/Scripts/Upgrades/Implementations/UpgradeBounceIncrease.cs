@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class UpgradeBounceIncrease : IUpgrade
 {
-	Sprite IUpgrade.Icon => null;
+	Sprite IUpgrade.Icon => Resources.Load<Sprite>("BounceUp");
     string IUpgrade.Name => "BounceUp";
     string IUpgrade.Description => "Increases bounces of the bullet by + 4.";
     bool IUpgrade.Stackable => true;
