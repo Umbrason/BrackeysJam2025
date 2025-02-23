@@ -23,7 +23,7 @@ public class UpgradePickup : MonoBehaviour
     [SerializeField] AudioClipGroup upgradeVoiceLines;
     IEnumerator PickupRoutine(GameObject target)
     {
-        var options = Enumerable.Range(0, UpgradeOptionCount).Select(_ => IUpgrade.UpgradePool.Pull()).ToArray();
+        var options = Enumerable.Range(0, UpgradeOptionCount + (AlienEye.IsActive ? 1 : 0)).Select(_ => IUpgrade.UpgradePool.Pull()).ToArray();
         Animator.Framerate = openAnimationFramerate;
         Animator.Sprites = OpenAnimation;
         VoicelinePlayer.Play(upgradeVoiceLines);

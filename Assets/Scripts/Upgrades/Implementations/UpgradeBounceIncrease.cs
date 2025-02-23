@@ -5,8 +5,8 @@ using UnityEngine;
 public class UpgradeBounceIncrease : MonoBehaviour,IUpgrade
 {
 	Sprite IUpgrade.Icon => Resources.Load<Sprite>("BounceUp");
-    string IUpgrade.Name => "BounceUp";
-    string IUpgrade.Description => "Increases bounces of the bullet by + 4.";
+    string IUpgrade.Name => "Sturdy Slinky";
+    string IUpgrade.Description => "Bullets grow stronger with each bounce.";
     bool IUpgrade.Stackable => true;
    public static bool IsActive { get; private set; }
     void IUpgrade.OnApply(GameObject PlayerObject) 
