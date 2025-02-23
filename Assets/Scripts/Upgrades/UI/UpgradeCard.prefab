@@ -484,6 +484,19 @@ MonoBehaviour:
   icon: {fileID: 4916691995141342118}
   title: {fileID: 3048738873713257666}
   description: {fileID: 8201074580467750746}
+  ReplacementIcons:
+  - {fileID: 21300000, guid: a6fc78de4720619ce941b2a9a3a916bc, type: 3}
+  - {fileID: 21300000, guid: 3a0ee481c74423160a32f73af3dc8046, type: 3}
+  - {fileID: 21300000, guid: 5e27c2b0856cec8f28c92f2a61cd1b08, type: 3}
+  - {fileID: 21300000, guid: fbd2268edeac01661aa56305d9d696e5, type: 3}
+  - {fileID: 21300000, guid: a3cbf97a68d48374296fb35ad626b20b, type: 3}
+  - {fileID: 21300000, guid: e366f0ae4825edf6b84b92519048afef, type: 3}
+  - {fileID: 21300000, guid: e73355f62660282f59b755aaa9875a08, type: 3}
+  - {fileID: 21300000, guid: 3356da6429acef4ab808275a75d58be0, type: 3}
+  - {fileID: 21300000, guid: e45211324e1d9e17a837ca04d6cc23c8, type: 3}
+  - {fileID: 21300000, guid: 0f3b3a621302af917a23bea3370c0a02, type: 3}
+  - {fileID: 21300000, guid: 4abc7ab194b9493d697fb80bcea1e069, type: 3}
+  - {fileID: 21300000, guid: 26911d3b28298e4ce88f23b2e7e5d0dc, type: 3}
   scaleSpringConfig:
     <AngularFrequency>k__BackingField: 20
     <DampingRatio>k__BackingField: 0.6
