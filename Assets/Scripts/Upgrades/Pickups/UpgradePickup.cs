@@ -15,7 +15,7 @@ public class UpgradePickup : MonoBehaviour
         StartCoroutine(PickupRoutine(target));
     }
     bool pickingUp = false;
-    const int UpgradeOptionCount = 10;
+    const int UpgradeOptionCount = 3;
     [SerializeField] private Sprite[] OpenAnimation;
     [SerializeField] private int openAnimationFramerate;
     Cached<ISpriteAnimator> cached_Animator = new(Cached<ISpriteAnimator>.GetOption.Children);

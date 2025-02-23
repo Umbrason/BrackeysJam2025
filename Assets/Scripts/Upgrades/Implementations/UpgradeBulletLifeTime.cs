@@ -4,7 +4,7 @@ public class UpgradeBulletLifeTime : MonoBehaviour, IUpgrade
 {
     public Sprite Icon => Resources.Load<Sprite>("LifetimeUp");
     public string Name => "The Singed Dragon of RAt";
-    public string Description => $"Increases bullet lifetime by +{increase}s";
+    public string Description => $"Projectiles spontaneously combust when they despawn.";
     public bool Stackable => false;
     private const int increase = 10;
 

@@ -27,11 +27,10 @@ public class SoundVolumeDisplay : MonoBehaviour
     {
         if (targetParam != param)
             return;
-        
         slider.SetValueWithoutNotify(val);
         textDisplay.text = ((int)(val * 100)).ToString();
     }
-    
+
     private void OnSliderValueChanged(float val)
     {
         SoundMixerManager.Instance.SetMixerValue(param, val);

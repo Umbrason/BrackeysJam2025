@@ -972,7 +972,7 @@ Material:
     - _Amplitude: 20
     - _ColorMask: 15
     - _Frequency: 4
-    - _Random: 0.88642937
+    - _Random: 0.73294675
     - _Stencil: 0
     - _StencilComp: 8
     - _StencilOp: 0
@@ -1338,7 +1338,7 @@ Material:
     - _Amplitude: 20
     - _ColorMask: 15
     - _Frequency: 4
-    - _Random: 0.07911803
+    - _Random: 0.9256354
     - _Stencil: 0
     - _StencilComp: 8
     - _StencilOp: 0
@@ -4190,17 +4190,17 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 140237364}
-    - target: {fileID: 692663098516493234, guid: 397b91b025a85ae33894bf2b3bc992d7, type: 3}
-      propertyPath: m_PlaneDistance
-      value: 13.627167
-      objectReference: {fileID: 0}
     - target: {fileID: 2745776846117149296, guid: 397b91b025a85ae33894bf2b3bc992d7, type: 3}
       propertyPath: m_Name
       value: ScoreDisplay
       objectReference: {fileID: 0}
-    - target: {fileID: 4639729830944330506, guid: 397b91b025a85ae33894bf2b3bc992d7, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0.012512207
+    - target: {fileID: 5054869146952321916, guid: 397b91b025a85ae33894bf2b3bc992d7, type: 3}
+      propertyPath: colorIndex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5054869146952321916, guid: 397b91b025a85ae33894bf2b3bc992d7, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5957298509779332635, guid: 397b91b025a85ae33894bf2b3bc992d7, type: 3}
       propertyPath: m_Pivot.x
@@ -4286,9 +4286,13 @@ PrefabInstance:
       propertyPath: pool
       value: 
       objectReference: {fileID: 1864296728}
-    - target: {fileID: 6774947434393420029, guid: 397b91b025a85ae33894bf2b3bc992d7, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.009000003
+    - target: {fileID: 7985882577652029089, guid: 397b91b025a85ae33894bf2b3bc992d7, type: 3}
+      propertyPath: colorIndex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7985882577652029089, guid: 397b91b025a85ae33894bf2b3bc992d7, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
