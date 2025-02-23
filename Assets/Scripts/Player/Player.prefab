@@ -165,7 +165,7 @@ MonoBehaviour:
   <Firerate>k__BackingField:
     <Base>k__BackingField: 1
   <SpreadDegrees>k__BackingField:
-    <Base>k__BackingField: 5
+    <Base>k__BackingField: 0
   <BulletsPerShot>k__BackingField:
     <Base>k__BackingField: 1
   <DamagePerBullet>k__BackingField:
