@@ -33,7 +33,7 @@ public class PlayerInput : MonoBehaviour, GameInput.IMovementActions
         get
         {
             var ray = playerCamera.ScreenPointToRay(PointerPosition);
-            var t = ray.origin.y / ray.direction.y;
+            var t = (ray.origin.y - 1) / ray.direction.y;
             var xzIntersection = ray.origin + ray.direction * -t;
             var direction = xzIntersection - cameraMovement.transform.position;
             return direction._xz();
