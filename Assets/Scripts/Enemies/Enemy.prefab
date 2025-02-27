@@ -391,7 +391,7 @@ MonoBehaviour:
   hurt: {fileID: 11400000, guid: c2ca4ab83f0933fb1940ec39b1fd5cbc, type: 2}
   lowHP: {fileID: 11400000, guid: c2ca4ab83f0933fb1940ec39b1fd5cbc, type: 2}
   died: {fileID: 11400000, guid: 0cb50ce00d68beb48aa7a92c2ef1b7ac, type: 2}
-  probability: 0.05
+  probability: 0.005
 --- !u!1 &2845591556402424452
 GameObject:
   m_ObjectHideFlags: 0

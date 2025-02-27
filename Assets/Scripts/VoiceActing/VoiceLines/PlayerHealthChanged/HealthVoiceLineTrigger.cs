@@ -16,6 +16,7 @@ public class HealthVoiceLineTrigger : MonoBehaviour
     void Start()
     {
         HealthPool.OnModified += OnModified;
+        HealthPool.OnDepleted += () => { if (Random.value <= probability) VoicelinePlayer.Play(died); };
     }
 
     void OnDestroy()

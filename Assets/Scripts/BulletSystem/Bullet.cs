@@ -39,6 +39,7 @@ public class Bullet : MonoBehaviour
         transform.localScale = Vector3.one * size;
         gameObject.SetActive(true);
         SetLayer(noFFLayer);
+        canExplode = UpgradeBulletLifeTime.IsActive;
         foreach (var sr in srs) sr.color = Color.white;
     }
     public event Action<Bullet> OnDespawn;
@@ -77,7 +78,7 @@ public class Bullet : MonoBehaviour
         {
             SFXPool.PlayAt(RicochetSFX, transform.position);
             velocity = Vector3.Reflect(velocity, normal);
-            Rigidbody.MovePosition(Rigidbody.position + velocity.normalized * .05f);
+            Rigidbody.MovePosition(Rigidbody.position + velocity * 2f * Time.fixedDeltaTime);
             lastBounceTime = Time.time;
             if (UpgradeBounceIncrease.IsActive)
             {
@@ -109,21 +110,23 @@ public class Bullet : MonoBehaviour
         scaleRoutine = null;
     }
 
+
     void Despawn()
     {
         Rigidbody.Sleep();
         Rigidbody.velocity = default;
         gameObject.SetActive(false);
         OnDespawn?.Invoke(this);
-        if (UpgradeBulletLifeTime.IsActive)
+        if (canExplode)
             DoFireThings();
     }
 
 
+    bool canExplode;
     void DoFireThings()
     {
         var hits = Physics.OverlapSphere(transform.position, 4);
-        var dmgEvent = HealthEvent.Damage(damage * 5, false, gameObject);
+        var dmgEvent = HealthEvent.Damage(damage, false, gameObject);
         foreach (var collider in hits)
             collider.GetComponent<Hitbox>()?.RegisterDamageEvent(dmgEvent);
         SFXPool.PlayAt(FireSFX, transform.position);

@@ -30,6 +30,7 @@ public class UpgradeSpawner : MonoBehaviour
 
             yield return new WaitForSeconds(5);
             enemySpawner.AddNextEnemyType();
+            enemySpawner.AddNextEnemyType();
             for (int i = 0; i < enemySpawner.DesiredEnemyCount * 3; i++)
                 enemySpawner.DoSpawn(); //Spawn four times as many enemies as "desired" by difficulty
             VoicelinePlayer.Play(ExtraEnemiesVoiceLines, true);

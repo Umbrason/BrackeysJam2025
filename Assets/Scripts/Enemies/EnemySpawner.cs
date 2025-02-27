@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -42,10 +41,10 @@ public class EnemySpawner : MonoBehaviour
     int CalcEnemyCount()
     {
         var playtime = Time.time - startTime;
-        playtime = Mathf.Min(12000, playtime + 60 * TransientScoring.UpgradesCollected);
+        playtime = Mathf.Min(12000, playtime + 15 * TransientScoring.UpgradesCollected);
         var a = Mathf.Pow(playtime, 1.4f) * 0.022f / 3f;
         var b = Mathf.Pow(playtime, 1.5f) * 0.008f / 3f;
-        return Mathf.FloorToInt(a - b + 2);
+        return Mathf.FloorToInt((a - b) * .4f + 2);
     }
 
     public void AddNextEnemyType()
@@ -71,7 +70,7 @@ public class EnemySpawner : MonoBehaviour
     }
 
 
-    private const int maxAttempts = 10;
+    private const int maxAttempts = 20;
     private static readonly Collider[] _discard = new Collider[1];
     public Vector3 GenerateSpawnPosition(float radius)
     {

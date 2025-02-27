@@ -8,6 +8,6 @@ public class UpgradeSpeed : IUpgrade
     string IUpgrade.Name => "TRIPple Boots";
     string IUpgrade.Description => $"Increases the speed of the player by +{increase}.";
     bool IUpgrade.Stackable => true;
-    const int increase = 4;
+    const int increase = 2;
     void IUpgrade.OnApply(GameObject PlayerObject) { PlayerObject.GetComponent<PlayerStats>().Speed.RegisterAdd(increase);}
 }
